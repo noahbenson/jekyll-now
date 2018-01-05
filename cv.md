@@ -35,6 +35,8 @@ permalink: /cv/
 
 ### Publications
 
+* Zhou JW, Benson NC, Kay KN, Winawer J (**2017**) Compressive Temporal Summation in Human Visual
+  Cortex. _J. Neurosci._ **In Press**
 * Aguirre GK, Datta R, **Benson NC**, Prasad S, Jacobson SG, _et al._ (**2016**) Patterns of
   Individual Variation in Visual Pathway Structure and Function in the Sighted and Blind. PLOS ONE
   **11**(11):e0164677. DOI:[10.1371/journal.pone.0164677](https://doi.org/10.1371/journal.pone.0164677)
