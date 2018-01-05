@@ -10,12 +10,9 @@ permalink: /cv/
   [Brainard Lab](https://color.psych.upenn.edu/), 2010-2014;
   [Aguirre Lab](https://cfn.upenn.edu/aguirre/wiki/), 2010-2014;
 * Ph. D., University of Washington, 2005-2010
-
   School of Medicine, Division of Biomedical and Health Informatics
 * B. S., Purdue University, 2001-2005
-
   Major Concentrations: Mathematics, Computer Science, Biology (triple-major)
-  
   Coursework Foci: discrete math, statistics, algorithms, theory of computation, biochemistry
             
 ### Honors and Grants 
