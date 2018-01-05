@@ -4,12 +4,12 @@ title: About
 permalink: /about/
 ---
 
-Some information about you!
-
-### More Information
-
-A place to include any other types of information that you'd like to include about yourself.
+I'm a research scientist in the [Winawer Lab](https://wp.nyu.edu/winawerlab/) at
+[New York University](http://www.nyu.edu/). I study vision and its neural
+correlates with particular interests in how the anatomical structure of the
+brain is related to visual experience and computation. For more information
+about my research, see my [Research]({{site.baseurl}}/research/) page.
 
 ### Contact me
 
-[email@domain.com](mailto:email@domain.com)
+[nben@nyu.edu](mailto:nben@nyu.edu)
