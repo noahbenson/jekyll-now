@@ -39,9 +39,9 @@ The measure of how much of the cortex is devoted to how much of the visual field
 Cortical magnification is known to decrease with eccentricity in V1 according to the following
 formula by Horton and Hoyt (1991):
 
-$$ m = \frac{17.3}{0.75 + e} $$
+$$ m = \frac{17.3}{0.75 + \rho} $$
 
-where \\(m\\) and \\(e\\) are the mm/deg of cortical magnification and deg of eccentricity,
+where \\(m\\) and \\(\rho\\) are the mm/deg of cortical magnification and deg of eccentricity,
 respectively.
 
 ![cortical mag slide]({{ site.baseurl }}/images/cmag/cortical_mag.png "Proposed Cortical
@@ -51,7 +51,7 @@ Magnification in V1")
 ## Data
 
 Cortical magnification was calculated either on a per-face basis (i.e., using each face of the
-cortial surface) or by using path-based metrics in which a path is drawn over a small patch of
+cortical surface) or by using path-based metrics in which a path is drawn over a small patch of
 cortex and the cortical surface length of the path is divided by the visual field path-length. Paths
 were drawn both radially (along iso-angular lines across a particular point) or tangentially (along
 iso-eccentric lines across a particular point). Per-face magnification was calculated in both
@@ -61,10 +61,42 @@ radial and tangential directions as well, and averaged around particular points 
 
 #### Path-based Calculations
 
+##### Method
+
+Path-based calculations are computed by drawing a path on the visual field, projecting that path
+back onto the white cortical surface, calculating the length of each, and dividing the length of the
+surface-path by the length of the visual-field-path. The path can be a line along an iso-angular ray
+(i.e., a radial path) or along an iso-eccentric curve (i.e., a tangential path). The results below
+were calculated by finding the path-based cortical magnification along very small paths in the
+visual field; the paths were drawn radially and tangentially between points in a grid in which
+eccentricity values were exponentially-spaced. defined by the following code:
+
+```python
+import numpy as np
+
+grid_angles = np.arange(0, 181, 3)
+# ==> array([  0,   3,   6,   9,  12,  15, ... 177, 180])
+grid_eccens = 0.625 * (2 ** np.arange(0, 4.3, 0.075))
+# ==> array([ 0.625,  0.658,  0.693,  0.730,   ... 11.487, 12.100])
+```
+
+This gives 58 eccentricity values and 61 polar angle points. Paths were drawn either between
+eccentricity points along the average inter-grid polar angle value (for radial lines) or between
+polar angle points along the average inter-grid eccentricity value (for tangential curves); in other
+words, iso-angle lines were drawn along polar angles 1.5, 4.5, 7.5, 10.5, etc. and between
+eccentricities (0.625, 0.658), (0.658, 0.693), (0.693, 0.730), etc. while iso-eccentric lines were
+drawn along eccentricities 0.642, 0.0.676, 0.712, etc.
+
+
+##### Results
+
 The following image shows the cortical magnification for path-based calculations; note that the
 dotted black lines show the 1.5, 3, and 6 degree iso-eccentricity lines, and the entire field is
 shown out to 12 degrees (note that there is a logarithmic scaling to eccentricity). The left images
-show the **radial** and the right images show the **tangential** magnification.
+show the **radial** and the right images show the **tangential** magnification. The size of the
+circles is related to confidence: smaller circles have higher standard deviations across subjects
+(though this is not emphasized as standard deviations were generally small, except near the
+meridia).
 
 * V1  
   ![path_cmag_vfield_v1]({{ site.baseurl }}/images/cmag/path_cmag_vfield_v1.png "Path-base Cortical
