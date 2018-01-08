@@ -3,6 +3,8 @@ layout: post
 title: Cortical Magnification
 ---
 
+An analysis of cortical magnification data across 8 subjects.
+
 ## Introduction
 
 In this post, I explore the concept of cortical magnification using a custom dataset from the
