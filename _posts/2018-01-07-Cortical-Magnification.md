@@ -59,6 +59,7 @@ radial and tangential directions as well, and averaged around particular points 
 
 ### Average Cortical Magnification
 
+---
 #### Path-based Calculations
 
 ##### Method
@@ -98,33 +99,17 @@ circles is related to confidence: smaller circles have higher standard deviation
 (though this is not emphasized as standard deviations were generally small, except near the
 meridia).
 
-* V1  
-  ![path_cmag_vfield_v1]({{ site.baseurl }}/images/cmag/path_cmag_vfield_v1.png "Path-base Cortical
-  Magnification of V1, projected to the visual field")
-* V2  
-  ![path_cmag_vfield_v2]({{ site.baseurl }}/images/cmag/path_cmag_vfield_v2.png "Path-base Cortical
-  Magnification of V2, projected to the visual field")
-* V3  
-  ![path_cmag_vfield_v3]({{ site.baseurl }}/images/cmag/path_cmag_vfield_v3.png "Path-base Cortical
-  Magnification of V3, projected to the visual field")
+![path_cmag_vfield]({{ site.baseurl }}/images/cmag/path_cmag_vfield.png "Path-base Cortical
+Magnification of V1, V2, and V3 projected to the visual field")
 
-
+---
 #### Per-face Calculations
 
-The following image shows the cortical magnification for per-face calculations; note that the
-dotted black lines show the 1.5, 3, and 6 degree iso-eccentricity lines, and the entire field is
-shown out to 12 degrees (note that there is a logarithmic scaling to eccentricity). The left images
-show the **radial** and the right images show the **tangential** magnification.
+The following image shows the cortical magnification for per-face calculations; (see blurb in above
+section on path-based calculations for plot details).
 
-* V1  
-  ![perface_cmag_vfield_v1]({{ site.baseurl }}/images/cmag/perface_cmag_vfield_v1.png "Per-face Cortical
-  Magnification of V1, projected to the visual field")
-* V2  
-  ![perface_cmag_vfield_v2]({{ site.baseurl }}/images/cmag/perface_cmag_vfield_v2.png "Per-face Cortical
-  Magnification of V2, projected to the visual field")
-* V3  
-  ![perface_cmag_vfield_v3]({{ site.baseurl }}/images/cmag/perface_cmag_vfield_v3.png "Per-face Cortical
-  Magnification of V3, projected to the visual field")
+![perface_cmag_vfield]({{ site.baseurl }}/images/cmag/perface_cmag_vfield.png "Per-face-base
+Cortical Magnification of V1, V2, and V3 projected to the visual field")
 
 
 
