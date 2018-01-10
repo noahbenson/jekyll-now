@@ -98,10 +98,10 @@ lines are drawn at 1.5, 3. 6, and 12 degrees of eccentricity.
 
 <table>
 <tr><th>Subject</th><th>Left Hemisphere</th><th>Right Hemisphere</th></tr>
-<tr><td style="vertical-align: text-middle">S1204</td>
+<tr><td style="vertical-align: middle">S1204</td>
     <td> <img src="{{ site.baseurl }}/images/cmag/paths_S1204_lh.png" alt="S1204 LH Paths"> </td>
     <td> <img src="{{ site.baseurl }}/images/cmag/paths_S1204_rh.png" alt="S1204 RH Paths"> </td></tr>
-<tr><td style="vertical-align: text-middle">S1205</td>
+<tr><td style="vertical-align: middle">S1205</td>
     <td> <img src="{{ site.baseurl }}/images/cmag/paths_S1205_lh.png" alt="S1205 LH Paths"> </td>
     <td> <img src="{{ site.baseurl }}/images/cmag/paths_S1205_rh.png" alt="S1205 RH Paths"> </td></tr>
 </table>
