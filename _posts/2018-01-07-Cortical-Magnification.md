@@ -144,6 +144,28 @@ section on path-based calculations for plot details).
 ![perface_cmag_vfield]({{ site.baseurl }}/images/cmag/perface_cmag_vfield.png "Per-face-base
 Cortical Magnification of V1, V2, and V3 projected to the visual field")
 
+As is immediately obvious from these plots, the per-face calculations are much noisier than
+the path-based calculations. This is probably due to the fact that the per-face measurements are
+dependent on many small-scale accuracies; for example, we generally expect some amount of inaccuracy
+in the tesselation of the FreeSurfer mesh: triangles that form the cortical surface may not be
+exactly the right size, and some of these triangles may have very small areas due to mesh smoothing
+and other sacrifices made by the tesselation algorithm. If the bias in triangle and vertex
+placements are relatively uniform, then we would expect paths to generate relatively uniform results
+because they are drawn across many triangles. One might expect the same to occur with with per-face
+calculations because the points in the above plots are the averages of many triangles, but this
+isn't observed.
+
+One reason for the noise in the per-face calculations despite averaging is that a single triangle
+whose vertices are close together can get assigned very similar visual field positions by our
+model because the model does not try to account for cortical magnification between vertices
+explicitly. (Even worse, when performing per-face calculations over raw non-inferred data, two
+vertices might be assigned identical visual field values from the same voxel.) When this occurs, the
+visual field distance is very small so the ratio of cortical surface distance to visual field
+distance becomes very large. The neighboring triangle might make up for this in a path-based
+calculation, but when we merely average a low-magnification and a high-magnification triangle, we
+still get an unusually high magnification. In other words, averaging the ratios is not the right way
+to do the per-face calculation.
+
 
 
 
