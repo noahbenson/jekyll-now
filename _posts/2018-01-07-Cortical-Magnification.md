@@ -34,7 +34,12 @@ the visual field by allocating more of the cortex to them than other parts.
 are Warped on the Cortical Surface")
 
 The measure of how much of the cortex is devoted to how much of the visual field is called
-**cortical magnification**. It generally has units similar to mm/deg or mm mm\\(^2\\)/deg\\(^2\\).
+**cortical magnification**. It generally has units similar to mm/deg or mm mm\\(^2\\)/deg\\(^2\\). A
+representation of how the warping of cortical magnification is expected to look on cortex (in V1) is
+shown in the following image.
+
+![cortical mag slide]({{ site.baseurl }}/images/cmag/cortical_mag.png "Proposed Cortical
+Magnification in V1")
 
 Cortical magnification is known to decrease with eccentricity in V1 according to the following
 formula by Horton and Hoyt (1991):
@@ -42,10 +47,12 @@ formula by Horton and Hoyt (1991):
 $$ m = \frac{17.3}{0.75 + \rho} $$
 
 where \\(m\\) and \\(\rho\\) are the mm/deg of cortical magnification and deg of eccentricity,
-respectively.
+respectively. For reference, this particular cortical magnification prediction, were it absolutely
+true, might look like the following images when plotted.
 
-![cortical mag slide]({{ site.baseurl }}/images/cmag/cortical_mag.png "Proposed Cortical
-Magnification in V1")
+![hh_plot]({{ site.baseurl }}/images/cmag/horton_hoyt_hypothetical.png "Cortical Magnification
+according to Horton and Hoyt (1991)")
+
 
 
 ## Data
