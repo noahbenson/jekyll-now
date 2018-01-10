@@ -99,11 +99,12 @@ lines are drawn at 1.5, 3. 6, and 12 degrees of eccentricity.
 <table>
 <tr><th>Subject</th><th>Left Hemisphere</th><th>Right Hemisphere</th></tr>
 <tr><td>S1204</td>
-    <td>![paths_S1204_lh]({{ site.baseurl }}/images/cmag/paths_S1204_lh.png "Path-base Cortical Magnification paths of LH V1, V2, and V3 for subject S1204") </td>
-    <td>![paths_S1204_rh]({{ site.baseurl }}/images/cmag/paths_S1204_rh.png "Path-base Cortical Magnification paths of RH V1, V2, and V3 for subject S1204") </td></tr>
+    <td> <img src="{{ site.baseurl }}/images/cmag/paths_S1204_lh.png" alt="S1204 LH Paths"></img> </td>
+    <td> <img src="{{ site.baseurl }}/images/cmag/paths_S1204_rh.png" alt="S1204 RH Paths"></img> </td>
 <tr><td>S1205</td>
-    <td>![paths_S1205_lh]({{ site.baseurl }}/images/cmag/paths_S1205_lh.png "Path-base Cortical Magnification paths of LH V1, V2, and V3 for subject S1205") </td>
-    <td>![paths_S1205_rh]({{ site.baseurl }}/images/cmag/paths_S1205_rh.png "Path-base Cortical Magnification paths of RH V1, V2, and V3 for subject S1205") </td></tr>
+    <td> <img src="{{ site.baseurl }}/images/cmag/paths_S1205_lh.png" alt="S1205 LH Paths"></img> </td>
+    <td> <img src="{{ site.baseurl }}/images/cmag/paths_S1205_rh.png" alt="S1205 RH Paths"></img> </td>
+</td></tr>
 </table>
 
 These two subjects have fairly well-drawn paths. Note that a theme of these subjects and the
