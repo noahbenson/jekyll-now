@@ -96,15 +96,10 @@ subjects; on these subjects, iso-angle lines are drawn at 0, 45, 90, 135, and 18
 angle, except in V3 where the 0 and 180 degree lines are difficult to find, and iso-eccentricity
 lines are drawn at 1.5, 3. 6, and 12 degrees of eccentricity.
 
-<table>
-<tr><th>Subject</th><th>Left Hemisphere</th><th>Right Hemisphere</th></tr>
-<tr><td valign="middle">S1204</td>
-    <td> <img src="{{ site.baseurl }}/images/cmag/paths_S1204_lh.png" alt="S1204 LH Paths"> </td>
-    <td> <img src="{{ site.baseurl }}/images/cmag/paths_S1204_rh.png" alt="S1204 RH Paths"> </td></tr>
-<tr><td valign="middle">S1205</td>
-    <td> <img src="{{ site.baseurl }}/images/cmag/paths_S1205_lh.png" alt="S1205 LH Paths"> </td>
-    <td> <img src="{{ site.baseurl }}/images/cmag/paths_S1205_rh.png" alt="S1205 RH Paths"> </td></tr>
-</table>
+| Subject | Left Hemisphere | Right Hemisphere |
+|:-------:|:---------------:|:----------------:|
+| S1204<br/><br/> | ![paths_S1204_lh]({{ site.baseurl }}/images/cmag/paths_S1204_lh.png "Path-base Cortical Magnification paths of LH V1, V2, and V3 for subject S1204") | ![paths_S1204_lh]({{ site.baseurl }}/images/cmag/paths_S1204_rh.png "Path-base Cortical Magnification paths of RH V1, V2, and V3 for subject S1204") |
+| S1205<br/><br/> | ![paths_S1205_lh]({{ site.baseurl }}/images/cmag/paths_S1205_lh.png "Path-base Cortical Magnification paths of LH V1, V2, and V3 for subject S1205") | ![paths_S1205_lh]({{ site.baseurl }}/images/cmag/paths_S1205_rh.png "Path-base Cortical Magnification paths of RH V1, V2, and V3 for subject S1205") |
 
 These two subjects have fairly well-drawn paths. Note that a theme of these subjects and the
 inferred retinotopic map fits specifically (the "inferred retinotopic map fits" are not shown, but
