@@ -88,6 +88,27 @@ words, iso-angle lines were drawn along polar angles 1.5, 4.5, 7.5, 10.5, etc. a
 eccentricities (0.625, 0.658), (0.658, 0.693), (0.693, 0.730), etc. while iso-eccentric lines were
 drawn along eccentricities 0.642, 0.0.676, 0.712, etc.
 
+**Validation**. As a quick validation of the path-based cortical magnification, we can start by
+looking at the actual paths drawn on the cortical surface; they should resemble a best-guess as to
+where the iso-angle (radial) or iso-eccentric (tangential) curve should be in the validation
+data. If they do not, we should be skeptical of this method. The figures below show a couple example
+subjects; on these subjects, iso-angle lines are drawn at 0, 45, 90, 135, and 180 degrees of polar
+angle, except in V3 where the 0 and 180 degree lines are difficult to find, and iso-eccentricity
+lines are drawn at 1.5, 3. 6, and 12 degrees of eccentricity.
+
+| Left Hemisphere | Right Hemisphere |
+--------------------------------------
+| ![paths_S1204_lh]({{ site.baseurl }}/images/cmag/paths_S1204_lh.png "Path-base Cortical Magnification paths of LH V1, V2, and V3 for subject S1204") | ![paths_S1204_lh]({{ site.baseurl }}/images/cmag/paths_S1204_rh.png "Path-base Cortical Magnification paths of RH V1, V2, and V3 for subject S1204") |
+| ![paths_S1205_lh]({{ site.baseurl }}/images/cmag/paths_S1205_lh.png "Path-base Cortical Magnification paths of LH V1, V2, and V3 for subject S1205") | ![paths_S1205_lh]({{ site.baseurl }}/images/cmag/paths_S1205_rh.png "Path-base Cortical Magnification paths of RH V1, V2, and V3 for subject S1205") |
+
+These two subjects have fairly well-drawn paths. Note that a theme of these subjects and the
+inferred retinotopic map fits specifically (the "inferred retinotopic map fits" are not shown, but
+they are the maps inferred by Bayesian inference on which the paths are based) is that the dorsal V3
+is often somewhat confused; many subjects have a patchy V3, and this patchiness gets represented in
+both the model and the individual fits. Despite this, the paths look at least fairly iso-angular,
+and in fact match the prescribed angles quite well.
+
+
 
 ##### Results
 
