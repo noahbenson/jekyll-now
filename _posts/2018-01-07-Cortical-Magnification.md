@@ -97,7 +97,7 @@ angle, except in V3 where the 0 and 180 degree lines are difficult to find, and 
 lines are drawn at 1.5, 3. 6, and 12 degrees of eccentricity.
 
 | Subject | Left Hemisphere | Right Hemisphere |
-:---------:-----------------:------------------:
+|:-------:|:---------------:|:----------------:|
 | S1204   | ![paths_S1204_lh]({{ site.baseurl }}/images/cmag/paths_S1204_lh.png "Path-base Cortical Magnification paths of LH V1, V2, and V3 for subject S1204") | ![paths_S1204_lh]({{ site.baseurl }}/images/cmag/paths_S1204_rh.png "Path-base Cortical Magnification paths of RH V1, V2, and V3 for subject S1204") |
 | S1205   | ![paths_S1205_lh]({{ site.baseurl }}/images/cmag/paths_S1205_lh.png "Path-base Cortical Magnification paths of LH V1, V2, and V3 for subject S1205") | ![paths_S1205_lh]({{ site.baseurl }}/images/cmag/paths_S1205_rh.png "Path-base Cortical Magnification paths of RH V1, V2, and V3 for subject S1205") |
 
