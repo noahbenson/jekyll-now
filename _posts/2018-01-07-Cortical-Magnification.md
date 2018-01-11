@@ -135,6 +135,14 @@ meridia).
 ![path_cmag_vfield]({{ site.baseurl }}/images/cmag/path_cmag_vfield.png "Path-base Cortical
 Magnification of V1, V2, and V3 projected to the visual field")
 
+If we simply collapse across polar angle values, we find that (in V1, especially) the cortical
+magnification values we observe from path-based calculations strongly agree with the calculations
+reported in Horton and Hoyt (1991).
+
+![path_lineplots]({{ site.baseurl }}/images/cmag/paths_cmag_lineplot.png "Path-base Cortical
+Magnification of V1, V2, and V3, plotted in terms of eccentricity")
+
+
 ---
 #### Per-face Calculations
 
@@ -165,6 +173,8 @@ distance becomes very large. The neighboring triangle might make up for this in 
 calculation, but when we merely average a low-magnification and a high-magnification triangle, we
 still get an unusually high magnification. In other words, averaging the ratios is not the right way
 to do the per-face calculation.
+
+
 
 
 
