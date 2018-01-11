@@ -139,7 +139,7 @@ If we simply collapse across polar angle values, we find that (in V1, especially
 magnification values we observe from path-based calculations strongly agree with the calculations
 reported in Horton and Hoyt (1991).
 
-![path_lineplots]({{ site.baseurl }}/images/cmag/paths_cmag_lineplot.png "Path-base Cortical
+![path_lineplots]({{ site.baseurl }}/images/cmag/path_cmag_lineplot.png "Path-base Cortical
 Magnification of V1, V2, and V3, plotted in terms of eccentricity")
 
 
