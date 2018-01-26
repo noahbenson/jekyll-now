@@ -41,7 +41,176 @@ Volumes are typically stored in one of a few ways:
 * Other formats, like ANALYZE, don't appear very often in my experience, and are beyond the scope of
   this post.
 
-#### Typical Meta-Data
+
+#### Meta-Data
+
+A quick and easy way to examine an MRI volume file is by using the command `mri_info` from
+FreeSurfer; this command understands most MRI file formats and prints about a page of meta-data from
+the requested file. Here's an example.
+
+```
+> mri_info /Volumes/server/Freesurfer_subjects/bert/mri/brain.mgz
+
+Volume information for /Volumes/server/Freesurfer_subjects/bert/mri/brain.mgz
+          type: MGH
+    dimensions: 256 x 256 x 256
+   voxel sizes: 1.0000, 1.0000, 1.0000
+          type: UCHAR (0)
+           fov: 256.000
+           dof: 1
+        xstart: -128.0, xend: 128.0
+        ystart: -128.0, yend: 128.0
+        zstart: -128.0, zend: 128.0
+            TR: 0.00 msec, TE: 0.00 msec, TI: 0.00 msec, flip angle: 0.00 degrees
+       nframes: 1
+      PhEncDir: UNKNOWN
+ras xform present
+     xform info: x_r =  -1.0000, y_r =   0.0000, z_r =   0.0000, c_r =     5.3997
+               : x_a =   0.0000, y_a =   0.0000, z_a =   1.0000, c_a =    18.0000
+               : x_s =   0.0000, y_s =  -1.0000, z_s =   0.0000, c_s =     0.0000
+
+ talairach xfm : /Volumes/server/Freesurfer_subjects/bert/mri/transforms/talairach.xfm
+ Orientation   : LIA
+Primary Slice Direction: coronal
+
+voxel to ras transform:
+               -1.0000   0.0000   0.0000   133.3997
+                0.0000   0.0000   1.0000  -110.0000
+                0.0000  -1.0000   0.0000   128.0000
+                0.0000   0.0000   0.0000     1.0000
+
+voxel-to-ras determinant -1
+
+ras to voxel transform:
+               -1.0000   0.0000   0.0000   133.3997
+               -0.0000  -0.0000  -1.0000   128.0000
+               -0.0000   1.0000  -0.0000   110.0000
+                0.0000   0.0000   0.0000     1.0000
+```
+
+There's a lot of information here, not all of which is in the scope of this post. Here are a few of
+the most important pieces of information:
+
+* **type** (MGH) just tells us the file format.
+* **dimensions** (256 x 256 x 256) tells us the number of voxels in each dimension. FreeSurfer volumes
+  usually have the size \\(256 \times 256 \times 256\\) as in this example.
+* **voxel sizes** (1.0000, 1.0000, 1.0000) tells us the thickness of the voxels in each direction. Here
+  we see that the voxels are 1 mm\\(^3\\) in size, but EPIs often have differently sized voxels or
+  voxels that are not isotropic (e.g., \\(1.5 \times 2 \times 2\\) mm\\(^3\\)).
+* **type** (UCHAR (0)) refers to kind of value stored in each voxel; in most formats (MGH and NifTI)
+  this can be a variety of sizes of integers or floating-point numbers. UCHAR means unsigned
+  character, which is a misleading name (derived from an outdated precedent in C) for a single byte
+  that can be between 0 and 255. Usually, for volumes containing parameters or measurements, this
+  type will be a 32 or 64 byte floating-point value; for labels these will be integers.
+* **fov** and **dof**, as well as **TR**, **TE**, **TI**, **flip angle**, and **PhEncDir**, are all
+  parameters related to MRI aquisition and are beyond the scope of this post.
+* **xstart**/**xend**, **ystart**/**yend**, and **zstart**/**zend** tell us how FreeSurfer
+  interprets the voxels in this volume as a 3D coordinate system (more on this later).
+* **nframes** tells us the number of frames in a 4D volume. Frames are almost always stored in the
+  volume as the last (4th) dimension.
+* *three transformations* appear in the output in the form of \\(4\times 4\\) matrices; we will
+  discuss these shortly transformations shortly.
+* **Orientation** (LIA) and **primary slice direction** (coronal) tell us roughly how the volume is
+  organized (more about this below also).
+
+Note that the above values are not the only meta-data in an MGH file, and NifTI files have a
+slightly different set of meta-data that includes things like fields to specify the intent of the
+data (examples of intents: time-series data, parameters data, shape data). Full documentation of the
+meta-data in these formats is beyond the scope of this post, but you can read more about MGH file
+headers [here](https://surfer.nmr.mgh.harvard.edu/fswiki/FsTutorial/MghFormat) and more about NifTI
+file headers [here](https://nifti.nimh.nih.gov/pub/dist/src/niftilib/nifti1.h). That latter link is
+a well-commented C header-file; for a more human-readable explanation, try
+[here](https://brainder.org/2012/09/23/the-nifti-file-format/).
+
+Another good way to look at the meta-data in a volume file is to load it with the relevant
+programming environment and examine the data-structures there. Here are a few examples:
+
+* Python (using [nibabel](http://nipy.org/nibabel/))  
+```python
+import nibabel                      as nib
+import nibabel.freesurfer.mghformat as mgh
+
+# MGH/MGZ files
+mgh_file = mgh.load('/Volumes/server/Freesurfer_subjects/wl_subj042/mri/brain.mgz')
+mgh_file.header['dims']
+#=> array([256, 256, 256,   1], dtype=int32)
+mgh_file.header.get_affine()
+#=> array([[-1.00000000e+00, -1.16415322e-10,  0.00000000e+00,  1.32361809e+02],
+#=>        [ 0.00000000e+00, -1.90266292e-09,  9.99999940e-01, -9.83241651e+01],
+#=>        [ 0.00000000e+00, -9.99999940e-01,  2.23371899e-09,  1.30323082e+02],
+#=>        [ 0.00000000e+00,  0.00000000e+00,  0.00000000e+00,  1.00000000e+00]])
+
+# NifTI files
+nii_file = nib.load('/Volumes/server/Freesurfer_subjects/ernie/mri/ribbon.nii.gz')
+nii_file.header['datatype']
+#=> array(2, dtype=int16)
+# (Note: the header data loaded by Nibabel are quite unprocessed and opaque)
+```
+* Python (using [neuropythy](https://github.com/noahbenson/neuropythy), which wraps nibabel)__
+```python
+import neuropythy as ny
+
+sub = ny.freesurfer_subject('wl_subj042')
+sub.mgh_images['brain'].header['dims']
+#=> array([256, 256, 256,   1], dtype=int32)
+sub.voxel_to_native_matrix
+#=> array([[-1.00000000e+00, -1.16415322e-10,  0.00000000e+00,  1.32361809e+02],
+#=>        [ 0.00000000e+00, -1.90266292e-09,  9.99999940e-01, -9.83241651e+01],
+#=>        [ 0.00000000e+00, -9.99999940e-01,  2.23371899e-09,  1.30323082e+02],
+#=>        [ 0.00000000e+00,  0.00000000e+00,  0.00000000e+00,  1.00000000e+00]])
+```
+* Matlab  
+```matlab
+addpath(genpath('/Applications/freesurfer/matlab')); % (FS installation dir on Mac)
+
+mgh = MRIread('/Volumes/server/Freesurfer_subjects/wl_subj042/mri/brain.mgz');
+mgh.volres
+%
+% ans =
+% 
+%     1.0000    1.0000    1.0000
+%
+mgh.vox2ras
+%
+% ans =
+% 
+%    -1.0000   -0.0000         0  132.3618
+%          0   -0.0000    1.0000  -98.3242
+%          0   -1.0000    0.0000  130.3231
+%          0         0         0    1.0000
+%
+%   % Note that this is the same matrix as in Python, just rounded better
+
+tbUse vistasoft;
+% ...
+
+nii = niftiRead('/Volumes/server/Freesurfer_subjects/ernie/mri/ribbon.nii.gz');
+nii.dim
+% 
+% ans =
+% 
+%    256   256   256
+%
+```
+* Mathematica (using [Neurotica](https://github.com/noahbenson/Neurotica))  
+```mathematica
+<<Neurotica`
+
+mghFile = Import[
+  "/Volumes/server/Freesurfer_subjects/wl_subj042/mri/brain.mgz",
+  {"GZIP", "MGH"}];
+Options[mghFile, VoxelDimensions]
+(*=> {1., 1., 1.} *)
+
+niiFile = Import[
+  "/Volumes/server/Freesurfer_subjects/ernie/mri/ribbon.nii.gz",
+  {"GZIP", "NifTI"}];
+Options[niiFile, VoxelDimensions]
+(*=> {1., 1., 1.} *)
+```
+
+
+##### Affine Transformations and Orientations
 
 Consider the following problem: I give you a T1-weighted MR image of a subject and ask you to tell
 me if you think the subject's left hemisphere occipital cortex is unusually large. You open the file
@@ -79,9 +248,9 @@ Accordingly, we need to be able to, at a minimum, store some amount of informati
 coordinate system employed in any MRI volume file, and ideally some amount of information about how
 to precisely align the brain to some standard orientation.
 
-##### Background: Affine Transformations
+##### Affine Transformations and Orientations
 
-Linear transformations in 3D Euclidean geometry fall into a few categories:
+** Background. **  Linear transformations in 3D Euclidean geometry fall into a few categories:
 * <img src="{{ site.baseurl }}/images/mri-geometry/affine_scaling.png" style="width: 250px; vertical-align: middle;" alt="Scaling"/>
 * <img src="{{ site.baseurl }}/images/mri-geometry/affine_reflection.png" style="width: 250px; vertical-align: middle" alt="Reflection"/>
 * <img src="{{ site.baseurl }}/images/mri-geometry/affine_rotation.png" style="width: 250px; vertical-align: middle;" alt="Rotation"/>
@@ -90,7 +259,7 @@ Linear transformations in 3D Euclidean geometry fall into a few categories:
 * Other:  $$f(x,y,z) = (0,0,0)$$ is technically a linear transformation, but transformations not
   listed above don't usually come up in neuroscience, and even shearing is very rarely used.
 
-Usually, in neuroscience, the only transformations that matter or reflection, rotation, and
+Usually, in neuroscience, the only transformations that matter are reflection, rotation, and
 transposition; occasionally scaling comes into play as well. Of these four transformations, all but
 transposition can be represented together in a \\(3 \times 3\\) matrix where:
 
@@ -116,6 +285,11 @@ $$ \begin{pmatrix}x\\y\\z\\1\end{pmatrix} = \begin{pmatrix}a & b & c & t_x\\d & 
 Because they can succinctly store all of these transformations in a single matrix, affine
 transformation matrices are used in neuroscience volume files to tell the user how to align the data
 contained within them to some standard reference.
+
+**Relationship to Voxels and Volumes.** NifTI and MGH files always contain at least one affine
+transformation matrix. One easy way to see this is to use FreeSurfer's mri_info command, which
+prints a bunch of information about a given volume file:
+
 
 
 ## (Under Construction)
