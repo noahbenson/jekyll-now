@@ -249,16 +249,20 @@ Accordingly, we need to be able to, at a minimum, store some amount of informati
 coordinate system employed in any MRI volume file, and ideally some amount of information about how
 to precisely align the brain to some standard orientation.
 
+
 ##### Affine Transformations and Orientations
 
-** Background. **  Linear transformations in 3D Euclidean geometry fall into a few categories:
+###### Background
+
+Linear transformations in 3D Euclidean geometry fall into a few categories:
 * <img src="{{ site.baseurl }}/images/mri-geometry/affine_scaling.png" style="width: 250px; vertical-align: middle;" alt="Scaling"/>
 * <img src="{{ site.baseurl }}/images/mri-geometry/affine_reflection.png" style="width: 250px; vertical-align: middle" alt="Reflection"/>
 * <img src="{{ site.baseurl }}/images/mri-geometry/affine_rotation.png" style="width: 250px; vertical-align: middle;" alt="Rotation"/>
 * <img src="{{ site.baseurl }}/images/mri-geometry/affine_transposition.png" style="width: 250px; vertical-align: middle;" alt="Transposition"/>
 * <img src="{{ site.baseurl }}/images/mri-geometry/affine_shearing.png" style="width: 250px; vertical-align: middle;" alt="Shearing"/>
-* Other:  $$f(x,y,z) = (0,0,0)$$ is technically a linear transformation, but transformations not
-  listed above don't usually come up in neuroscience, and even shearing is very rarely used.
+* Other: $$f(\boldsymbol{v}) = \boldsymbol{0}$$ is technically a linear transformation, but
+  transformations not listed above don't usually come up in neuroscience, and even shearing is very
+  rarely used.
 
 Usually, in neuroscience, the only transformations that matter are reflection, rotation, and
 transposition; occasionally scaling comes into play as well. Of these four transformations, all but
@@ -287,9 +291,21 @@ Because they can succinctly store all of these transformations in a single matri
 transformation matrices are used in neuroscience volume files to tell the user how to align the data
 contained within them to some standard reference.
 
-**Relationship to Voxels and Volumes.** NifTI and MGH files always contain at least one affine
-transformation matrix. One easy way to see this is to use FreeSurfer's mri_info command, which
-prints a bunch of information about a given volume file:
+###### Relationship to Voxels and Volumes
+
+NifTI and MGH files always contain at least one affine transformation matrix, as we saw in the
+examples above. The purpose of this transformation varies by file, however. In most cases, the
+matrix is used to tell the user how to align the voxels with some other reference. This reference
+might be a standard brain/space such as Talairach coordinates or MNI, or it might be the coordinate
+system for the surface representation of the brain.
+
+Regardless of what the affine transformation aligns the voxels *to*, the coordinates being
+transformed are usually the 0-based indices of the voxels, which I will call \\((i,j,k)\\). So, for
+example, if \\(\mathbf{M}\\) is a \\(4\times 4\\) affine transformation matrix from the header of a
+volume file, then
+
+$$ \begin{pmatrix}x\\y\\z\\1\end{pmatrix} = \mathbf{M} \cdot \begin{pmatrix}i\\j\\k\\1\end{pmatrix} $$.
+
 
 
 
