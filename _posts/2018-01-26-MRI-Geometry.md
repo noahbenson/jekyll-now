@@ -82,7 +82,7 @@ to precisely align the brain to some standard orientation.
 ##### Background: Affine Transformations
 
 Linear transformations in 3D Euclidean geometry fall into a few categories:
-* ![affine_scaling]({{ site.baseurl }}/images/mri-geometry/affine_scaling.png =250x)
+* <img src="{{ site.baseurl }}/images/mri-geometry/affine_scaling.png" style="width: 250px;" alt="Scaling"/>
 * ![affine_reflection]({{ site.baseurl }}/images/mri-geometry/affine_reflection.png =250x)
 * ![affine_rotation]({{ site.baseurl }}/images/mri-geometry/affine_rotation.png =250x)
 * ![affine_transposition]({{ site.baseurl }}/images/mri-geometry/affine_transposition.png =250x)
