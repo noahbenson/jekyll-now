@@ -92,7 +92,7 @@ Linear transformations in 3D Euclidean geometry fall into a few categories:
 
 Usually, in neuroscience, the only transformations that matter or reflection, rotation, and
 transposition; occasionally scaling comes into play as well. Of these four transformations, all but
-transposition can be represented together in a \\(3 \cross 3\\) matrix where:
+transposition can be represented together in a \\(3 \times 3\\) matrix where:
 
 $$ \begin{pmatrix}x\\y\\z\end{pmatrix} = \begin{pmatrix}a & b & c\\d & e & f\\g & h & i\end{pmatrix}
      \cdot \begin{pmatrix}x_0\\y_0\\z_0\end{pmatrix}. $$
@@ -105,7 +105,7 @@ getting some intuition about the connection between the matrices and the transfo
 themselves.
 
 Transposition can be done by simply adding a 3D vector to this result. However, an alternate way to
-store transposition along with the other transformations described above is to use a \\(4 \cross
+store transposition along with the other transformations described above is to use a \\(4 \times
 4\\) matrix, which is often called an *affine transformation matrix*. We write this transformation
 as:
 
