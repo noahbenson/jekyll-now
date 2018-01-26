@@ -126,92 +126,88 @@ Another good way to look at the meta-data in a volume file is to load it with th
 programming environment and examine the data-structures there. Here are a few examples:
 
 **Python** (using [nibabel](http://nipy.org/nibabel/))  
-```python
-import nibabel                      as nib
-import nibabel.freesurfer.mghformat as mgh
-
-# MGH/MGZ files
-mgh_file = mgh.load('/Volumes/server/Freesurfer_subjects/wl_subj042/mri/brain.mgz')
-mgh_file.header['dims']
-#=> array([256, 256, 256,   1], dtype=int32)
-mgh_file.header.get_affine()
-#=> array([[-1.00000000e+00, -1.16415322e-10,  0.00000000e+00,  1.32361809e+02],
-#=>        [ 0.00000000e+00, -1.90266292e-09,  9.99999940e-01, -9.83241651e+01],
-#=>        [ 0.00000000e+00, -9.99999940e-01,  2.23371899e-09,  1.30323082e+02],
-#=>        [ 0.00000000e+00,  0.00000000e+00,  0.00000000e+00,  1.00000000e+00]])
-
-# NifTI files
-nii_file = nib.load('/Volumes/server/Freesurfer_subjects/ernie/mri/ribbon.nii.gz')
-nii_file.header['datatype']
-#=> array(2, dtype=int16)
-# (Note: the header data loaded by Nibabel are quite unprocessed and opaque)
-```
-
-**Python** (using [neuropythy](https://github.com/noahbenson/neuropythy), which wraps nibabel)__
-```python
-import neuropythy as ny
-
-sub = ny.freesurfer_subject('wl_subj042')
-sub.mgh_images['brain'].header['dims']
-#=> array([256, 256, 256,   1], dtype=int32)
-sub.voxel_to_native_matrix
-#=> array([[-1.00000000e+00, -1.16415322e-10,  0.00000000e+00,  1.32361809e+02],
-#=>        [ 0.00000000e+00, -1.90266292e-09,  9.99999940e-01, -9.83241651e+01],
-#=>        [ 0.00000000e+00, -9.99999940e-01,  2.23371899e-09,  1.30323082e+02],
-#=>        [ 0.00000000e+00,  0.00000000e+00,  0.00000000e+00,  1.00000000e+00]])
-```
-
-**Matlab**  
-```matlab
-addpath(genpath('/Applications/freesurfer/matlab')); % (FS installation dir on Mac)
-
-mgh = MRIread('/Volumes/server/Freesurfer_subjects/wl_subj042/mri/brain.mgz');
-mgh.volres
-%
-% ans =
-% 
-%     1.0000    1.0000    1.0000
-%
-mgh.vox2ras
-%
-% ans =
-% 
-%    -1.0000   -0.0000         0  132.3618
-%          0   -0.0000    1.0000  -98.3242
-%          0   -1.0000    0.0000  130.3231
-%          0         0         0    1.0000
-%
-%   % Note that this is the same matrix as in Python, just rounded better
-
-tbUse vistasoft;
-% ...
-
-nii = niftiRead('/Volumes/server/Freesurfer_subjects/ernie/mri/ribbon.nii.gz');
-nii.dim
-% 
-% ans =
-% 
-%    256   256   256
-%
-```
-
-**Mathematica** (using [Neurotica](https://github.com/noahbenson/Neurotica))  
-```
-<<Neurotica`
-
-mghFile = Import[
-  "/Volumes/server/Freesurfer_subjects/wl_subj042/mri/brain.mgz",
-  {"GZIP", "MGH"}];
-Options[mghFile, VoxelDimensions]
-(*=> {1., 1., 1.} *)
-
-niiFile = Import[
-  "/Volumes/server/Freesurfer_subjects/ernie/mri/ribbon.nii.gz",
-  {"GZIP", "NifTI"}];
-Options[niiFile, VoxelDimensions]
-(*=> {1., 1., 1.} *)
-```
-
+  ```python
+  import nibabel                      as nib
+  import nibabel.freesurfer.mghformat as mgh
+  
+  # MGH/MGZ files
+  mgh_file = mgh.load('/Volumes/server/Freesurfer_subjects/wl_subj042/mri/brain.mgz')
+  mgh_file.header['dims']
+  #=> array([256, 256, 256,   1], dtype=int32)
+  mgh_file.header.get_affine()
+  #=> array([[-1.00000000e+00, -1.16415322e-10,  0.00000000e+00,  1.32361809e+02],
+  #=>        [ 0.00000000e+00, -1.90266292e-09,  9.99999940e-01, -9.83241651e+01],
+  #=>        [ 0.00000000e+00, -9.99999940e-01,  2.23371899e-09,  1.30323082e+02],
+  #=>        [ 0.00000000e+00,  0.00000000e+00,  0.00000000e+00,  1.00000000e+00]])
+  
+  # NifTI files
+  nii_file = nib.load('/Volumes/server/Freesurfer_subjects/ernie/mri/ribbon.nii.gz')
+  nii_file.header['datatype']
+  #=> array(2, dtype=int16)
+  # (Note: the header data loaded by Nibabel are quite unprocessed and opaque)
+  ```
+* Python (using [neuropythy](https://github.com/noahbenson/neuropythy), which wraps nibabel)__
+  ```python
+  import neuropythy as ny
+  
+  sub = ny.freesurfer_subject('wl_subj042')
+  sub.mgh_images['brain'].header['dims']
+  #=> array([256, 256, 256,   1], dtype=int32)
+  sub.voxel_to_native_matrix
+  #=> array([[-1.00000000e+00, -1.16415322e-10,  0.00000000e+00,  1.32361809e+02],
+  #=>        [ 0.00000000e+00, -1.90266292e-09,  9.99999940e-01, -9.83241651e+01],
+  #=>        [ 0.00000000e+00, -9.99999940e-01,  2.23371899e-09,  1.30323082e+02],
+  #=>        [ 0.00000000e+00,  0.00000000e+00,  0.00000000e+00,  1.00000000e+00]])
+  ```
+* Matlab  
+  ```matlab
+  addpath(genpath('/Applications/freesurfer/matlab')); % (FS installation dir on Mac)
+  
+  mgh = MRIread('/Volumes/server/Freesurfer_subjects/wl_subj042/mri/brain.mgz');
+  mgh.volres
+  %
+  % ans =
+  % 
+  %     1.0000    1.0000    1.0000
+  %
+  mgh.vox2ras
+  %
+  % ans =
+  % 
+  %    -1.0000   -0.0000         0  132.3618
+  %          0   -0.0000    1.0000  -98.3242
+  %          0   -1.0000    0.0000  130.3231
+  %          0         0         0    1.0000
+  %
+  %   % Note that this is the same matrix as in Python, just rounded better
+  
+  tbUse vistasoft;
+  % ...
+  
+  nii = niftiRead('/Volumes/server/Freesurfer_subjects/ernie/mri/ribbon.nii.gz');
+  nii.dim
+  % 
+  % ans =
+  % 
+  %    256   256   256
+  %
+  ```
+* Mathematica (using [Neurotica](https://github.com/noahbenson/Neurotica))  
+  ```
+  <<Neurotica`
+  
+  mghFile = Import[
+    "/Volumes/server/Freesurfer_subjects/wl_subj042/mri/brain.mgz",
+    {"GZIP", "MGH"}];
+  Options[mghFile, VoxelDimensions]
+  (*=> {1., 1., 1.} *)
+  
+  niiFile = Import[
+    "/Volumes/server/Freesurfer_subjects/ernie/mri/ribbon.nii.gz",
+    {"GZIP", "NifTI"}];
+  Options[niiFile, VoxelDimensions]
+  (*=> {1., 1., 1.} *)
+  ```
 
 ##### Affine Transformations and Orientations
 
