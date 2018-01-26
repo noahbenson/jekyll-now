@@ -41,6 +41,8 @@ Volumes are typically stored in one of a few ways:
 * Other formats, like ANALYZE, don't appear very often in my experience, and are beyond the scope of
   this post.
 
+All volume files contain both **meta-data** and **voxels**. The meta-data is just a set of
+information about the file's contents while the voxels are a 3D or 4D array of values.
 
 #### Meta-Data
 
@@ -125,7 +127,7 @@ a well-commented C header-file; for a more human-readable explanation, try
 Another good way to look at the meta-data in a volume file is to load it with the relevant
 programming environment and examine the data-structures there. Here are a few examples:
 
-**Python** (using [nibabel](http://nipy.org/nibabel/))  
+* Python (using [nibabel](http://nipy.org/nibabel/))  
   ```python
   import nibabel                      as nib
   import nibabel.freesurfer.mghformat as mgh
@@ -193,7 +195,7 @@ programming environment and examine the data-structures there. Here are a few ex
   %
   ```
 * Mathematica (using [Neurotica](https://github.com/noahbenson/Neurotica))  
-  ```
+  ```mathematica
   <<Neurotica`
   
   mghFile = Import[
