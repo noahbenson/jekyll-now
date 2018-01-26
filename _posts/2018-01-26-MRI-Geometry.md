@@ -72,7 +72,7 @@ problem:
 
 Additionally, consider that even if every MRI scanner and neuroscientist in the world used the same
 coordinate system, this would make it easy to tell which hemisphere was which, but it wouldn't
-gaurantee that two scans of the same subject were necessarily aligned: subjects don't necessarily
+guarantee that two scans of the same subject were necessarily aligned: subjects don't necessarily
 have their heads in identical positions between scans.
 
 Accordingly, we need to be able to, at a minimum, store some amount of information about the
@@ -113,7 +113,7 @@ $$ \begin{pmatrix}x\\y\\z\\1\end{pmatrix} = \begin{pmatrix}a & b & c & t_x\\d & 
      i & t_z\\0 & 0 & 0 & 1\end{pmatrix}
      \cdot \begin{pmatrix}x_0\\y_0\\z_0\\1\end{pmatrix}. $$
 
-Because they can succinctly sotre all of these transformations in a single matrix, affine
+Because they can succinctly store all of these transformations in a single matrix, affine
 transformation matrices are used in neuroscience volume files to tell the user how to align the data
 contained within them to some standard reference.
 
