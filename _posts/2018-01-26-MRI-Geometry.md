@@ -82,11 +82,11 @@ to precisely align the brain to some standard orientation.
 ##### Background: Affine Transformations
 
 Linear transformations in 3D Euclidean geometry fall into a few categories:
-* ![affine_scaling]({{ site.baseurl }}/images/mri-geometry/affine_scaling.png "Scaling")
-* ![affine_reflection]({{ site.baseurl }}/images/mri-geometry/affine_reflection.png "Reflection")
-* ![affine_rotation]({{ site.baseurl }}/images/mri-geometry/affine_rotation.png "Rotation")
-* ![affine_transposition]({{ site.baseurl }}/images/mri-geometry/affine_transposition.png "Transposition")
-* ![affine_shearing]({{ site.baseurl }}/images/mri-geometry/affine_shearing.png "Shearing")
+* ![affine_scaling]({{ site.baseurl }}/images/mri-geometry/affine_scaling.png "Scaling" =250x)
+* ![affine_reflection]({{ site.baseurl }}/images/mri-geometry/affine_reflection.png "Reflection" =250x)
+* ![affine_rotation]({{ site.baseurl }}/images/mri-geometry/affine_rotation.png "Rotation" =250x)
+* ![affine_transposition]({{ site.baseurl }}/images/mri-geometry/affine_transposition.png "Transposition" =250x)
+* ![affine_shearing]({{ site.baseurl }}/images/mri-geometry/affine_shearing.png "Shearing" =250x)
 * Other:  $$f(x,y,z) = (0,0,0)$$ is technically a linear transformation, but transformations not
   listed above don't usually come up in neuroscience, and even shearing is very rarely used.
 
