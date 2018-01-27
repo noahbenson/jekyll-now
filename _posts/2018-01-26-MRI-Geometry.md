@@ -152,6 +152,8 @@ nii_file.header['datatype']
 # (Note: the header data loaded by Nibabel are quite unprocessed and opaque)
 ```
 </div>
+</ul>
+</div>
 
 <!--
 * Python (using [neuropythy](https://github.com/noahbenson/neuropythy), which wraps nibabel)
@@ -221,7 +223,6 @@ nii_file.header['datatype']
   Options[niiFile, VoxelDimensions]
   (*=> {1., 1., 1.} *)
   ```
-  </div>
 -->
 
 ##### Affine Transformations and Orientations
