@@ -44,6 +44,97 @@ Volumes are typically stored in one of a few ways:
 All volume files contain both **meta-data** and **voxels**. The meta-data is just a set of
 information about the file's contents while the voxels are a 3D or 4D array of values.
 
+#### Voxel Data
+
+The voxels in NifTI and MGH files are always organized into a 3D or 4D rectangular array. The
+various libraries for reading MGH and NifTI files automatically organize this data for you. These
+examples show how to access a file's voxel array using various libraries.
+
+* Python (using [nibabel](http://nipy.org/nibabel/))
+  ```python
+  import nibabel                      as nib
+  import nibabel.freesurfer.mghformat as mgh
+  
+  # MGH/MGZ files
+  mgh_file = mgh.load('/Volumes/server/Freesurfer_subjects/wl_subj042/mri/brain.mgz')
+  mgh_file.get_data().shape
+  #=> (256, 256, 256)
+  type(mgh_file.get_data())
+  #=> numpy.ndarray
+
+  # NifTI files
+  nii_file = nib.load('/Volumes/server/Freesurfer_subjects/ernie/mri/ribbon.nii.gz')
+  nii_file.get_data().shape
+  #=> (256, 256, 256)
+  type(nii_file.get_data())
+  #=> numpy.ndarray
+  ```
+* Python (using [neuropythy](https://github.com/noahbenson/neuropythy), which wraps nibabel)
+  ```python
+  import neuropythy as ny
+  
+  sub = ny.freesurfer_subject('wl_subj042')
+  sub.images['brain'].shape
+  #=> (256, 256, 256)
+  type(sub.images['brain'])
+  #=> numpy.ndarray
+  ```
+* Matlab
+  ```matlab
+  addpath(genpath('/Applications/freesurfer/matlab')); % (FS installation dir on Mac)
+  
+  mgh = MRIread('/Volumes/server/Freesurfer_subjects/wl_subj042/mri/brain.mgz');
+  size(mgh.vol)
+  %
+  % ans =
+  % 
+  %     256   256   256
+  %
+  class(mgh.vol)
+  %
+  % ans =
+  % 
+  %     'double'
+  
+  tbUse vistasoft;
+  % ...
+  
+  nii = niftiRead('/Volumes/server/Freesurfer_subjects/ernie/mri/ribbon.nii.gz');
+  size(nii.data)
+  % 
+  % ans =
+  % 
+  %    256   256   256
+  %
+  class(nii.data)
+  % 
+  %   ans =
+  % 
+  %       'uint8'
+  % 
+  ```
+* Mathematica (using [Neurotica](https://github.com/noahbenson/Neurotica))
+  ```
+  <<Neurotica`
+  
+  mghFile = Import[
+    "/Volumes/server/Freesurfer_subjects/wl_subj042/mri/brain.mgz",
+    {"GZIP", "MGH"}];
+  Dimensions@ImageData[mghFile]
+  (*=> {256, 256, 256} *)
+  ArrayQ[ImageData[mghFile], 3, NumericQ]
+  (*=> True *)
+  
+  niiFile = Import[
+    "/Volumes/server/Freesurfer_subjects/ernie/mri/ribbon.nii.gz",
+    {"GZIP", "NifTI"}];
+  Dimensions@ImageData[niiFile]
+  (*=> {256, 256, 256} *)
+  ArrayQ[ImageData[niiFile], 3, NumericQ]
+  (*=> True *)
+  ```
+
+
 #### Meta-Data
 
 A quick and easy way to examine an MRI volume file is by using the command `mri_info` from
@@ -212,7 +303,7 @@ expand):
   (*=> {1., 1., 1.} *)
   ```
 
-##### Affine Transformations and Orientations
+##### MRImage Geometry
 
 Consider the following problem: I give you a T1-weighted MR image of a subject and ask you to tell
 me if you think the subject's left hemisphere occipital cortex is unusually large. You open the file
@@ -353,9 +444,9 @@ qform and sform matrices identical in NifTI files to avoid confusion.
 **FreeSurfer.** The affine transformation stored in most FreeSurfer mgh/mgz files in a subject's
 directory (such as those shown in the examples above of brain.mgz) align the voxel indices with
 a RAS oriented space that I usually call "FreeSurfer native"; confusingly, this is not quite the
-same coordinate system as used in FreeSurfer's surface files, though this transformation can be
-derived from them. See the section on surface data below for details on how FreeSurfer's various
-coordinate systems align.
+same coordinate system as used in FreeSurfer's surface files, though this latter transformation can
+be derived from the former. See the section on surface data below for details on how FreeSurfer's
+various coordinate systems align.
 
 
 
