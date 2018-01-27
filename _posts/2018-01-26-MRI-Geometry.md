@@ -29,7 +29,6 @@ title: MRI Data Representation and Geometry
       * [FreeSurfer Files](#freesurfer-property-files)
       * [MGH and NifTI Files](#vol-as-surf-property-files)
       * [Other Files](#other-property-files)
-    
 
 ---
 
@@ -642,7 +641,7 @@ important of these geometry files are:
 * `lh.sphere` and `rh.sphere`, a fully-inflated spherical version of each hemisphere;
 * `lh.sphere.reg` and `rh.sphere.reg`, the same spherical representation after anatomical alignment with
   the fsaverage subject (see [surface alignment](#surface-alignment), below);
-* `lh.fsaverage_sym.sphere.reg` and `../xhemi/surf/lh.fsaverage_sym`, the same spherical
+* `lh.fsaverage_sym.sphere.reg` and `../xhemi/surf/lh.fsaverage_sym.sphere.reg`, the same spherical
   representation registered to the fsaverage_sym left-right symmetric pseudo-hemisphere--this is
   generally only used for comparing left and right hemispheres.
 
@@ -740,20 +739,124 @@ degree, but do not try very hard to interpret them for the user.
 
 <div style="width: 100%; vertical-align: middle; text-align: right;"><p>(<a href="#top">Back to top</a>)</p></div>
 
+Property data tends to take a few forms in FreeSurfer and other software; in FreeSurfer, these are
+label, annotation, and morphological (or 'curv') files. Label files are fairly simple, as they store
+either a mask of vertices in a particular ROI or a probability that each vertex is included in a
+particular ROI. Annotation and label files are beyond the scope if this post (I do not use them
+particularly often), but they are relatively straightforward to read with the libraries demo'ed in
+this post. For more information, see the documentation for
+[nibabel.read_annotation](http://nipy.org/nibabel/reference/nibabel.freesurfer.html#nibabel.freesurfer.io.read_annot),
+[nibabel.read_label](http://nipy.org/nibabel/reference/nibabel.freesurfer.html#nibabel.freesurfer.io.read_label),
+and the help text for FreeSurfer's `read_label` and `read_annototation` functions; additionally, the
+Neuropythy library can load these files with its `ny.load()` function, and the Neurotica library can
+adds importers for labels and annotations in Mathematica (named "FreeSurferLabel" and
+"FreeSurferAnnotation").
 
+Aside from annotation and label files, there are morphological or curv files, which can be used to
+store a single value on each vertex of the cortical surface. I consider this to be the most flexible
+method for storing surface data, as it can store labels and annotations as easily as
+anything. Because property data is just a list of vertices, however, it is also the case that
+typical volume files (MGH and NifTI format) can store surface property data. Such files will have
+two of their three first dimensions equal to one.
+
+One relatively obvious convention is important for understanding how to map cortical surface
+property data onto the vertices in the cortical surface geometry files: the order of the vertices in
+the geometry's coordinate matrix is the same as the ordering of the vertex properties in any of the
+property data files.
 
 ##### <a name="freesurfer-property-files"></a> FreeSurfer Files
 
 <div style="width: 100%; vertical-align: middle; text-align: right;"><p>(<a href="#top">Back to top</a>)</p></div>
 
+As mentioned above, FreeSurfer has its own custom format for storing surface properties. These files
+are usually called morphological or 'curv' files. Like FreeSurfer's geometry files, these files have
+no extension; examples include `lh.curv`, `lh.thickness`, and `rh.sulc`, all of which live in a
+subject's `/surf/` directory.
+
+FreeSurfer's curv files contain a small amount of meta-data, but this almost never comes into play
+and isn't discussed here. For most purposes, these files contain only a vector of values. The
+following code snippets demonstrate loading these data.
+
+* Python
+  ```python
+  # With nibabel...
+  import nibabel.freesurfer.io as fsio
+  
+  dat = fsio.read_morph_data('/Volumes/server/Freesurfer_subjects/wl_subj042/surf/lh.curv')
+  dat.shape
+  #=> (150676,)
+  
+  # With neuropythy...
+  import neuropythy as ny
+  dat = ny.freesurfer_subject('wl_subj042').lh.properties['curvature']
+  dat.shape
+  #=> (150676,)
+  ```
+* Matlab
+  ```matlab
+  addpath(genpath('/Applications/freesurfer/matlab')); % (FS installation dir on Mac)
+  
+  dat = read_curv('/Volumes/server/Freesurfer_subjects/wl_subj042/surf/lh.curv');
+  size(dat)
+  %
+  % ans =
+  % 
+  %       150676           1
+  %
+  ```
+* Mathematica
+  ```
+  <<Neurotica`
+  
+  dat = Import[
+    "/Volumes/server/Freesurfer_subjects/wl_subj042/surf/lh.curv",
+    "FreeSurferCurv"];
+  Dimensions[dat]
+  (*=> {150676} *)
+  
+  (* Or... *)
+  surf = Cortex[FreeSurferSubject["wl_subj042"], LH, "White"];
+  dat = "Curvature" /. surf;
+  Dimensions[dat]
+  (*=> {150676} *)
+  ```
+
 ##### <a name="vol-as-surf-property-files"></a> MGH and NifTI Files
 
 <div style="width: 100%; vertical-align: middle; text-align: right;"><p>(<a href="#top">Back to top</a>)</p></div>
+
+Perhaps surprisingly, one of the most commonly used ways to store property data on the cortical
+surface that I've encountered is to put it in a 3D volume file where two of the 3 dimensions are
+unitary. When I do this, I try to ensure that the affine transform stored in the volume is the
+identity matrix in order to flag to any potential user that the header information is not relevant.
+
+Note that in addition to storing a vector of scalars for each vertex in a 3D volume file, one can
+also store a set of vectors, one for each vertex, in such a file. This is difficult to do with other
+formats, so if, for example, you wish to store an interpolated time-series for each vertex or a 2D
+visual field coordinate for each vertex, you can do this by keeping only 1 unitary dimension in a 3D
+file; for example a time-series file for a cortical surface stored in a NifTI file might have the
+dimensions \\((150\,676, 192, 1)\\) where 150676 is the number of vertices in the surface and 192
+is the number of time-points. When doing this, I suggest using the frames dimension (i.e., the
+fourth dimension) as the time-dimension as this is how it is typically represented in
+volumes. Additionally, if one writes a test in a script or function that checks if only one of the
+first three dimensions of a volume file is greater than 1, then such a test will still succeed (and,
+presumably, detect that the file contains surface-based data).
+
+Importing surface data stored in a volume file can be done just as when importing a normal volume
+file. The only difference is that the neuropythy and Neurotica libraries both notice when a volume
+file contains only a vector or matrix, and, instead of returning 3D image objects, they return
+simple vectors or matrices.
+
 
 ##### <a name="other-property-files"></a> Other Files
 
 <div style="width: 100%; vertical-align: middle; text-align: right;"><p>(<a href="#top">Back to top</a>)</p></div>
 
+In addition to the file formats discussed above, GifTI files can store surface data but again are
+beyond the scope of this post. Really, once one understands that surface data is just a list of
+properties in an ordering that matches the vertex-ordering used in the appropriate geometry file,
+the file-format for these files becomes pretty uninteresting. Text files work pretty well for these
+data.
 
 ---
 
