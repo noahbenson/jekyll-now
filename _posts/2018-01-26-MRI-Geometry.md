@@ -26,7 +26,7 @@ title: MRI Data Representation and Geometry
 
 ## <a name="introduction"></a> Introduction
 
-<table style="width: {{ site.max-width }}px;">
+<table style="width: 550px;">
   <tr><td><hr/></td>
       <td style="width: 144px; vertical-align: right;">(<a href="#top">Back to top</a>)</td></tr></table>
 
