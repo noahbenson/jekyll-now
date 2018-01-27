@@ -9,6 +9,7 @@ title: MRI Data Representation and Geometry
 ## <a name="TOC"></a> Table of Contents
 
 ---
+
 * [Introduction](#introduction)
 * [File Formats](#file-formats)
   * [Volume Data (EPIs and Anatomical Images)](#volume-data)
@@ -20,11 +21,14 @@ title: MRI Data Representation and Geometry
           * [Orientations](#orientations)
           * [Relationship to Voxels and Volumes](#affines-and-voxels)
   * [Surface Data](#surface-data)
+
 ---
 
 ## <a name="introduction"></a> Introduction
 
----
+<table style="width: 100%;">
+<tr><td><hr/></td><td>(<a href="#top">Back top top</a>)</td></tr>
+</tabke>
 
 MRI data is usually discussed as if analyzing it were the most natural thing in the world. In
 reality, however, the alignment of volumes and the interpolation of data between representations is
