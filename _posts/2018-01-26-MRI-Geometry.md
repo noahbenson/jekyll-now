@@ -27,7 +27,7 @@ title: MRI Data Representation and Geometry
 ## <a name="introduction"></a> Introduction
 
 <table style="width: 100%; vertical-align: middle;">
-  <tr><td><hr/></td>
+  <tr><td style="width: 100%;"><hr/></td>
       <td style="text-align: right;">(<a href="#top">Back to top</a>)</td></tr></table>
 
 MRI data is usually discussed as if analyzing it were the most natural thing in the world. In
