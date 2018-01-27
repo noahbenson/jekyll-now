@@ -551,7 +551,24 @@ various coordinate systems align.
 
 <div style="width: 100%; vertical-align: middle; text-align: right;"><p>(<a href="#top">Back to top</a>)</p></div>
 
-Surfaces...
+The cortical surfaces is a 2D manifold embedded in a 3D space; accordingly, representing it in a
+computable format requires a bit more complexity than representing an MR image, which is just a 3D
+array. One cannot exactly represent the complex curvature of the cortex at every point due to the
+complexity of such a description and the limited resolution (usualy 0.8 mm\\(^3\\) at best) of our
+anatomical images of the brain. Instead, we must accept an approximate description of the cortical
+surface as described by a large set of small triangles, where all vertices lie on the surface
+itself.
+
+When programs like FreeSurfer deduce the cortical surface from an anatomical MR image, they
+essentially make a good guess, based on the voxel intensities, of where a bunch of points/triangles
+lie on the boundary between white and gray (or gray and extra-cortical) matter. These points and
+triangles are then run through a variety of cleaning and smoothing routines to arrive at the
+representation of the white and pial surfaces. To see how these are made up of triangles and
+vertices, this image shows a zoomed in view of the pial surface as estimated by FreeSurfer.
+
+![surface_closeup]({{ site.baseurl }}/images/mri-geometry/surface_closeup.png "Closeup of Pial Surface Triangles")
+
+
 
 ---
 
