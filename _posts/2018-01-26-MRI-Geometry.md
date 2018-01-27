@@ -110,7 +110,7 @@ the most important pieces of information:
   interprets the voxels in this volume as a 3D coordinate system (more on this later).
 * **nframes** tells us the number of frames in a 4D volume. Frames are almost always stored in the
   volume as the last (4th) dimension.
-* *three transformations* appear in the output in the form of \\(4\times 4\\) matrices; we will
+* **three transformations** appear in the output in the form of \\(4\times 4\\) matrices; we will
   discuss these shortly transformations shortly.
 * **Orientation** (LIA) and **primary slice direction** (coronal) tell us roughly how the volume is
   organized (more about this below also).
@@ -125,9 +125,12 @@ a well-commented C header-file; for a more human-readable explanation, try
 [here](https://brainder.org/2012/09/23/the-nifti-file-format/).
 
 Another good way to look at the meta-data in a volume file is to load it with the relevant
-programming environment and examine the data-structures there. Here are a few examples:
+programming environment and examine the data-structures there. Here are a few examples (click to
+expand):
 
-* Python (using [nibabel](http://nipy.org/nibabel/))  
+<div class="accordian">
+* Python (using [nibabel](http://nipy.org/nibabel/))
+  <div>
   ```python
   import nibabel                      as nib
   import nibabel.freesurfer.mghformat as mgh
@@ -148,7 +151,9 @@ programming environment and examine the data-structures there. Here are a few ex
   #=> array(2, dtype=int16)
   # (Note: the header data loaded by Nibabel are quite unprocessed and opaque)
   ```
-* Python (using [neuropythy](https://github.com/noahbenson/neuropythy), which wraps nibabel)  
+  </div>
+* Python (using [neuropythy](https://github.com/noahbenson/neuropythy), which wraps nibabel)
+  <div>
   ```python
   import neuropythy as ny
   
@@ -161,7 +166,9 @@ programming environment and examine the data-structures there. Here are a few ex
   #=>        [ 0.00000000e+00, -9.99999940e-01,  2.23371899e-09,  1.30323082e+02],
   #=>        [ 0.00000000e+00,  0.00000000e+00,  0.00000000e+00,  1.00000000e+00]])
   ```
-* Matlab  
+  </div>
+* Matlab
+  <div>
   ```matlab
   addpath(genpath('/Applications/freesurfer/matlab')); % (FS installation dir on Mac)
   
@@ -194,7 +201,9 @@ programming environment and examine the data-structures there. Here are a few ex
   %    256   256   256
   %
   ```
-* Mathematica (using [Neurotica](https://github.com/noahbenson/Neurotica))  
+  </div>
+* Mathematica (using [Neurotica](https://github.com/noahbenson/Neurotica))
+  <div>
   ```
   <<Neurotica`
   
@@ -210,6 +219,7 @@ programming environment and examine the data-structures there. Here are a few ex
   Options[niiFile, VoxelDimensions]
   (*=> {1., 1., 1.} *)
   ```
+  </div>
 
 ##### Affine Transformations and Orientations
 
@@ -258,15 +268,15 @@ Linear transformations in 3D Euclidean geometry fall into a few categories:
 * <img src="{{ site.baseurl }}/images/mri-geometry/affine_scaling.png" style="width: 250px; vertical-align: middle;" alt="Scaling"/>
 * <img src="{{ site.baseurl }}/images/mri-geometry/affine_reflection.png" style="width: 250px; vertical-align: middle" alt="Reflection"/>
 * <img src="{{ site.baseurl }}/images/mri-geometry/affine_rotation.png" style="width: 250px; vertical-align: middle;" alt="Rotation"/>
-* <img src="{{ site.baseurl }}/images/mri-geometry/affine_transposition.png" style="width: 250px; vertical-align: middle;" alt="Transposition"/>
+* <img src="{{ site.baseurl }}/images/mri-geometry/affine_translation.png" style="width: 250px; vertical-align: middle;" alt="Translation"/>
 * <img src="{{ site.baseurl }}/images/mri-geometry/affine_shearing.png" style="width: 250px; vertical-align: middle;" alt="Shearing"/>
 * Other: $$f(\boldsymbol{v}) = \boldsymbol{0}$$ is technically a linear transformation, but
   transformations not listed above don't usually come up in neuroscience, and even shearing is very
   rarely used.
 
 Usually, in neuroscience, the only transformations that matter are reflection, rotation, and
-transposition; occasionally scaling comes into play as well. Of these four transformations, all but
-transposition can be represented together in a \\(3 \times 3\\) matrix where:
+translation; occasionally scaling comes into play as well. Of these four transformations, all but
+translation can be represented together in a \\(3 \times 3\\) matrix where:
 
 $$ \begin{pmatrix}x\\y\\z\end{pmatrix} = \begin{pmatrix}a & b & c\\d & e & f\\g & h & i\end{pmatrix}
      \cdot \begin{pmatrix}x_0\\y_0\\z_0\end{pmatrix}. $$
@@ -278,8 +288,8 @@ page](https://www.tutorialspoint.com/computer_graphics/3d_transformation.htm) is
 getting some intuition about the connection between the matrices and the transformations
 themselves.
 
-Transposition can be done by simply adding a 3D vector to this result. However, an alternate way to
-store transposition along with the other transformations described above is to use a \\(4 \times
+Translation can be done by simply adding a 3D vector to this result. However, an alternate way to
+store translation along with the other transformations described above is to use a \\(4 \times
 4\\) matrix, which is often called an *affine transformation matrix*. We write this transformation
 as:
 
@@ -357,14 +367,7 @@ derived from them. See the section on surface data below for details on how Free
 coordinate systems align.
 
 
+
+
 ## (Under Construction)
-
-
-
-
-
-
-
-
-
 
