@@ -12,6 +12,13 @@ title: MRI Data Representation and Geometry
 * [Introduction](#introduction)
 * [File Formats](#file-formats)
   * [Volume Data (EPIs and Anatomical Images)](#volume-data)
+    * [Voxel Data](#voxel-data)
+    * [Meta-Data](#volume-meta-data)
+      * [MRImage Geometry](#mri-geometry)
+        * [Affine Transformations and Orientations](#affines)
+          * [Background](#affine-background)
+          * [Orientations](#orientations)
+          * [Relationship to Voxels and Volumes](#affines-and-voxels)
   * [Surface Data](#surface-data)
 ---
 
@@ -61,7 +68,7 @@ Volumes are typically stored in one of a few ways:
 All volume files contain both **meta-data** and **voxels**. The meta-data is just a set of
 information about the file's contents while the voxels are a 3D or 4D array of values.
 
-#### Voxel Data
+#### <a name="voxel-data"></a> Voxel Data
 
 The voxels in NifTI and MGH files are always organized into a 3D or 4D rectangular array. The
 various libraries for reading MGH and NifTI files automatically organize this data for you. These
@@ -152,7 +159,7 @@ examples show how to access a file's voxel array using various libraries.
   ```
 
 
-#### Meta-Data
+#### <a name="volume-meta-data"></a> Meta-Data
 
 A quick and easy way to examine an MRI volume file is by using the command `mri_info` from
 FreeSurfer; this command understands most MRI file formats and prints about a page of meta-data from
@@ -320,7 +327,7 @@ expand):
   (*=> {1., 1., 1.} *)
   ```
 
-##### MRImage Geometry
+##### <a name="mri-geometry"></a> MRImage Geometry
 
 Consider the following problem: I give you a T1-weighted MR image of a subject and ask you to tell
 me if you think the subject's left hemisphere occipital cortex is unusually large. You open the file
@@ -359,9 +366,9 @@ coordinate system employed in any MRI volume file, and ideally some amount of in
 to precisely align the brain to some standard orientation.
 
 
-##### Affine Transformations and Orientations
+##### <a name="affines"></a> Affine Transformations and Orientations
 
-###### Background
+###### <a name="affine-background"></a> Background
 
 Linear transformations in 3D Euclidean geometry fall into a few categories:
 * <img src="{{ site.baseurl }}/images/mri-geometry/affine_scaling.png" style="width: 250px; vertical-align: middle;" alt="Scaling"/>
@@ -400,7 +407,7 @@ Because they can succinctly store all of these transformations in a single matri
 transformation matrices are used in neuroscience volume files to tell the user how to align the data
 contained within them to some standard reference.
 
-###### Orientations
+###### <a name="orientations"></a> Orientations
 
 In the example image (illustrating the radiological/neurological perspective conflict) above, it is
 clear that were the radiologist and the neurologist to design different file standards for an MRI
@@ -487,7 +494,7 @@ dimension (I) is usually taken to be the columns of the image (\\(x\\)). Accordi
 that ILA is at least as natural of a 3D-image orientation as LIA. The LIA orientation isn't a choice
 I understand.
 
-###### Relationship to Voxels and Volumes
+###### <a name="affines-and-voxels"></a> Relationship to Voxels and Volumes
 
 NifTI and MGH files always contain at least one affine transformation matrix, as we saw in the
 examples above. The purpose of this transformation varies by file, however. In most cases, the
