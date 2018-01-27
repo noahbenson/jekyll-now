@@ -128,8 +128,8 @@ Another good way to look at the meta-data in a volume file is to load it with th
 programming environment and examine the data-structures there. Here are a few examples (click to
 expand):
 
-<ul class="accordian">
-<li>Python (using [nibabel](http://nipy.org/nibabel/))
+<div class="accordian">
+Python (using [nibabel](http://nipy.org/nibabel/))
 <div>
 ```python
 import nibabel                      as nib
@@ -152,7 +152,6 @@ nii_file.header['datatype']
 # (Note: the header data loaded by Nibabel are quite unprocessed and opaque)
 ```
 </div>
-</ul>
 </div>
 
 <!--
