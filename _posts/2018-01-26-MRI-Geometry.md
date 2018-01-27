@@ -58,7 +58,7 @@ an emphasis on FreeSurfer.
 
 ## <a name="file-formats"></a> File Formats
 
-<div style="width: 100%; vertical-align: middle; text-align: right;"><p>(<a href="#top">Back to top</a>)</p></div>
+<div class="toTop"><p>(<a href="#top">Back to top</a>)</p></div>
 
 ---
 
@@ -68,7 +68,7 @@ time).
 
 ### <a name="cortical-volumes"></a> Cortical Volumes (EPIs and Anatomical Images)
 
-<div style="width: 100%; vertical-align: middle; text-align: right;"><p>(<a href="#top">Back to top</a>)</p></div>
+<div class="toTop"><p>(<a href="#top">Back to top</a>)</p></div>
 
 Volumes are typically stored in one of a few ways:
 
@@ -95,7 +95,7 @@ information about the file's contents while the voxels are a 3D or 4D array of v
 
 #### <a name="voxel-data"></a> Voxel Data
 
-<div style="width: 100%; vertical-align: middle; text-align: right;"><p>(<a href="#top">Back to top</a>)</p></div>
+<div class="toTop"><p>(<a href="#top">Back to top</a>)</p></div>
 
 The voxels in NifTI and MGH files are always organized into a 3D or 4D rectangular array. The
 various libraries for reading MGH and NifTI files automatically organize this data for you. These
@@ -188,7 +188,7 @@ examples show how to access a file's voxel array using various libraries.
 
 #### <a name="volume-meta-data"></a> Meta-Data
 
-<div style="width: 100%; vertical-align: middle; text-align: right;"><p>(<a href="#top">Back to top</a>)</p></div>
+<div class="toTop"><p>(<a href="#top">Back to top</a>)</p></div>
 
 A quick and easy way to examine an MRI volume file is by using the command `mri_info` from
 FreeSurfer; this command understands most MRI file formats and prints about a page of meta-data from
@@ -270,7 +270,7 @@ a well-commented C header-file; for a more human-readable explanation, try
 
 ##### <a name="getting-meta-data"></a> Accessing Meta-Data
 
-<div style="width: 100%; vertical-align: middle; text-align: right;"><p>(<a href="#top">Back to top</a>)</p></div>
+<div class="toTop"><p>(<a href="#top">Back to top</a>)</p></div>
 
 Another good way to look at the meta-data in a volume file is to load it with the relevant
 programming environment and examine the data-structures there. Here are a few examples.
@@ -367,7 +367,7 @@ programming environment and examine the data-structures there. Here are a few ex
 
 ##### <a name="mri-geometry"></a> MRImage Geometry
 
-<div style="width: 100%; vertical-align: middle; text-align: right;"><p>(<a href="#top">Back to top</a>)</p></div>
+<div class="toTop"><p>(<a href="#top">Back to top</a>)</p></div>
 
 Consider the following problem: I give you a T1-weighted MR image of a subject and ask you to tell
 me if you think the subject's left hemisphere occipital cortex is unusually large. You open the file
@@ -408,7 +408,7 @@ to precisely align the brain to some standard orientation.
 
 ##### <a name="affines"></a> Affine Transformations
 
-<div style="width: 100%; vertical-align: middle; text-align: right;"><p>(<a href="#top">Back to top</a>)</p></div>
+<div class="toTop"><p>(<a href="#top">Back to top</a>)</p></div>
 
 Linear transformations in 3D Euclidean geometry fall into a few categories:
 * <img src="{{ site.baseurl }}/images/mri-geometry/affine_scaling.png" style="width: 250px; vertical-align: middle;" alt="Scaling"/>
@@ -449,7 +449,7 @@ contained within them to some standard reference.
 
 ##### <a name="orientations"></a> Orientations
 
-<div style="width: 100%; vertical-align: middle; text-align: right;"><p>(<a href="#top">Back to top</a>)</p></div>
+<div class="toTop"><p>(<a href="#top">Back to top</a>)</p></div>
 
 In the example image (illustrating the radiological/neurological perspective conflict) above, it is
 clear that were the radiologist and the neurologist to design different file standards for an MRI
@@ -538,7 +538,7 @@ I understand.
 
 ##### <a name="affines-and-voxels"></a> Relationship to Voxels and Volumes
 
-<div style="width: 100%; vertical-align: middle; text-align: right;"><p>(<a href="#top">Back to top</a>)</p></div>
+<div class="toTop"><p>(<a href="#top">Back to top</a>)</p></div>
 
 NifTI and MGH files always contain at least one affine transformation matrix, as we saw in the
 examples above. The purpose of this transformation varies by file, however. In most cases, the
@@ -571,7 +571,7 @@ various coordinate systems align.
 
 ### <a name="cortical-surfaces"></a> Cortical Surfaces
 
-<div style="width: 100%; vertical-align: middle; text-align: right;"><p>(<a href="#top">Back to top</a>)</p></div>
+<div class="toTop"><p>(<a href="#top">Back to top</a>)</p></div>
 
 The cortical surfaces is a 2D manifold embedded in a 3D space; accordingly, representing it in a
 computable format requires a bit more complexity than representing an MR image, which is just a 3D
@@ -603,7 +603,7 @@ related to each other.
 
 #### <a name="surface-file-caveats"></a> Caveats
 
-<div style="width: 100%; vertical-align: middle; text-align: right;"><p>(<a href="#top">Back to top</a>)</p></div>
+<div class="toTop"><p>(<a href="#top">Back to top</a>)</p></div>
 
 As of when this post was written, I do not feel that there is any single universally known or
 accepted surface file format for any kind of surface data. There are a variety of available formats
@@ -618,7 +618,7 @@ best to clearly communicate the format and conventions you are using whenever sh
 
 #### <a name="surface-geometry-data"></a> Geometry Data
 
-<div style="width: 100%; vertical-align: middle; text-align: right;"><p>(<a href="#top">Back to top</a>)</p></div>
+<div class="toTop"><p>(<a href="#top">Back to top</a>)</p></div>
 
 Fortunately, he geometry of a cortical surface is virtually always stored in an ideomatic fashion,
 regardless of the file format. Although different formats may encode the data differently, these
@@ -640,7 +640,7 @@ conventions are always present:
   
 ##### <a name="freesurfer-geometry-files"></a> FreeSurfer Files
 
-<div style="width: 100%; vertical-align: middle; text-align: right;"><p>(<a href="#top">Back to top</a>)</p></div>
+<div class="toTop"><p>(<a href="#top">Back to top</a>)</p></div>
 
 FreeSurfer stores its surface data in a custom-format file type without a name or even an
 extension. You can find these files in any FreeSurfer subject's `/surf/` directory. The most
@@ -729,7 +729,7 @@ The following code snippets demonstrate how to read these files.
 
 ##### <a name="other-geometry-files"></a> Other Files
 
-<div style="width: 100%; vertical-align: middle; text-align: right;"><p>(<a href="#top">Back to top</a>)</p></div>
+<div class="toTop"><p>(<a href="#top">Back to top</a>)</p></div>
 
 In addition to FreeSurfer's files, there are various other ways of storing surface data. Brainstorm,
 for example, stores these data in Matlab (.mat) files, but still stores it as a pair of vertex and
@@ -748,7 +748,7 @@ degree, but do not try very hard to interpret them for the user.
 
 #### <a name="surface-geometry-data"></a> Property Data
 
-<div style="width: 100%; vertical-align: middle; text-align: right;"><p>(<a href="#top">Back to top</a>)</p></div>
+<div class="toTop"><p>(<a href="#top">Back to top</a>)</p></div>
 
 Property data tends to take a few forms in FreeSurfer and other software; in FreeSurfer, these are
 label, annotation, and morphological (or 'curv') files. Label files are fairly simple, as they store
@@ -777,7 +777,7 @@ property data files.
 
 ##### <a name="freesurfer-property-files"></a> FreeSurfer Files
 
-<div style="width: 100%; vertical-align: middle; text-align: right;"><p>(<a href="#top">Back to top</a>)</p></div>
+<div class="toTop"><p>(<a href="#top">Back to top</a>)</p></div>
 
 As mentioned above, FreeSurfer has its own custom format for storing surface properties. These files
 are usually called morphological or 'curv' files. Like FreeSurfer's geometry files, these files have
@@ -834,7 +834,7 @@ following code snippets demonstrate loading these data.
 
 ##### <a name="vol-as-surf-property-files"></a> MGH and NifTI Files
 
-<div style="width: 100%; vertical-align: middle; text-align: right;"><p>(<a href="#top">Back to top</a>)</p></div>
+<div class="toTop"><p>(<a href="#top">Back to top</a>)</p></div>
 
 Perhaps surprisingly, one of the most commonly used ways to store property data on the cortical
 surface that I've encountered is to put it in a 3D volume file where two of the 3 dimensions are
@@ -861,7 +861,7 @@ simple vectors or matrices.
 
 ##### <a name="other-property-files"></a> Other Files
 
-<div style="width: 100%; vertical-align: middle; text-align: right;"><p>(<a href="#top">Back to top</a>)</p></div>
+<div class="toTop"><p>(<a href="#top">Back to top</a>)</p></div>
 
 In addition to the file formats discussed above, GifTI files can store surface data but again are
 beyond the scope of this post. Really, once one understands that surface data is just a list of
@@ -873,33 +873,49 @@ data.
 
 ## <a name="alignments"></a> Alignments
 
-<div style="width: 100%; vertical-align: middle; text-align: right;"><p>(<a href="#top">Back to top</a>)</p></div>
+<div class="toTop"><p>(<a href="#top">Back to top</a>)</p></div>
 
 
 ### <a name="align-vol2vol"></a> Volume-to-Volume
 
+<div class="toTop"><p>(<a href="#top">Back to top</a>)</p></div>
+
 ### <a name="align-surf2vol"></a> Volume-to-Surface and Surface-to-Volume
 
+<div class="toTop"><p>(<a href="#top">Back to top</a>)</p></div>
+
 ### <a name="align-surf2surf"></a> Surface-to-Surface
+
+<div class="toTop"><p>(<a href="#top">Back to top</a>)</p></div>
 
 ---
 
 ## <a name="interpolation"></a> Interpolation
 
-<div style="width: 100%; vertical-align: middle; text-align: right;"><p>(<a href="#top">Back to top</a>)</p></div>
+<div class="toTop"><p>(<a href="#top">Back to top</a>)</p></div>
 
 ### <a name="interp-vol2vol"></a> Volume-to-Volume
 
+<div class="toTop"><p>(<a href="#top">Back to top</a>)</p></div>
+
 ### <a name="interp-vol2surf"></a> Volume-to-Surface
+
+<div class="toTop"><p>(<a href="#top">Back to top</a>)</p></div>
 
 ### <a name="interp-surf2vol"></a> Surface-to-Volume
 
+<div class="toTop"><p>(<a href="#top">Back to top</a>)</p></div>
+
 ### <a name="interp-surf2surf"></a> Surface-to-Surface
+
+<div class="toTop"><p>(<a href="#top">Back to top</a>)</p></div>
 
 ### <a name="interp-quandaries"></a> Common Quandaries
 
+<div class="toTop"><p>(<a href="#top">Back to top</a>)</p></div>
+
 ---
 
-<div style="width: 100%; vertical-align: middle; text-align: right;"><p>(<a href="#top">Back to top</a>)</p></div>
+<div class="toTop"><p>(<a href="#top">Back to top</a>)</p></div>
 
 
