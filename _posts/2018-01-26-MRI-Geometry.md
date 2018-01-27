@@ -28,7 +28,7 @@ title: MRI Data Representation and Geometry
 
 ## <a name="introduction"></a> Introduction
 
-<div style="width: 100%; vertical-align: middle; text-align: right;"><p>(<a href="#top">Back to top</a>)</div>
+<div style="width: 100%; vertical-align: middle; text-align: right;"><p>(<a href="#top">Back to top</a>)</p></div>
 
 MRI data is usually discussed as if analyzing it were the most natural thing in the world. In
 reality, however, the alignment of volumes and the interpolation of data between representations is
