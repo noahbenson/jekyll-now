@@ -418,6 +418,49 @@ The most common orientations I see are:
 * **LPS**. The Winawer lab A/P slice prescription in various protocols (e.g., that used for
   retinotopy) yields LPS oriented volume files.
 
+As a demonstration of what the orientation means in the context of the voxels and the 3D arrays that
+store them, consider the following Python code block. In it, we load a subject's left hemisphere
+ribbon (the LH ribbon is a FreeSurfer volume file in which all the voxels in the LH gray matter are
+1 and all other voxels are 0) and plot slices from it along each dimension. Because we know that the
+voxels are in the left hemisphere, it's easy to tell which direction is which. In the example, I've
+labeled the axes in terms of their orientations. By plotting these data, we can see what it means,
+in terms of the 3D array representation, for a file to have an LIA orientation, which FreeSurfer
+uses by default.
+
+```python
+import matplotlib.pyplot as plt
+import neuropythy as ny
+
+sub = ny.freesurfer_subject('bert')
+vol = sub.lh_gray_mask
+
+(f, (ax_xy, ax_yz, ax_xz)) = plt.subplots(1,3, figsize=(12,4))
+
+ax_xy.imshow(vol[:,:,100].T,  cmap='gray', origin='lower')
+ax_xy.set_xlabel('Index $i$ (R $\mapsto$ L)')
+ax_xy.set_ylabel('Index $j$ (S $\mapsto$ I)')
+
+ax_yz.imshow(vol[160,:,:].T, cmap='gray', origin='lower')
+ax_yz.set_xlabel('Index $j$ (S $\mapsto$ I)')
+ax_yz.set_ylabel('Index $k$ (P $\mapsto$ A)')
+
+ax_xz.imshow(vol[:,100,:],   cmap='gray', origin='lower')
+ax_xz.set_xlabel('Index $k$ (P $\mapsto$ A)')
+ax_xz.set_ylabel('Index $i$ (R $\mapsto$ L)')
+
+plt.tight_layout()
+```
+
+![example_slices]({{ site.baseurl }}/images/mri-geometry/bert_slices.png "Slices demonstrating
+FreeSurfer's LIA orientation")
+
+**Why does FreeSurfer use LIA orientation?** Looking at these examples, it is clear that the LIA
+orientation does not make much sense when we plot the axes in a typically mathematically-oriented
+way (right-hand 3D coordinate system), as above. Neither is the LIA orientation quite the same as
+the radiological orientation shown in the cartoon above--though its \\(x\\)-coordinate is the
+same. I don't know the answer to this question, but I suspect that it is related to how the
+developers at MGH originally were used to storing the data from their MRI machine.
+
 ###### Relationship to Voxels and Volumes
 
 NifTI and MGH files always contain at least one affine transformation matrix, as we saw in the
