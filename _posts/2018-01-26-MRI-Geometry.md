@@ -128,30 +128,32 @@ Another good way to look at the meta-data in a volume file is to load it with th
 programming environment and examine the data-structures there. Here are a few examples (click to
 expand):
 
-<div class="accordian">
-* Python (using [nibabel](http://nipy.org/nibabel/))
-  <div>
-  ```python
-  import nibabel                      as nib
-  import nibabel.freesurfer.mghformat as mgh
-  
-  # MGH/MGZ files
-  mgh_file = mgh.load('/Volumes/server/Freesurfer_subjects/wl_subj042/mri/brain.mgz')
-  mgh_file.header['dims']
-  #=> array([256, 256, 256,   1], dtype=int32)
-  mgh_file.header.get_affine()
-  #=> array([[-1.00000000e+00, -1.16415322e-10,  0.00000000e+00,  1.32361809e+02],
-  #=>        [ 0.00000000e+00, -1.90266292e-09,  9.99999940e-01, -9.83241651e+01],
-  #=>        [ 0.00000000e+00, -9.99999940e-01,  2.23371899e-09,  1.30323082e+02],
-  #=>        [ 0.00000000e+00,  0.00000000e+00,  0.00000000e+00,  1.00000000e+00]])
-  
-  # NifTI files
-  nii_file = nib.load('/Volumes/server/Freesurfer_subjects/ernie/mri/ribbon.nii.gz')
-  nii_file.header['datatype']
-  #=> array(2, dtype=int16)
-  # (Note: the header data loaded by Nibabel are quite unprocessed and opaque)
-  ```
-  </div>
+<ul class="accordian">
+<li>Python (using [nibabel](http://nipy.org/nibabel/))
+<div>
+```python
+import nibabel                      as nib
+import nibabel.freesurfer.mghformat as mgh
+
+# MGH/MGZ files
+mgh_file = mgh.load('/Volumes/server/Freesurfer_subjects/wl_subj042/mri/brain.mgz')
+mgh_file.header['dims']
+#=> array([256, 256, 256,   1], dtype=int32)
+mgh_file.header.get_affine()
+#=> array([[-1.00000000e+00, -1.16415322e-10,  0.00000000e+00,  1.32361809e+02],
+#=>        [ 0.00000000e+00, -1.90266292e-09,  9.99999940e-01, -9.83241651e+01],
+#=>        [ 0.00000000e+00, -9.99999940e-01,  2.23371899e-09,  1.30323082e+02],
+#=>        [ 0.00000000e+00,  0.00000000e+00,  0.00000000e+00,  1.00000000e+00]])
+
+# NifTI files
+nii_file = nib.load('/Volumes/server/Freesurfer_subjects/ernie/mri/ribbon.nii.gz')
+nii_file.header['datatype']
+#=> array(2, dtype=int16)
+# (Note: the header data loaded by Nibabel are quite unprocessed and opaque)
+```
+</div>
+
+<!--
 * Python (using [neuropythy](https://github.com/noahbenson/neuropythy), which wraps nibabel)
   <div>
   ```python
@@ -220,6 +222,7 @@ expand):
   (*=> {1., 1., 1.} *)
   ```
   </div>
+-->
 
 ##### Affine Transformations and Orientations
 
