@@ -148,7 +148,7 @@ programming environment and examine the data-structures there. Here are a few ex
   #=> array(2, dtype=int16)
   # (Note: the header data loaded by Nibabel are quite unprocessed and opaque)
   ```
-* Python (using [neuropythy](https://github.com/noahbenson/neuropythy), which wraps nibabel)__
+* Python (using [neuropythy](https://github.com/noahbenson/neuropythy), which wraps nibabel)  
   ```python
   import neuropythy as ny
   
@@ -195,7 +195,7 @@ programming environment and examine the data-structures there. Here are a few ex
   %
   ```
 * Mathematica (using [Neurotica](https://github.com/noahbenson/Neurotica))  
-  ```mathematica
+  ```
   <<Neurotica`
   
   mghFile = Import[
@@ -291,6 +291,41 @@ Because they can succinctly store all of these transformations in a single matri
 transformation matrices are used in neuroscience volume files to tell the user how to align the data
 contained within them to some standard reference.
 
+###### Orientations
+
+In the example image (illustrating the radiological/neurological perspective conflict) above, it is
+clear that were the radiologist and the neurologist to design different file standards for an MRI
+volume file, they might prefer to organize the voxels in slightly different ways. The radiologist
+would probably want the slices of the image stored in the file starting with the bottom of the head
+(as slice 0) and ending with the top of the head; the neurologist may want the slices stored in a
+different order. In fact, there's no particular right or wrong way to store the slices, and the
+slices needn't even be horizontal slices. In some experiments the slices will be coronal or
+sagital. In order to efficiently express the ordering of the rows, columns, and slices of the file,
+a standard three-letter code can be used where each letter indicates the direction
+(**R**ight/**L**eft, **A**nterior/**P**osterior, **S**uperior/**I**nferior) that is increasing for
+the particular dimension; for example, orientation SPL would indicate that the first dimension is
+pointing in the **S**uperior direction, the second dimension is pointing in the **P**osterior
+direction, and the third dimension is pointing in the **L**eft direction. **WARNING**: the
+convention I just described is used by FreeSurfer and other software but not *all* software. In
+particular, I believe that AFNI uses the opposite notation, where SPL would instead be represented
+as IAR; however, I do not use AFNI myself and unsure if this is (still) true. Check your favorite
+software's documentation to be certain!
+
+The most common orientations I see are:
+
+* **RAS**. The way we typically think about the position and coordinate system of our own brain is
+  in a RAS orientation where the \\(x\\)-axis points out your right ear, the \\(y\\)-axis points
+  out your nose, and the \\(z\\)-axis points out the top of your head. Surface files are almost
+  always stored in a RAS coordinate system, and many other volume files are as well.
+* **LIA**. FreeSurfer uses LIA orientation for all of its volumetric data files. This means that
+  the first dimension stored in the volume increases to the left, the next increases to the right,
+  and the slices increase from posterior to anterior. I do not completely understand why this
+  particular orientation was chosen by MGH. [This
+  website](http://www.grahamwideman.com/gw/brain/fs/coords/fscoords.htm) is very useful for
+  understanding FreeSurfer's volumetric coordinate system more fully.
+* **LPS**. The Winawer lab A/P slice prescription in various protocols (e.g., that used for
+  retinotopy) yields LPS oriented volume files.
+
 ###### Relationship to Voxels and Volumes
 
 NifTI and MGH files always contain at least one affine transformation matrix, as we saw in the
@@ -302,11 +337,24 @@ system for the surface representation of the brain.
 Regardless of what the affine transformation aligns the voxels *to*, the coordinates being
 transformed are usually the 0-based indices of the voxels, which I will call \\((i,j,k)\\). So, for
 example, if \\(\mathbf{M}\\) is a \\(4\times 4\\) affine transformation matrix from the header of a
-volume file, then
+volume file, then:
 
 $$ \begin{pmatrix}x\\y\\z\\1\end{pmatrix} = \mathbf{M} \cdot \begin{pmatrix}i\\j\\k\\1\end{pmatrix} $$.
 
+There is no single convention for what an affine transformation in a volume file actually means, so
+**it is unwise to assume that you know the correct orientation of a file you obtained from someone
+else** just because the affine transformation looks familiar. The NifTI file standard in fact
+includes two affine transforms, the "qform" and the "sform" with special numbers in the header that
+are supposed to give the user a hint as to what the transformations align the voxels
+to. Interpreting these values is beyond the scope of this post; I generally suggest keeping the
+qform and sform matrices identical in NifTI files to avoid confusion.
 
+**FreeSurfer.** The affine transformation stored in most FreeSurfer mgh/mgz files in a subject's
+directory (such as those shown in the examples above of brain.mgz) align the voxel indices with
+a RAS oriented space that I usually call "FreeSurfer native"; confusingly, this is not quite the
+same coordinate system as used in FreeSurfer's surface files, though this transformation can be
+derived from them. See the section on surface data below for details on how FreeSurfer's various
+coordinate systems align.
 
 
 ## (Under Construction)
