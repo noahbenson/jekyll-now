@@ -23,7 +23,12 @@ title: MRI Data Representation and Geometry
   * [Cortical Surfaces](#cortical-surfaces)
     * [Caveats](#surface-file-caveats)
     * [Geometry Data](#surface-geometry-data)
+      * [FreeSurfer Files](#freesurfer-geometry-files)
+      * [Other Files](#other-geometry-files)
     * [Property Data](#surface-property-data)
+      * [FreeSurfer Files](#freesurfer-property-files)
+      * [MGH and NifTI Files](#vol-as-surf-property-files)
+      * [Other Files](#other-property-files)
     
 
 ---
@@ -588,6 +593,8 @@ related to each other.
 
 #### <a name="surface-file-caveats"></a> Caveats
 
+<div style="width: 100%; vertical-align: middle; text-align: right;"><p>(<a href="#top">Back to top</a>)</p></div>
+
 As of when this post was written, I do not feel that there is any single universally known or
 accepted surface file format for any kind of surface data. There are a variety of available formats
 used by various software (FreeSurfer, Caret/Workbench, for example), but one of the most common ways
@@ -600,6 +607,8 @@ best to clearly communicate the format and conventions you are using whenever sh
 
 
 #### <a name="surface-geometry-data"></a> Geometry Data
+
+<div style="width: 100%; vertical-align: middle; text-align: right;"><p>(<a href="#top">Back to top</a>)</p></div>
 
 Fortunately, he geometry of a cortical surface is virtually always stored in an ideomatic fashion,
 regardless of the file format. Although different formats may encode the data differently, these
@@ -619,6 +628,131 @@ conventions are always present:
   generally important in a typical surface-based analysis, but it can be very important when
   calculating certain geometric data about a cortical surface.
   
+##### <a name="freesurfer-geometry-files"></a> FreeSurfer Files
+
+<div style="width: 100%; vertical-align: middle; text-align: right;"><p>(<a href="#top">Back to top</a>)</p></div>
+
+FreeSurfer stores its surface data in a custom-format file type without a name or even an
+extension. You can find these files in any FreeSurfer subject's `/surf/` directory. The most
+important of these geometry files are:
+
+* `lh.white` and `rh.white`, the white surface representations for each hemisphere;
+* `lh.pial` and `rh.pial`, the pial surface representations;
+* `lh.inflated` and `rh.inflated`, inflated hemispheres appropriate for visualization;
+* `lh.sphere` and `rh.sphere`, a fully-inflated spherical version of each hemisphere;
+* `lh.sphere.reg` and `rh.sphere.reg`, the same spherical representation after anatomical alignment with
+  the fsaverage subject (see [surface alignment](#surface-alignment), below);
+* `lh.fsaverage_sym.sphere.reg` and `../xhemi/surf/lh.fsaverage_sym`, the same spherical
+  representation registered to the fsaverage_sym left-right symmetric pseudo-hemisphere--this is
+  generally only used for comparing left and right hemispheres.
+
+The following code snippets demonstrate how to read these files.
+
+* Python (using [nibabel](http://nipy.org/nibabel/))
+  ```python
+  import nibabel.freesurfer.io as fsio
+  
+  (coords, faces) = fsio.read_geometry('/Volumes/server/Freesurfer_subjects/wl_subj042/surf/lh.white')
+
+  (type(coords), coords.shape, coords.dtype)
+  #=> (numpy.ndarray, (150676, 3), dtype('float64'))
+  
+  (type(faces), faces.shape, faces.dtype)
+  #=> (numpy.ndarray, (301348, 3), dtype('>i4'))
+  ```
+* Python (using [neuropythy](https://github.com/noahbenson/neuropythy), which wraps nibabel)
+  ```python
+  import neuropythy as ny
+  
+  sub = ny.freesurfer_subject('wl_subj042')
+
+  coords = sub.lh.white_surface.coordinates
+  faces  = sub.lh.tess.faces
+  # Note that ny.load() can also import freesurfer geometry files as surface meshes
+  
+  (type(coords), coords.shape, coords.dtype)
+  #=> (numpy.ndarray, (3, 150676), dtype('float64'))
+
+  (type(faces), faces.shape, faces.dtype)
+  #=> (numpy.ndarray, (3, 301348), dtype('>i4'))
+
+  # (Note: neuropythy stores the coordinates and faces in a transposed form)
+  ```
+* Matlab
+  ```matlab
+  addpath(genpath('/Applications/freesurfer/matlab')); % (FS installation dir on Mac)
+  
+  [coords, faces] = read_surf('/Volumes/server/Freesurfer_subjects/wl_subj042/surf/lh.white');
+  
+  size(coords)
+  %
+  % ans =
+  % 
+  %       150676           3
+  %
+
+  size(faces)
+  %
+  % ans =
+  % 
+  %       301348           3
+  %
+  ```
+* Mathematica (using [Neurotica](https://github.com/noahbenson/Neurotica))
+  ```
+  <<Neurotica`
+  
+  surf = Import[
+    "/Volumes/server/Freesurfer_subjects/wl_subj042/surf/lh.white",
+    "FreeSurferSurface"];
+    
+  (* Alternately: *)
+  surf = Cortex[FreeSurferSubject["wl_subj042"], LH, "White"];
+  
+  Dimensions@VertexCoordinates[surf]
+  (*=> {150676, 3} *)
+  
+  Dimensions@FaceList[surf]
+  (*=> {301348, 3} *)
+  ```
+
+
+##### <a name="other-geometry-files"></a> Other Files
+
+<div style="width: 100%; vertical-align: middle; text-align: right;"><p>(<a href="#top">Back to top</a>)</p></div>
+
+In addition to FreeSurfer's files, there are various other ways of storing surface data. Brainstorm,
+for example, stores these data in Matlab (.mat) files, but still stores it as a pair of vertex and
+triangle matrices. Additionally, the Caret/WorkBench software used and developed by the Human
+Connectome Project uses the GifTI file format. The [GifTI
+format](https://www.nitrc.org/projects/gifti/) is large and complex and a full examination of it is
+beyond the scope of this post. GifTI files can store not only vertex and triangle data but also
+property data as well as a variety of other data, all in a single file. Accordingly, it can be very
+difficult to interpret a GifTI file even when its data has been correctly read and validated by a
+library such as Python's nibabel.
+
+The Neuropythy and Nibabel libraries in Python, the Neurotica library in Mathematica, and the
+workbench tools provided through the Human Connectome Project can all import GifTI files to some
+degree, but do not try very hard to interpret them for the user.
+
+
+#### <a name="surface-geometry-data"></a> Property Data
+
+<div style="width: 100%; vertical-align: middle; text-align: right;"><p>(<a href="#top">Back to top</a>)</p></div>
+
+
+
+##### <a name="freesurfer-property-files"></a> FreeSurfer Files
+
+<div style="width: 100%; vertical-align: middle; text-align: right;"><p>(<a href="#top">Back to top</a>)</p></div>
+
+##### <a name="vol-as-surf-property-files"></a> MGH and NifTI Files
+
+<div style="width: 100%; vertical-align: middle; text-align: right;"><p>(<a href="#top">Back to top</a>)</p></div>
+
+##### <a name="other-property-files"></a> Other Files
+
+<div style="width: 100%; vertical-align: middle; text-align: right;"><p>(<a href="#top">Back to top</a>)</p></div>
 
 
 ---
