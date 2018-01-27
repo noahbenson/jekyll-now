@@ -41,6 +41,8 @@ an emphasis on FreeSurfer.
 
 ## <a name="file-formats"></a> File Formats
 
+<div style="width: 100%; vertical-align: middle; text-align: right;"><p>(<a href="#top">Back to top</a>)</p></div>
+
 ---
 
 All volume-based formats store 3D or 4D arrays of voxels in some fashion with a variety of
@@ -48,6 +50,8 @@ additional meta-data. Anatomical images are typically 3D while EPIs are typicall
 time).
 
 ### <a name="volume-data"></a> Volume Data (EPIs and Anatomical Images)
+
+<div style="width: 100%; vertical-align: middle; text-align: right;"><p>(<a href="#top">Back to top</a>)</p></div>
 
 Volumes are typically stored in one of a few ways:
 
@@ -73,6 +77,8 @@ All volume files contain both **meta-data** and **voxels**. The meta-data is jus
 information about the file's contents while the voxels are a 3D or 4D array of values.
 
 #### <a name="voxel-data"></a> Voxel Data
+
+<div style="width: 100%; vertical-align: middle; text-align: right;"><p>(<a href="#top">Back to top</a>)</p></div>
 
 The voxels in NifTI and MGH files are always organized into a 3D or 4D rectangular array. The
 various libraries for reading MGH and NifTI files automatically organize this data for you. These
@@ -164,6 +170,8 @@ examples show how to access a file's voxel array using various libraries.
 
 
 #### <a name="volume-meta-data"></a> Meta-Data
+
+<div style="width: 100%; vertical-align: middle; text-align: right;"><p>(<a href="#top">Back to top</a>)</p></div>
 
 A quick and easy way to examine an MRI volume file is by using the command `mri_info` from
 FreeSurfer; this command understands most MRI file formats and prints about a page of meta-data from
@@ -333,6 +341,8 @@ expand):
 
 ##### <a name="mri-geometry"></a> MRImage Geometry
 
+<div style="width: 100%; vertical-align: middle; text-align: right;"><p>(<a href="#top">Back to top</a>)</p></div>
+
 Consider the following problem: I give you a T1-weighted MR image of a subject and ask you to tell
 me if you think the subject's left hemisphere occipital cortex is unusually large. You open the file
 and see something that looks like this:
@@ -372,7 +382,11 @@ to precisely align the brain to some standard orientation.
 
 ##### <a name="affines"></a> Affine Transformations and Orientations
 
+<div style="width: 100%; vertical-align: middle; text-align: right;"><p>(<a href="#top">Back to top</a>)</p></div>
+
 ###### <a name="affine-background"></a> Background
+
+<div style="width: 100%; vertical-align: middle; text-align: right;"><p>(<a href="#top">Back to top</a>)</p></div>
 
 Linear transformations in 3D Euclidean geometry fall into a few categories:
 * <img src="{{ site.baseurl }}/images/mri-geometry/affine_scaling.png" style="width: 250px; vertical-align: middle;" alt="Scaling"/>
@@ -412,6 +426,8 @@ transformation matrices are used in neuroscience volume files to tell the user h
 contained within them to some standard reference.
 
 ###### <a name="orientations"></a> Orientations
+
+<div style="width: 100%; vertical-align: middle; text-align: right;"><p>(<a href="#top">Back to top</a>)</p></div>
 
 In the example image (illustrating the radiological/neurological perspective conflict) above, it is
 clear that were the radiologist and the neurologist to design different file standards for an MRI
@@ -500,6 +516,8 @@ I understand.
 
 ###### <a name="affines-and-voxels"></a> Relationship to Voxels and Volumes
 
+<div style="width: 100%; vertical-align: middle; text-align: right;"><p>(<a href="#top">Back to top</a>)</p></div>
+
 NifTI and MGH files always contain at least one affine transformation matrix, as we saw in the
 examples above. The purpose of this transformation varies by file, however. In most cases, the
 matrix is used to tell the user how to align the voxels with some other reference. This reference
@@ -530,6 +548,8 @@ various coordinate systems align.
 
 
 ### <a name="surface-data"></a> Surface Data
+
+<div style="width: 100%; vertical-align: middle; text-align: right;"><p>(<a href="#top">Back to top</a>)</p></div>
 
 Surfaces...
 
