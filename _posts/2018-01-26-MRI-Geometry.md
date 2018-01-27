@@ -3,10 +3,10 @@ layout: post
 title: MRI Data Representation and Geometry
 ---
 
-An introduction to the representation of data and geometry in neuroscience MRI.
+<a name="top"></a>An introduction to the representation of data and geometry in neuroscience MRI.
 
 ---
-## Table of Contents
+## <a name="TOC"></a> Table of Contents
 
 ---
 * [Introduction](#introduction)
@@ -15,25 +15,28 @@ An introduction to the representation of data and geometry in neuroscience MRI.
   * [Surface Data](#surface-data)
 ---
 
-## <a name="introduction">Introduction</a>
+## <a name="introduction"></a> Introduction
 
 ---
+
 MRI data is usually discussed as if analyzing it were the most natural thing in the world. In
 reality, however, the alignment of volumes and the interpolation of data between representations is
 only simple in theory. Similarly, the storage of surface data is usually opaque and
 unintuitive. This post describes the fundamentals of geometry as it applies to MRI brain data with
 an emphasis on FreeSurfer.
----
-
-
-## <a name="file-formats">File Formats</a>
 
 ---
+
+
+## <a name="file-formats"></a> File Formats
+
+---
+
 All volume-based formats store 3D or 4D arrays of voxels in some fashion with a variety of
 additional meta-data. Anatomical images are typically 3D while EPIs are typically 4D (x,y,z, and
 time).
 
-### <a name="volume-data">Volume Data (EPIs and Anatomical Images)</a>
+### <a name="volume-data"></a> Volume Data (EPIs and Anatomical Images)
 
 Volumes are typically stored in one of a few ways:
 
@@ -515,9 +518,7 @@ be derived from the former. See the section on surface data below for details on
 various coordinate systems align.
 
 
-### <a name="surface-data">Surface Data</a>
-
----
+### <a name="surface-data"></a> Surface Data
 
 Surfaces...
 
