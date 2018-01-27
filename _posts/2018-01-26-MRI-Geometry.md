@@ -12,17 +12,19 @@ title: MRI Data Representation and Geometry
 
 * [Introduction](#introduction)
 * [File Formats](#file-formats)
-  * [Volume Data (EPIs and Anatomical Images)](#volume-data)
+  * [Cortical Volumes (EPIs and Anatomical Images)](#cortical-volumes)
     * [Voxel Data](#voxel-data)
     * [Meta-Data](#volume-meta-data)
+      * [Accessing Meta-Data](#getting-meta-data)
       * [MRImage Geometry](#mri-geometry)
-        * [Affine Transformations and Orientations](#affines)
-          * [Background](#affine-background)
-          * [Orientations](#orientations)
-          * [Relationship to Voxels and Volumes](#affines-and-voxels)
-  * [Surface Data](#surface-data)
-    * [Geometry Files](#surface-geometry-files)
-    * [Property Files](#surface-property-files)
+        * [Affine Transformations](#affines)
+        * [Orientations](#orientations)
+        * [Relationship to Voxels and Volumes](#affines-and-voxels)
+  * [Cortical Surfaces](#cortical-surfaces)
+    * [Caveats](#surface-file-caveats)
+    * [Geometry Data](#surface-geometry-data)
+    * [Property Data](#surface-property-data)
+    
 
 ---
 
@@ -49,7 +51,7 @@ All volume-based formats store 3D or 4D arrays of voxels in some fashion with a 
 additional meta-data. Anatomical images are typically 3D while EPIs are typically 4D (x,y,z, and
 time).
 
-### <a name="volume-data"></a> Volume Data (EPIs and Anatomical Images)
+### <a name="cortical-volumes"></a> Cortical Volumes (EPIs and Anatomical Images)
 
 <div style="width: 100%; vertical-align: middle; text-align: right;"><p>(<a href="#top">Back to top</a>)</p></div>
 
@@ -251,9 +253,12 @@ file headers [here](https://nifti.nimh.nih.gov/pub/dist/src/niftilib/nifti1.h). 
 a well-commented C header-file; for a more human-readable explanation, try
 [here](https://brainder.org/2012/09/23/the-nifti-file-format/).
 
+##### <a name="getting-meta-data"></a> Accessing Meta-Data
+
+<div style="width: 100%; vertical-align: middle; text-align: right;"><p>(<a href="#top">Back to top</a>)</p></div>
+
 Another good way to look at the meta-data in a volume file is to load it with the relevant
-programming environment and examine the data-structures there. Here are a few examples (click to
-expand):
+programming environment and examine the data-structures there. Here are a few examples.
 
 * Python (using [nibabel](http://nipy.org/nibabel/))
   ```python
@@ -288,6 +293,12 @@ expand):
   #=>        [ 0.00000000e+00, -1.90266292e-09,  9.99999940e-01, -9.83241651e+01],
   #=>        [ 0.00000000e+00, -9.99999940e-01,  2.23371899e-09,  1.30323082e+02],
   #=>        [ 0.00000000e+00,  0.00000000e+00,  0.00000000e+00,  1.00000000e+00]])
+
+  # NifTI files
+  nii_file = ny.load('/Volumes/server/Freesurfer_subjects/ernie/mri/ribbon.nii.gz')
+  nii_file.header['datatype']
+  #=> array(2, dtype=int16)
+  # (Note: ny.load detects the nifti-file extension and calls nibabel.load)
   ```
 * Matlab
   ```matlab
@@ -380,11 +391,7 @@ coordinate system employed in any MRI volume file, and ideally some amount of in
 to precisely align the brain to some standard orientation.
 
 
-##### <a name="affines"></a> Affine Transformations and Orientations
-
-<div style="width: 100%; vertical-align: middle; text-align: right;"><p>(<a href="#top">Back to top</a>)</p></div>
-
-###### <a name="affine-background"></a> Background
+##### <a name="affines"></a> Affine Transformations
 
 <div style="width: 100%; vertical-align: middle; text-align: right;"><p>(<a href="#top">Back to top</a>)</p></div>
 
@@ -425,7 +432,7 @@ Because they can succinctly store all of these transformations in a single matri
 transformation matrices are used in neuroscience volume files to tell the user how to align the data
 contained within them to some standard reference.
 
-###### <a name="orientations"></a> Orientations
+##### <a name="orientations"></a> Orientations
 
 <div style="width: 100%; vertical-align: middle; text-align: right;"><p>(<a href="#top">Back to top</a>)</p></div>
 
@@ -514,7 +521,7 @@ dimension (I) is usually taken to be the columns of the image (\\(x\\)). Accordi
 that ILA is at least as natural of a 3D-image orientation as LIA. The LIA orientation isn't a choice
 I understand.
 
-###### <a name="affines-and-voxels"></a> Relationship to Voxels and Volumes
+##### <a name="affines-and-voxels"></a> Relationship to Voxels and Volumes
 
 <div style="width: 100%; vertical-align: middle; text-align: right;"><p>(<a href="#top">Back to top</a>)</p></div>
 
@@ -547,7 +554,7 @@ be derived from the former. See the section on surface data below for details on
 various coordinate systems align.
 
 
-### <a name="surface-data"></a> Surface Data
+### <a name="cortical-surfaces"></a> Cortical Surfaces
 
 <div style="width: 100%; vertical-align: middle; text-align: right;"><p>(<a href="#top">Back to top</a>)</p></div>
 
@@ -568,6 +575,50 @@ vertices, this image shows a zoomed in view of the pial surface as estimated by 
 
 ![surface_closeup]({{ site.baseurl }}/images/mri-geometry/surface_closeup.png "Closeup of Pial Surface Triangles")
 
+In addition to the added complexity of their data representations, surfaces also have fundamentally
+different storage needs when it comes to geometric data and other kinds of data such as parameter
+data. Recall that in a volume file, both the anatomical data and other data (such as model
+parameters or morphological data like curvature or thickness) can be stored in the voxels. On a
+surface, the anatomical information consists of vertices (a \\(3\times n\\) matrix of real numbers)
+and triangles (stored in a matrix of integers; see [below](#surface-geometry-data)) while the
+"property" data (parameters or morphological values) are stored in a vector of values (one for each
+vertex). Because of this, it is not convenient to store parameter values in the same kind of file as
+the anatomical values; therefore we need an understanding of how property and geometry files are
+related to each other.
+
+#### <a name="surface-file-caveats"></a> Caveats
+
+As of when this post was written, I do not feel that there is any single universally known or
+accepted surface file format for any kind of surface data. There are a variety of available formats
+used by various software (FreeSurfer, Caret/Workbench, for example), but one of the most common ways
+to store surface property data is still by encoding it in a NifTI or MGH volume file with size
+\\(1\times 1 \times n\\). For the most part, this isn't too big of a deal because, relative to the
+clear possibilities of confusion with strangely-oriented volume files, surface files are relatively
+hard to confuse. It is rare that a subject will have the same number of vertices in their left and
+right hemispheres (in FreeSurfer at least), so even these are difficult to mix up. Nonetheless, it's
+best to clearly communicate the format and conventions you are using whenever sharing surface files.
+
+
+#### <a name="surface-geometry-data"></a> Geometry Data
+
+Fortunately, he geometry of a cortical surface is virtually always stored in an ideomatic fashion,
+regardless of the file format. Although different formats may encode the data differently, these
+conventions are always present:
+
+* The vertices on the cortical surface are stored as an \\(n\times 3\\) matrix of real
+  numbers. **Warning:** You should never assume that there is *any* rhyme or reason to the ordering
+  of this matrix. Nearby vertices on the surface will not necessarily be nearby in this matrix.
+* The triangles of the cortical surface are sotred as an \\(m\times 3\\) matrix of non-negative
+  integers where the integers are indices into the matrix of vertices, usually in a 0-based indexing
+  system. I.e., if the first row of the matrix contained the integers \\((1,4,88)\\) that would
+  indicate that the second, fifth, and eighty-ninth vertices were the corners of the first triangle
+  on the cortical surface. Again, you should not assume *any* rhyme or reason to the ordering of the
+  triangles in this matrix.
+* **However,** the columns of the triangle matrix will always list the vertices in a
+  counter-clockwise direction with respect to an outward pointing surface normal vector. This is not
+  generally important in a typical surface-based analysis, but it can be very important when
+  calculating certain geometric data about a cortical surface.
+  
 
 
 ---
