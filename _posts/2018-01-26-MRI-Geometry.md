@@ -21,14 +21,14 @@ title: MRI Data Representation and Geometry
           * [Orientations](#orientations)
           * [Relationship to Voxels and Volumes](#affines-and-voxels)
   * [Surface Data](#surface-data)
+    * [Geometry Files](#surface-geometry-files)
+    * [Property Files](#surface-property-files)
 
 ---
 
 ## <a name="introduction"></a> Introduction
 
-<table style="width: 100%; vertical-align: middle;">
-  <tr><td style="width: 100%;"><hr/></td>
-      <td style="text-align: right;">(<a href="#top">Back to top</a>)</td></tr></table>
+<div style="width: 100%; vertical-align: middle; text-align: right;"><p>(<a href="#top">Back to top</a>)</div>
 
 MRI data is usually discussed as if analyzing it were the most natural thing in the world. In
 reality, however, the alignment of volumes and the interpolation of data between representations is
