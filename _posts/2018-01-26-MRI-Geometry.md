@@ -6,6 +6,7 @@ title: MRI Data Representation and Geometry
 <a name="top"></a>An introduction to the representation of data and geometry in neuroscience MRI.
 
 ---
+
 ## <a name="TOC"></a> Table of Contents
 
 ---
@@ -29,12 +30,22 @@ title: MRI Data Representation and Geometry
       * [FreeSurfer Files](#freesurfer-property-files)
       * [MGH and NifTI Files](#vol-as-surf-property-files)
       * [Other Files](#other-property-files)
+* [Alignments](#alignments)
+  * [Volume-to-Volume](#align-vol2vol)
+  * [Volume-to-Surface and Surface-to-Volume](#align-vol2surf)
+  * [Surface-to-Surface](#align-surf2surf)
+* [Interpolation](#interpolation)
+  * [Volume-to-Volume](#interp-vol2vol)
+  * [Volume-to-Surface](#interp-vol2surf)
+  * [Surface-to-Volume](#interp-surf2vol)
+  * [Surface-to-Surface](#interp-surf2surf)
+  * [Common Quandaries](#interp-quandaries)
 
 ---
 
 ## <a name="introduction"></a> Introduction
 
-<div style="width: 100%; vertical-align: middle; text-align: right;"><p>(<a href="#top">Back to top</a>)</p></div>
+<div class="toTop"><p>(<a href="#top">Back to top</a>)</p></div>
 
 MRI data is usually discussed as if analyzing it were the most natural thing in the world. In
 reality, however, the alignment of volumes and the interpolation of data between representations is
@@ -860,5 +871,35 @@ data.
 
 ---
 
-## (Under Construction)
+## <a name="alignments"></a> Alignments
+
+<div style="width: 100%; vertical-align: middle; text-align: right;"><p>(<a href="#top">Back to top</a>)</p></div>
+
+
+### <a name="align-vol2vol"></a> Volume-to-Volume
+
+### <a name="align-surf2vol"></a> Volume-to-Surface and Surface-to-Volume
+
+### <a name="align-surf2surf"></a> Surface-to-Surface
+
+---
+
+## <a name="interpolation"></a> Interpolation
+
+<div style="width: 100%; vertical-align: middle; text-align: right;"><p>(<a href="#top">Back to top</a>)</p></div>
+
+### <a name="interp-vol2vol"></a> Volume-to-Volume
+
+### <a name="interp-vol2surf"></a> Volume-to-Surface
+
+### <a name="interp-surf2vol"></a> Surface-to-Volume
+
+### <a name="interp-surf2surf"></a> Surface-to-Surface
+
+### <a name="interp-quandaries"></a> Common Quandaries
+
+---
+
+<div style="width: 100%; vertical-align: middle; text-align: right;"><p>(<a href="#top">Back to top</a>)</p></div>
+
 
