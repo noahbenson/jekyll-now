@@ -458,8 +458,17 @@ FreeSurfer's LIA orientation")
 orientation does not make much sense when we plot the axes in a typically mathematically-oriented
 way (right-hand 3D coordinate system), as above. Neither is the LIA orientation quite the same as
 the radiological orientation shown in the cartoon above--though its \\(x\\)-coordinate is the
-same. I don't know the answer to this question, but I suspect that it is related to how the
-developers at MGH originally were used to storing the data from their MRI machine.
+same. I don't know the answer to this question; though I suspect that whoever chose it wanted to
+view the first two dimensions (LI) as the \\(x\\) and \\(-y\\) axes of an image with increasing
+slices of the MR image coming out of the screen; this would give a RAS-like (right-handed)
+representation similar to the surface coordinates but where the brain is looking toward you as a
+viewer. Why \\(x\\) and \\(-y\\) are the obvious interpretations of the L and I directions in this
+case is not clear, however. It might be due to the fact that screens and images encode their \\(y\\)
+dimension (rows) from top-to-bottom; however when an array is drawn as an image, it's first
+dimension (L in this case) is usually taken to be the rows of the image (\\(-y\\)) while its second
+dimension (I) is usually taken to be the columns of the image (\\(x\\)). Accordingly, it seems to me
+that ILA is at least as natural of a 3D-image orientation as LIA. The LIA orientation isn't a choice
+I understand.
 
 ###### Relationship to Voxels and Volumes
 
