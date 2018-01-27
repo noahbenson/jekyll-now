@@ -60,8 +60,6 @@ an emphasis on FreeSurfer.
 
 <div class="toTop"><p>(<a href="#top">Back to top</a>)</p></div>
 
----
-
 All volume-based formats store 3D or 4D arrays of voxels in some fashion with a variety of
 additional meta-data. Anatomical images are typically 3D while EPIs are typically 4D (x,y,z, and
 time).
