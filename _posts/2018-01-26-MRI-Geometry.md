@@ -942,11 +942,11 @@ similar way; I am not familiar with AFNI, however). Finding an affine transforma
 arbitrary surface and a 3D anatomical volume is something that is certainly *possible*, but I do not
 know of any convenient software for performing this particular computation. Rather, if you want to
 align subject A's cortical surface with subject B's anatomical volume, the best way to do this is to
-find the alignment matrix \\(\mathbf{M}_{\mbox{A}_v\rightarrow \mbox{B}_v}\\) that aligns subject A's
+find the alignment matrix \\(\mathbf{M}_{\mbox{A}_v\mapsto \mbox{B}_v}\\) that aligns subject A's
 *anatomical volume* with subject B's anatomical volume, then, combined with matrix
-\\(\mathbf{M}_{\mbox{A}_s \rightarrow \mbox{A}_v}\\) which aligns subject A's cortical surface with
+\\(\mathbf{M}_{\mbox{A}_s \mapsto \mbox{A}_v}\\) which aligns subject A's cortical surface with
 their anatomical volume, calculate the desired alignment matrix \\(\mathbf{M}_{\mbox{A}_s
-\rightarrow \mbox{B}_v}\\):
+\mapsto \mbox{B}_v}\\):
 
 $$ \mathbf{M}_{\mbox{A}_s \rightarrow \mbox{B}_v} = \mathbf{M}_{\mbox{A}_v \rightarrow \mbox{B}_v}
       \cdot \mathbf{M}_{\mbox{A}_s \rightarrow \mbox{A}_v} $$.
@@ -1059,6 +1059,8 @@ page](https://surfer.nmr.mgh.harvard.edu/fswiki/Xhemi) for more information.
 
 <div class="toTop"><p>(<a href="#top">Back to Top</a>)</p></div>
 
+
+
 ### <a name="interp-vol2vol"></a> Volume-to-Volume
 
 <div class="toTop"><p>(<a href="#top">Back to Top</a>)</p></div>
@@ -1081,6 +1083,6 @@ page](https://surfer.nmr.mgh.harvard.edu/fswiki/Xhemi) for more information.
 
 ---
 
-<p><a href="#top">Back to Top</a></p>
+<p style="width: 100%; text-align: center;"><a href="#top">Back to Top</a></p>
 
 
