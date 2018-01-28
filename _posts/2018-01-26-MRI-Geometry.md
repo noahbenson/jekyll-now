@@ -45,7 +45,7 @@ title: MRI Data Representation and Geometry
 
 ## <a name="introduction"></a> Introduction
 
-<div class="toTop"><p>(<a href="#top">Back to top</a>)</p></div>
+<div class="toTop"><p>(<a href="#top">Back to Top</a>)</p></div>
 
 MRI data is usually discussed as if analyzing it were the most natural thing in the world. In
 reality, however, the alignment of volumes and the interpolation of data between representations is
@@ -53,12 +53,16 @@ only simple in theory. Similarly, the storage of surface data is usually opaque 
 unintuitive. This post describes the fundamentals of geometry as it applies to MRI brain data with
 an emphasis on FreeSurfer.
 
+This post is not intended as a theoretical treatment of any of the issues below; rather, it is a
+practical guide to understanding how one's neuroscience data is represented and to performing
+certain basic data transformations.
+
 ---
 
 
 ## <a name="file-formats"></a> File Formats
 
-<div class="toTop"><p>(<a href="#top">Back to top</a>)</p></div>
+<div class="toTop"><p>(<a href="#top">Back to Top</a>)</p></div>
 
 All volume-based formats store 3D or 4D arrays of voxels in some fashion with a variety of
 additional meta-data. Anatomical images are typically 3D while EPIs are typically 4D (x,y,z, and
@@ -66,7 +70,7 @@ time).
 
 ### <a name="cortical-volumes"></a> Cortical Volumes (EPIs and Anatomical Images)
 
-<div class="toTop"><p>(<a href="#top">Back to top</a>)</p></div>
+<div class="toTop"><p>(<a href="#top">Back to Top</a>)</p></div>
 
 Volumes are typically stored in one of a few ways:
 
@@ -93,7 +97,7 @@ information about the file's contents while the voxels are a 3D or 4D array of v
 
 #### <a name="voxel-data"></a> Voxel Data
 
-<div class="toTop"><p>(<a href="#top">Back to top</a>)</p></div>
+<div class="toTop"><p>(<a href="#top">Back to Top</a>)</p></div>
 
 The voxels in NifTI and MGH files are always organized into a 3D or 4D rectangular array. The
 various libraries for reading MGH and NifTI files automatically organize this data for you. These
@@ -186,12 +190,13 @@ examples show how to access a file's voxel array using various libraries.
 
 #### <a name="volume-meta-data"></a> Meta-Data
 
-<div class="toTop"><p>(<a href="#top">Back to top</a>)</p></div>
+<div class="toTop"><p>(<a href="#top">Back to Top</a>)</p></div>
 
 A quick and easy way to examine an MRI volume file is by using the command `mri_info` from
 FreeSurfer; this command understands most MRI file formats and prints about a page of meta-data from
 the requested file. Here's an example.
 
+<a name="mri-info-block"></a>
 ```
 > mri_info /Volumes/server/Freesurfer_subjects/bert/mri/brain.mgz
 
@@ -268,7 +273,7 @@ a well-commented C header-file; for a more human-readable explanation, try
 
 ##### <a name="getting-meta-data"></a> Accessing Meta-Data
 
-<div class="toTop"><p>(<a href="#top">Back to top</a>)</p></div>
+<div class="toTop"><p>(<a href="#top">Back to Top</a>)</p></div>
 
 Another good way to look at the meta-data in a volume file is to load it with the relevant
 programming environment and examine the data-structures there. Here are a few examples.
@@ -365,7 +370,7 @@ programming environment and examine the data-structures there. Here are a few ex
 
 ##### <a name="mri-geometry"></a> MRImage Geometry
 
-<div class="toTop"><p>(<a href="#top">Back to top</a>)</p></div>
+<div class="toTop"><p>(<a href="#top">Back to Top</a>)</p></div>
 
 Consider the following problem: I give you a T1-weighted MR image of a subject and ask you to tell
 me if you think the subject's left hemisphere occipital cortex is unusually large. You open the file
@@ -406,7 +411,7 @@ to precisely align the brain to some standard orientation.
 
 ##### <a name="affines"></a> Affine Transformations
 
-<div class="toTop"><p>(<a href="#top">Back to top</a>)</p></div>
+<div class="toTop"><p>(<a href="#top">Back to Top</a>)</p></div>
 
 Linear transformations in 3D Euclidean geometry fall into a few categories:
 * <img src="{{ site.baseurl }}/images/mri-geometry/affine_scaling.png" style="width: 250px; vertical-align: middle;" alt="Scaling"/>
@@ -447,7 +452,7 @@ contained within them to some standard reference.
 
 ##### <a name="orientations"></a> Orientations
 
-<div class="toTop"><p>(<a href="#top">Back to top</a>)</p></div>
+<div class="toTop"><p>(<a href="#top">Back to Top</a>)</p></div>
 
 In the example image (illustrating the radiological/neurological perspective conflict) above, it is
 clear that were the radiologist and the neurologist to design different file standards for an MRI
@@ -536,7 +541,7 @@ I understand.
 
 ##### <a name="affines-and-voxels"></a> Relationship to Voxels and Volumes
 
-<div class="toTop"><p>(<a href="#top">Back to top</a>)</p></div>
+<div class="toTop"><p>(<a href="#top">Back to Top</a>)</p></div>
 
 NifTI and MGH files always contain at least one affine transformation matrix, as we saw in the
 examples above. The purpose of this transformation varies by file, however. In most cases, the
@@ -569,7 +574,7 @@ various coordinate systems align.
 
 ### <a name="cortical-surfaces"></a> Cortical Surfaces
 
-<div class="toTop"><p>(<a href="#top">Back to top</a>)</p></div>
+<div class="toTop"><p>(<a href="#top">Back to Top</a>)</p></div>
 
 The cortical surfaces is a 2D manifold embedded in a 3D space; accordingly, representing it in a
 computable format requires a bit more complexity than representing an MR image, which is just a 3D
@@ -601,7 +606,7 @@ related to each other.
 
 #### <a name="surface-file-caveats"></a> Caveats
 
-<div class="toTop"><p>(<a href="#top">Back to top</a>)</p></div>
+<div class="toTop"><p>(<a href="#top">Back to Top</a>)</p></div>
 
 As of when this post was written, I do not feel that there is any single universally known or
 accepted surface file format for any kind of surface data. There are a variety of available formats
@@ -616,7 +621,7 @@ best to clearly communicate the format and conventions you are using whenever sh
 
 #### <a name="surface-geometry-data"></a> Geometry Data
 
-<div class="toTop"><p>(<a href="#top">Back to top</a>)</p></div>
+<div class="toTop"><p>(<a href="#top">Back to Top</a>)</p></div>
 
 Fortunately, he geometry of a cortical surface is virtually always stored in an ideomatic fashion,
 regardless of the file format. Although different formats may encode the data differently, these
@@ -638,7 +643,7 @@ conventions are always present:
   
 ##### <a name="freesurfer-geometry-files"></a> FreeSurfer Files
 
-<div class="toTop"><p>(<a href="#top">Back to top</a>)</p></div>
+<div class="toTop"><p>(<a href="#top">Back to Top</a>)</p></div>
 
 FreeSurfer stores its surface data in a custom-format file type without a name or even an
 extension. You can find these files in any FreeSurfer subject's `/surf/` directory. The most
@@ -727,7 +732,7 @@ The following code snippets demonstrate how to read these files.
 
 ##### <a name="other-geometry-files"></a> Other Files
 
-<div class="toTop"><p>(<a href="#top">Back to top</a>)</p></div>
+<div class="toTop"><p>(<a href="#top">Back to Top</a>)</p></div>
 
 In addition to FreeSurfer's files, there are various other ways of storing surface data. Brainstorm,
 for example, stores these data in Matlab (.mat) files, but still stores it as a pair of vertex and
@@ -746,7 +751,7 @@ degree, but do not try very hard to interpret them for the user.
 
 #### <a name="surface-geometry-data"></a> Property Data
 
-<div class="toTop"><p>(<a href="#top">Back to top</a>)</p></div>
+<div class="toTop"><p>(<a href="#top">Back to Top</a>)</p></div>
 
 Property data tends to take a few forms in FreeSurfer and other software; in FreeSurfer, these are
 label, annotation, and morphological (or 'curv') files. Label files are fairly simple, as they store
@@ -775,7 +780,7 @@ property data files.
 
 ##### <a name="freesurfer-property-files"></a> FreeSurfer Files
 
-<div class="toTop"><p>(<a href="#top">Back to top</a>)</p></div>
+<div class="toTop"><p>(<a href="#top">Back to Top</a>)</p></div>
 
 As mentioned above, FreeSurfer has its own custom format for storing surface properties. These files
 are usually called morphological or 'curv' files. Like FreeSurfer's geometry files, these files have
@@ -832,7 +837,7 @@ following code snippets demonstrate loading these data.
 
 ##### <a name="vol-as-surf-property-files"></a> MGH and NifTI Files
 
-<div class="toTop"><p>(<a href="#top">Back to top</a>)</p></div>
+<div class="toTop"><p>(<a href="#top">Back to Top</a>)</p></div>
 
 Perhaps surprisingly, one of the most commonly used ways to store property data on the cortical
 surface that I've encountered is to put it in a 3D volume file where two of the 3 dimensions are
@@ -859,7 +864,7 @@ simple vectors or matrices.
 
 ##### <a name="other-property-files"></a> Other Files
 
-<div class="toTop"><p>(<a href="#top">Back to top</a>)</p></div>
+<div class="toTop"><p>(<a href="#top">Back to Top</a>)</p></div>
 
 In addition to the file formats discussed above, GifTI files can store surface data but again are
 beyond the scope of this post. Really, once one understands that surface data is just a list of
@@ -871,49 +876,211 @@ data.
 
 ## <a name="alignments"></a> Alignments
 
-<div class="toTop"><p>(<a href="#top">Back to top</a>)</p></div>
+<div class="toTop"><p>(<a href="#top">Back to Top</a>)</p></div>
 
+Alignments in of MRI data in neuroscientific research take many forms. The most common of these is
+a simple rigid-body transformation (or [affine transformation](#affines)) such as that used to
+correct head-motion between frames of an EPI. Affine transformations are also needed to align
+volumes to cortical surfaces and vice versa. Surface-to-surface alignments usually refer to
+diffeomorphic alignments calculated in a 2D spherical geometric space (more on these
+[below](#align-surf2surf)).
 
 ### <a name="align-vol2vol"></a> Volume-to-Volume
 
-<div class="toTop"><p>(<a href="#top">Back to top</a>)</p></div>
+<div class="toTop"><p>(<a href="#top">Back to Top</a>)</p></div>
+
+Although there exists software to perform diffeomorphic 3D alignments between brain volumes, these
+types of alignments are rare as of when this post was written and thus are not discussed in
+detail. For more information about such transformations, I recommend looking at
+[ANTZ](http://stnava.github.io/ANTs/).
+
+Most volume-to-volume transformations used in neuroscience are simple [affine
+transformations](#affines) represented by \\(4\times 4\\) matrices or a \\(3\times 3\\) matrix and a
+3D translation vector. Such transformations are often generated for every frame of an fMRI
+time-series in order to align the images in the case of head motion. Note that if you have an affine
+transformation that aligns the voxels of file \\(f\\) with file \\(g\\), then the inverse matrix of
+the \\(4\times 4\\) affine transformation will align the voxels or vertices of of file \\(g\\) with
+the voxels of file \\(f\\).
+
+#### <a name="vol2vol-finding-align"></a> Finding an Alignment Matrix
+
+<div class="toTop"><p>(<a href="#top">Back to Top</a>)</p></div>
+
+Finding an affine transformation that aligns one volume to another is usually the most difficult
+part of dealing with volume-to-volume alignments. The problem of finding a good alignment is not
+simple and won't be discussed in this post. I will instead document a number of pieces of software
+of which I'm aware that can perform these computations.
+
+* FreeSurfer's `bbregister` is probably the most common way to align volume data to/with a
+  FreeSurfer subject. The `bbregister` program will align volumes such as EPIs to a subject's
+  anatomical images or to another EPI/BOLD image. The best documentation for `bbregister` can be
+  found by running `bbregister --help` (or, better, `bbregister --help | less`). `bbregister` can
+  either write out an alignment matrix in one of several formats or the aligned volume.
+* [ITK-Snap](http://www.itksnap.org/pmwiki/pmwiki.php) is one of the better tools for aligning
+  volumes by hand or refining alignments by hand. The user-interface for alignment is relatively
+  easy to use. ITK-Snap saves out \\(4\times 4\\) affine alignment matrices in its own formats.
+* [VistaSoft](https://github.com/vistalab/vistasoft) for Matlab can perform volumetric alignments;
+  see [this tutorial](https://github.com/vistalab/vistasoft/wiki/t_alignInplaneToVolume) for more
+  information.
+* Mathematica contains a large 3D image processing library and several image alignment algorithms
+  that are potentially appropriate for MR images (see
+  [ImageAlign](http://reference.wolfram.com/language/ref/ImageAlign.html),
+  [FindGeometricTransform](http://reference.wolfram.com/language/ref/FindGeometricTransform.html),
+  [ImageCorrespondingPoints](http://reference.wolfram.com/language/ref/ImageCorrespondingPoints.html), 
+  as well as this tutorial on [image
+  processing](http://reference.wolfram.com/language/tutorial/ImageProcessing.html).
+
 
 ### <a name="align-surf2vol"></a> Volume-to-Surface and Surface-to-Volume
 
-<div class="toTop"><p>(<a href="#top">Back to top</a>)</p></div>
+<div class="toTop"><p>(<a href="#top">Back to Top</a>)</p></div>
+
+One almost never needs to actually *find* an affine transform that aligns a surface to a volume or
+vice versa; rather FreeSurfer has already found it (when it computed the surface in the first
+place), and one just reads it from a subject's FreeSurfer directory (Caret/Workbench operate in a
+similar way; I am not familiar with AFNI, however). Finding an affine transformation between an
+arbitrary surface and a 3D anatomical volume is something that is certainly *possible*, but I do not
+know of any convenient software for performing this particular computation. Rather, if you want to
+align subject A's cortical surface with subject B's anatomical volume, the best way to do this is to
+find the alignment matrix \\(\mathbf{M}_{\mbox{A}_v\rightarrow \mbox{B}_v}\\) that aligns subject A's
+*anatomical volume* with subject B's anatomical volume, then, combined with matrix
+\\(\mathbf{M}_{\mbox{A}_s \rightarrow \mbox{A}_v}\\) which aligns subject A's cortical surface with
+their anatomical volume, calculate the desired alignment matrix \\(\mathbf{M}_{\mbox{A}_s
+\rightarrow \mbox{B}_v}\\):
+
+$$ \mathbf{M}_{\mbox{A}_s \rightarrow \mbox{B}_v} = \mathbf{M}_{\mbox{A}_v \rightarrow \mbox{B}_v}
+      \cdot \mathbf{M}_{\mbox{A}_s \rightarrow \mbox{A}_v} $$.
+
+That said, determining the affine transformation matrix that aligns a FreeSurfer subject's cortical
+surface with their cortical volume and vice versa is not trivial. Recall from earlier when we ran
+`mri_info` on a a FreeSurfer subject's `brain.mgz` file ([above](#mri-info-block)). One of the
+pieces of information that this command printed about the file was an affine transformation matrix
+called the "voxel to ras transform" as well as its inverse, the "ras to voxel transform". Because
+surfaces are almost always stored in a RAS configuration, one might expect that this affine
+transformation is the alignment of the volume file to the surface vertices. **This, however, is
+incorrect.** These alignment matrices align the volume with what I call "FreeSurfer native". The
+FreeSurfer native coordinate system is identical to the vertex coordinate system except for a small
+translation that is different in every subject. In the subject `bert` [above](#mri-info-block), the
+voxel-to-RAS alignment matrix was
+
+$$ \begin{pmatrix}
+    -1 & 0 & 0 & 133.3997 \\
+     0 & 0 & 1 & -110 \\
+     0 & -1 & 0 & 128 \\
+     0 & 0 & 0 & 1
+   \end{pmatrix} $$.
+
+Notice the translation coordinates in the first three rows of the last column. The voxel-to-vertex
+alignment matrix can be found by replacing these three values with \\((128, -128, 128)\\).
+
+It is almost never necessary to create this voxel-to-vertex alignment matrix by hand; rather one can
+obtain them in a number of other ways. When one uses FreeSurfer tools to convert between FreeSurfer
+volumes and FreeSurfer surfaces, this special alignment is taken into account. The neuropythy
+library will also account for these differences automatically when performing interpolation (see
+[below](#interp-surf2vol)). The following code blocks demonstrate how to obtain the FreeSurfer
+surface-to-volume or volume-to-surface alignment matrix in a variety of languages.
+
+* Python (using [nibabel](http://nipy.org/nibabel/))
+  ```python
+  import nibabel.freesurfer.mghformat as mgh
+  
+  # MGH/MGZ files
+  mgh_file = mgh.load('/Volumes/server/Freesurfer_subjects/wl_subj042/mri/brain.mgz')
+  mgh_file.header.get_vox2ras_tkr()
+  #=> array([[  -1.,    0.,    0.,  128.],
+  #=>        [   0.,    0.,    1., -128.],
+  #=>        [   0.,   -1.,    0.,  128.],
+  #=>        [   0.,    0.,    0.,    1.]], dtype=float32)
+  ```
+* Python (using [neuropythy](https://github.com/noahbenson/neuropythy))
+  ```python
+  import neuropythy as ny
+  
+  sub = ny.freesurfer_subject('wl_subj042')
+  sub.voxel_to_vertex_matrix
+  #=> array([[  -1.,    0.,    0.,  128.],
+  #=>        [   0.,    0.,    1., -128.],
+  #=>        [   0.,   -1.,    0.,  128.],
+  #=>        [   0.,    0.,    0.,    1.]], dtype=float32)
+  ```
+* Matlab
+  ```matlab
+  addpath(genpath('/Applications/freesurfer/matlab')); % (FS installation dir on Mac)
+  
+  mgh = MRIread('/Volumes/server/Freesurfer_subjects/wl_subj042/mri/brain.mgz');
+  mgh.tkrvox2ras
+  % 
+  % ans =
+  % 
+  %       -1.0000         0         0  128.0000
+  %             0         0    1.0000 -128.0000
+  %             0   -1.0000         0  128.0000
+  %             0         0         0    1.0000
+  % 
+  ```
+
 
 ### <a name="align-surf2surf"></a> Surface-to-Surface
 
-<div class="toTop"><p>(<a href="#top">Back to top</a>)</p></div>
+<div class="toTop"><p>(<a href="#top">Back to Top</a>)</p></div>
+
+Surface-to-surface alignment is a much different beast than the previous two kinds of
+alignment. Surface-to-surface alignment usually involves a diffeomorphic mapping that brings the
+vertices in the inflated spherical surface representation of one subject into register with the
+spherical surface of another subject or atlas. When FreeSurfer processes an anatomical image, it
+automatically performs an alignment between the subject's cortical surface and the atlas subject
+*fsaverage*. The *fsaverage* subject was constructed from the average brain of 40 subjects and thus
+has very smooth features. Alignment to the average brain is performed in FreeSurfer by minimizing
+the difference in the curvature and convexity (or sulcal depth) values (originally calculated on the
+white surface) between the vertices of the two subjects by warping the vertices of one. When
+FreeSurfer does this for your subject during `recon-all`, it creates the files `lh.sphere.reg` and
+`rh.sphere.reg`. These files still contain the same number of vertices and the same triangles as the
+subject's other surface files, but the vertices are in slightly different positions relative to the
+`lh.sphere` and `rh.sphere` files. To align subjects in FreeSurfer, the `surfreg` command can be
+used. See [this page](https://surfer.nmr.mgh.harvard.edu/fswiki/surfreg) for official documentation
+on it; though `surfreg --help` is probably more useful. Once a subject's surface has been aligned
+with another subject's or with an atlas, interpolation of the data from one sphere to the other
+should theoretically move the data between approximately equivalent anatomical structures; see
+surface-to-surface interpolation, [below](#interp-surf2surf).
+
+One important caveat to surface registrations and alignments involves a subject called
+*fsaverage_sym*. This subject, like *fsaverage* is an average atlas designed to be a target for
+alignment and group-average analysis. However, unlike the *fsaverage*, the *fsaverage_sym* is
+designed for alignments of both LH and RH cortices *on the same hemisphere*. In this sense, the
+*fsaverage_sym* is sometimes called a left-right symmetric pseudo-hemisphere. Data can be aligned to
+the *fsaverage_sym* subject by inverting the right hemisphere (using the `xhemireg` command or the
+`--xhemi` option to `surfreg`) and aligning it, along with the uninverted left hemisphere, to the
+*fsaverage_sym* subject's left hemisphere. See [this
+page](https://surfer.nmr.mgh.harvard.edu/fswiki/Xhemi) for more information.
 
 ---
 
 ## <a name="interpolation"></a> Interpolation
 
-<div class="toTop"><p>(<a href="#top">Back to top</a>)</p></div>
+<div class="toTop"><p>(<a href="#top">Back to Top</a>)</p></div>
 
 ### <a name="interp-vol2vol"></a> Volume-to-Volume
 
-<div class="toTop"><p>(<a href="#top">Back to top</a>)</p></div>
+<div class="toTop"><p>(<a href="#top">Back to Top</a>)</p></div>
 
 ### <a name="interp-vol2surf"></a> Volume-to-Surface
 
-<div class="toTop"><p>(<a href="#top">Back to top</a>)</p></div>
+<div class="toTop"><p>(<a href="#top">Back to Top</a>)</p></div>
 
 ### <a name="interp-surf2vol"></a> Surface-to-Volume
 
-<div class="toTop"><p>(<a href="#top">Back to top</a>)</p></div>
+<div class="toTop"><p>(<a href="#top">Back to Top</a>)</p></div>
 
 ### <a name="interp-surf2surf"></a> Surface-to-Surface
 
-<div class="toTop"><p>(<a href="#top">Back to top</a>)</p></div>
+<div class="toTop"><p>(<a href="#top">Back to Top</a>)</p></div>
 
 ### <a name="interp-quandaries"></a> Common Quandaries
 
-<div class="toTop"><p>(<a href="#top">Back to top</a>)</p></div>
+<div class="toTop"><p>(<a href="#top">Back to Top</a>)</p></div>
 
 ---
 
-<div class="toTop"><p>(<a href="#top">Back to top</a>)</p></div>
+<p><a href="#top">Back to Top</a></p>
 
 
