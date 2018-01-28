@@ -950,11 +950,11 @@ arbitrary surface and a 3D anatomical volume is something that is certainly *pos
 know of any convenient software for performing this particular computation.
 
 Rather, if you want to align subject A's cortical surface with subject B's anatomical volume, the
-best way to do this is to find the alignment matrix \\(\mathbf{M}\_{\mbox{A}\_s \rightarrow \mbox{B}\_v}\\)
-that aligns subject A's \\( \mathbf{M}_{A_{s} \rightarrow B_{v}} \\) *anatomical volume* with
-subject B's anatomical volume, then, combined with matrix \\( \mathbf{M}_{A_s \rightarrow A_v}\\)
-which aligns subject A's cortical surface with their anatomical volume, calculate the desired
-alignment matrix \\(\mathbf{M}_{A_s \rightarrow{} B_v}\\):
+best way to do this is to find the alignment matrix \\(\mathbf{M}\_{\mbox{A}\_s \rightarrow
+\mbox{B}\_v}\\) that aligns subject A's*anatomical volume* with subject B's anatomical volume, then,
+combined with matrix \\( \mathbf{M}\_{\mbox{A}\_s \rightarrow \mbox{A}\_v}\\) which aligns subject
+A's cortical surface with their anatomical volume, calculate the desired alignment matrix
+\\(\mathbf{M}\_{\mbox{A}\_s \rightarrow \mbox{B}\_v}\\):
 
 $$ \mathbf{M}_{\mbox{A}_s \rightarrow \mbox{B}_v} = \mathbf{M}_{\mbox{A}_v \rightarrow \mbox{B}_v}
       \cdot \mathbf{M}_{\mbox{A}_s \rightarrow \mbox{A}_v} $$.
