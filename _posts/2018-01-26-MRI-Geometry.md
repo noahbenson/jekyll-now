@@ -35,10 +35,14 @@ title: MRI Data Representation and Geometry
   * [Volume-to-Surface and Surface-to-Volume](#align-vol2surf)
   * [Surface-to-Surface](#align-surf2surf)
 * [Interpolation](#interpolation)
-  * [Volume-to-Volume](#interp-vol2vol)
-  * [Volume-to-Surface](#interp-vol2surf)
-  * [Surface-to-Volume](#interp-surf2vol)
-  * [Surface-to-Surface](#interp-surf2surf)
+  * [From a Volume,,,](#interp-vol)
+    * [Nearest-Neighbor Interpolation](#interp-vol-nearest)
+    * [Trilinear Interpolation](#interp-vol-linear)
+    * [Heaviest Interpolation](#interp-vol-heaviest)
+  * [From a Surface](#interp-surf)
+    * [Nearest-Neighbor Interpolation](#interp-surf-nearest)
+    * [Trilinear Interpolation](#interp-surf-linear)
+    * [Heaviest Interpolation](#interp-surf-heaviest)
   * [Common Quandaries](#interp-quandaries)
 
 ---
@@ -942,11 +946,11 @@ similar way; I am not familiar with AFNI, however). Finding an affine transforma
 arbitrary surface and a 3D anatomical volume is something that is certainly *possible*, but I do not
 know of any convenient software for performing this particular computation. Rather, if you want to
 align subject A's cortical surface with subject B's anatomical volume, the best way to do this is to
-find the alignment matrix \\(\mathbf{M}_{\mbox{A}_v\mapsto \mbox{B}_v}\\) that aligns subject A's
+find the alignment matrix \\(\mathbf{M}_{A_v\rightarrow B_v}\\) that aligns subject A's
 *anatomical volume* with subject B's anatomical volume, then, combined with matrix
-\\(\mathbf{M}_{\mbox{A}_s \mapsto \mbox{A}_v}\\) which aligns subject A's cortical surface with
-their anatomical volume, calculate the desired alignment matrix \\(\mathbf{M}_{\mbox{A}_s
-\mapsto \mbox{B}_v}\\):
+\\(\mathbf{M}_{A_s \rightarrow A_v}\\) which aligns subject A's cortical surface with
+their anatomical volume, calculate the desired alignment matrix \\(\mathbf{M}_{A_s
+\rightarrow B_v}\\):
 
 $$ \mathbf{M}_{\mbox{A}_s \rightarrow \mbox{B}_v} = \mathbf{M}_{\mbox{A}_v \rightarrow \mbox{B}_v}
       \cdot \mathbf{M}_{\mbox{A}_s \rightarrow \mbox{A}_v} $$.
@@ -1059,11 +1063,65 @@ page](https://surfer.nmr.mgh.harvard.edu/fswiki/Xhemi) for more information.
 
 <div class="toTop"><p>(<a href="#top">Back to Top</a>)</p></div>
 
+Transferring data from one format or coordinate system to another is almost always a process of
+alignment followed by interpolation. For example, to transfer data from a subject's volume file to
+that subject's surface, one first gets the affine transformation that aligns the subject's surface
+vertices with the voxel's indices, applies that transformation to the surface vertices, then
+performs interpolation (e.g., nearest-neighbor or tri-linear) on the vertex positions. This section
+discusses how interpolation is done, both from a high-level command-line perspective as well as in
+various programming languages.
 
-
-### <a name="interp-vol2vol"></a> Volume-to-Volume
+### <a name="interp-vol"></a> From a Volume...
 
 <div class="toTop"><p>(<a href="#top">Back to Top</a>)</p></div>
+
+Suppose you have a volume file containing parameter data from a pRF model that you've solved for a
+subject. You want to get that data into another format--either a surface representation or another
+volume orientation. In this situation, the various data are usually called the *target*, the volume
+or vertices *onto which* you are interpolating, and the *movable* volume, the vertices *from which*
+you are interpolating. The solution to transferring this data is to follow the following steps:
+
+1. Start with the *target coordinates*; for a surface target, these are the vertex coordinates, and
+   for a volume target these are the voxel indices. Align these with the *movable volume* using
+   whatever affine transform aligns the two. This yields the *aligned coordinates*.
+2. For each aligned coordinate, calculate the interpolation within the voxels of the movable
+   image. For nearest neighbor interpolation, this can be done by simply rounding the coordinate to
+   the nearest integers.
+3. The interpolated values at the original target coordinates form the data transferred between
+   representations or coordinate systems.
+
+Generally speaking, you won't have to perform this operation manually, but it's useful to know how
+it would work.
+
+
+#### <a name="interp-vol-nearest"></a> Nearest-Neighbor Interpolation
+
+<div class="toTop"><p>(<a href="#top">Back to Top</a>)</p></div>
+
+Volume-to-volume interpolation is generally performed as either a nearest-neighbor interpolation or
+as a trilinear interpolation. Nearest-neighbor interpolation simply assigns to each vertex index or
+voxel index from the target image the value of the voxel in the movable image that is closest to the
+aligned position of the indexed vertex or voxel. This is often a solid and simple choice when
+interpolating volumes, but can be problematic under certain conditions and is particularly prone to
+partial-voluming errors. See [quandaries](#interp-quandaries) below.
+
+#### <a name="interp-vol-linear"></a> Linear Interpolation
+
+<div class="toTop"><p>(<a href="#top">Back to Top</a>)</p></div>
+
+Linear interpolation is performed by assuming that there should be a smoothly-varying field between the
+voxel centers of a valume and that the second derivative of that field is 0. Linear interpolation of
+a point within a set of voxels is illustrated by the following diagram.
+
+![trilinear_interpolation](https://upload.wikimedia.org/wikipedia/commons/6/62/Trilinear_interpolation_visualisation.svg "Trilinear Interpolation")
+
+
+
+#### <a name="interp-vol-heaviest"></a> Heaviest-Neighbor Interpolation
+
+<div class="toTop"><p>(<a href="#top">Back to Top</a>)</p></div>
+
+
 
 ### <a name="interp-vol2surf"></a> Volume-to-Surface
 
