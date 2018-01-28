@@ -37,13 +37,13 @@ title: MRI Data Representation and Geometry
 * [Interpolation](#interpolation)
   * [From a Volume,,,](#interp-vol)
     * [Nearest-Neighbor Interpolation](#interp-vol-nearest)
-    * [Trilinear Interpolation](#interp-vol-linear)
+    * [Linear Interpolation](#interp-vol-linear)
     * [Heaviest Interpolation](#interp-vol-heaviest)
     * [Tools and Examples](#interp-vol-tools)
   * [From a Surface](#interp-surf)
     * [Nearest-Neighbor Interpolation](#interp-surf-nearest)
-    * [Trilinear Interpolation](#interp-surf-linear)
-    * [Heaviest Interpolation](#interp-surf-heaviest)
+    * [Linear and Heaviest Interpolation](#interp-surf-linear)
+    * [Tools and Examples](#interp-surf-tools)
   * [Common Quandaries](#interp-quandaries)
     * [Cortices as Sheets](#cortical-sheets)
     * [When to Interpolate?](#when-to-interp)
@@ -1144,7 +1144,32 @@ interpolation, then the result is identical to nearest-neighbor interpolation.
 
 <div class="toTop"><p>(<a href="#top">Back to Top</a>)</p></div>
 
+* FreeSurfer's `mri_vol2vol` and `mri_vol2surf` programs are one go-to solution for the problems
+  described above. Both have somewhat steep learning curves as their documentation is sparse. For
+  the best information on them, see `mri_vol2vol --help` and `mri_vol2surf --help`. Although
+  `mri_vol2vol` tends to work fine in my experience, see [FreeSurfer
+  Quandaries](#quandaries-freesurfer) below regarding `mri_vol2surf`.
+* Python, volume-to-surface (using [neuropythy](https://github.com/noahbenson/neuropythy))
+  ```python
+  import neuropythy as ny
+  
+  sub = ny.freesurfer_subject('wl_subj042')
+  img = sub.mgh_images['ribbon']
+  (lh_prop, rh_prop) = sub.image_to_cortex(img, method='nearest')
+  # Note: image_to_cortex supports 'linear' and 'heaviest' methods; additionally,
+  # options allow one to specify the surface onto which the interpolation is
+  # performed and to specify weights.
+  #
+  # image_to_cortex requires that the image include an affine transformation
+  # that aligns the voxels to the subjects 'FreeSurfer native' orientation
+  # (all of the subject's .mgz files contain this transformation).
 
+  [{k:np.sum(p == k) for k in np.unique(p) if k != 0} for p in [lh_prop,rh_prop]]
+  #=> [{2: 3597, 3: 126455, 41: 216}, {2: 313, 41: 3274, 42: 126917}]
+  # Note: a small number of incorrect-hemisphere values do wind up in the
+  # interpolated surface; this can't be helped when the vertices on the surface
+  # lie nearest to voxels in the opposite hemisphere.
+  ```
 
 ### <a name="interp-surf"></a> From a Surface...
 
@@ -1154,16 +1179,28 @@ interpolation, then the result is identical to nearest-neighbor interpolation.
 
 <div class="toTop"><p>(<a href="#top">Back to Top</a>)</p></div>
 
-#### <a name="interp-surf-linear"></a> Linear Interpolation
+#### <a name="interp-surf-linear"></a> Linear and Heaviest Interpolation
 
 <div class="toTop"><p>(<a href="#top">Back to Top</a>)</p></div>
 
-#### <a name="interp-surf-heaviest"></a> Heaviest-Neighbor Interpolation
 
-<div class="toTop"><p>(<a href="#top">Back to Top</a>)</p></div>
 
-Heaviest-neighbor interpolation in surfaces is 
+Heaviest-neighbor interpolation in surfaces is almost identical to heaviest interpolation in volumes
+and thus won't be discussed at length here.
 
+#### <a name="interp-surf-tools"></a> Tools and Examples
+
+* Python (using [neuropythy](https://github.com/noahbenson/neuropythy))
+  ```python
+  import neuropythy as ny
+  
+  sub = ny.freesurfer_subject('wl_subj042')
+  img = sub.cortex_to_image((sub.lh.prop('curvature'), sub.rh.prop('curvature')),
+                            method='linear', dtype='float')
+  # Note: cortex_to_image supports 'nearest' and 'heaviest' methods
+  plt.imshow(img[:,100,:], cmap='gray')
+  ```
+  ![neuropythy_curv_vol2surf]({{ site.baseurl }}/images/ny_curv_surf2vol.png "Neuropythy Surface-to-Volume Example")
 
 
 ### <a name="interp-quandaries"></a> Common Quandaries
