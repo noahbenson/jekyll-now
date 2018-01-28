@@ -946,7 +946,8 @@ similar way; I am not familiar with AFNI, however). Finding an affine transforma
 arbitrary surface and a 3D anatomical volume is something that is certainly *possible*, but I do not
 know of any convenient software for performing this particular computation. Rather, if you want to
 align subject A's cortical surface with subject B's anatomical volume, the best way to do this is to
-find the alignment matrix \\(\mathbf{M}_{A_v\rightarrow B_v}\\) that aligns subject A's
+find the alignment matrix \\(\mathbf{M}_{A_v \rightarrow B_v}\\) that aligns subject A's \\(\mathbf{M}_{A_s
+\rightarrow B_v}\\)
 *anatomical volume* with subject B's anatomical volume, then, combined with matrix
 \\(\mathbf{M}_{A_s \rightarrow A_v}\\) which aligns subject A's cortical surface with
 their anatomical volume, calculate the desired alignment matrix \\(\mathbf{M}_{A_s
