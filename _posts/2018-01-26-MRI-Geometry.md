@@ -434,8 +434,8 @@ Usually, in neuroscience, the only transformations that matter are reflection, r
 translation; occasionally scaling comes into play as well. Of these four transformations, all but
 translation can be represented together in a \\(3 \times 3\\) matrix where:
 
-$$ \begin{pmatrix}x\\y\\z\end{pmatrix} = \begin{pmatrix}a & b & c\\d & e & f\\g & h & i\end{pmatrix}
-     \cdot \begin{pmatrix}x_0\\y_0\\z_0\end{pmatrix}. $$
+  $$ \begin{pmatrix}x\\y\\z\end{pmatrix} = \begin{pmatrix}a & b & c\\d & e & f\\g & h & i\end{pmatrix}
+       \cdot \begin{pmatrix}x_0\\y_0\\z_0\end{pmatrix}. $$
      
 For more information about how matrices can act as linear transformations, see [this
 page](http://mathworld.wolfram.com/LinearTransformation.html) for a technical description and [this
@@ -449,9 +449,9 @@ store translation along with the other transformations described above is to use
 4\\) matrix, which is often called an *affine transformation matrix*. We write this transformation
 as:
 
-$$ \begin{pmatrix}x\\y\\z\\1\end{pmatrix} = \begin{pmatrix}a & b & c & t_x\\d & e & f & t_y\\g & h &
-     i & t_z\\0 & 0 & 0 & 1\end{pmatrix}
-     \cdot \begin{pmatrix}x_0\\y_0\\z_0\\1\end{pmatrix}. $$
+  $$ \begin{pmatrix}x\\y\\z\\1\end{pmatrix} = \begin{pmatrix}a & b & c & t_x\\d & e & f & t_y\\g & h &
+       i & t_z\\0 & 0 & 0 & 1\end{pmatrix}
+       \cdot \begin{pmatrix}x_0\\y_0\\z_0\\1\end{pmatrix}. $$
 
 Because they can succinctly store all of these transformations in a single matrix, affine
 transformation matrices are used in neuroscience volume files to tell the user how to align the data
@@ -561,7 +561,7 @@ transformed are usually the 0-based indices of the voxels, which I will call \\(
 example, if \\(\mathbf{M}\\) is a \\(4\times 4\\) affine transformation matrix from the header of a
 volume file, then:
 
-$$ \begin{pmatrix}x\\y\\z\\1\end{pmatrix} = \mathbf{M} \cdot \begin{pmatrix}i\\j\\k\\1\end{pmatrix} $$.
+  $$ \begin{pmatrix}x\\y\\z\\1\end{pmatrix} = \mathbf{M} \cdot \begin{pmatrix}i\\j\\k\\1\end{pmatrix} $$.
 
 There is no single convention for what an affine transformation in a volume file actually means, so
 **it is unwise to assume that you know the correct orientation of a file you obtained from someone
@@ -956,8 +956,8 @@ combined with matrix \\( \mathbf{M}\_{\mbox{A}\_s \rightarrow \mbox{A}\_v}\\) wh
 A's cortical surface with their anatomical volume, calculate the desired alignment matrix
 \\(\mathbf{M}\_{\mbox{A}\_s \rightarrow \mbox{B}\_v}\\):
 
-$$ \mathbf{M}_{\mbox{A}_s \rightarrow \mbox{B}_v} = \mathbf{M}_{\mbox{A}_v \rightarrow \mbox{B}_v}
-      \cdot \mathbf{M}_{\mbox{A}_s \rightarrow \mbox{A}_v} $$.
+  $$ \mathbf{M}_{\mbox{A}_s \rightarrow \mbox{B}_v} = \mathbf{M}_{\mbox{A}_v \rightarrow \mbox{B}_v}
+        \cdot \mathbf{M}_{\mbox{A}_s \rightarrow \mbox{A}_v} $$.
 
 That said, determining the affine transformation matrix that aligns a FreeSurfer subject's cortical
 surface with their cortical volume and vice versa is not trivial. Recall from earlier when we ran
@@ -971,12 +971,12 @@ FreeSurfer native coordinate system is identical to the vertex coordinate system
 translation that is different in every subject. In the subject `bert` [above](#mri-info-block), the
 voxel-to-RAS alignment matrix was
 
-$$ \begin{pmatrix}
-    -1 & 0 & 0 & 133.3997 \\
-     0 & 0 & 1 & -110 \\
-     0 & -1 & 0 & 128 \\
-     0 & 0 & 0 & 1
-   \end{pmatrix} $$.
+  $$ \begin{pmatrix}
+      -1 & 0 & 0 & 133.3997 \\
+       0 & 0 & 1 & -110 \\
+       0 & -1 & 0 & 128 \\
+       0 & 0 & 0 & 1
+     \end{pmatrix} $$.
 
 Notice the translation coordinates in the first three rows of the last column. The voxel-to-vertex
 alignment matrix can be found by replacing these three values with \\((128, -128, 128)\\).
