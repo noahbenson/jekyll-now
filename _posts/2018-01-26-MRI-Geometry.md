@@ -949,11 +949,11 @@ similar way; I am not familiar with AFNI, however). Finding an affine transforma
 arbitrary surface and a 3D anatomical volume is something that is certainly *possible*, but I do not
 know of any convenient software for performing this particular computation. Rather, if you want to
 align subject A's cortical surface with subject B's anatomical volume, the best way to do this is to
-find the alignment matrix \\(\mathbf{M}_{A_v\rightarrow{}B_v}\\) that aligns subject A's
-\\(\mathbf{M}_{A_s\rightarrow{}B_v}\\) *anatomical volume* with subject B's anatomical volume, then,
-combined with matrix \\(\mathbf{M}_{A_s\rightarrow{}A_v}\\) which aligns subject A's cortical
+find the alignment matrix \\( \mathbf{M}_{A_{v} \rightarrow B_{v}} \\) that aligns subject A's
+\\( \mathbf{M}_{A_{s} \rightarrow B_{v}} \\) *anatomical volume* with subject B's anatomical volume, then,
+combined with matrix \\( \mathbf{M}_{A_s \rightarrow A_v}\\) which aligns subject A's cortical
 surface with their anatomical volume, calculate the desired alignment matrix
-\\(\mathbf{M}_{A_s\rightarrow{}B_v}\\):
+\\(\mathbf{M}_{A_s \rightarrow{} B_v}\\):
 
 $$ \mathbf{M}_{\mbox{A}_s \rightarrow \mbox{B}_v} = \mathbf{M}_{\mbox{A}_v \rightarrow \mbox{B}_v}
       \cdot \mathbf{M}_{\mbox{A}_s \rightarrow \mbox{A}_v} $$.
@@ -1174,6 +1174,8 @@ interpolation, then the result is identical to nearest-neighbor interpolation.
 
 <div class="toTop"><p>(<a href="#top">Back to Top</a>)</p></div>
 
+
+
 #### <a name="interp-surf-nearest"></a> Nearest-Neighbor Interpolation
 
 <div class="toTop"><p>(<a href="#top">Back to Top</a>)</p></div>
@@ -1199,7 +1201,7 @@ and thus won't be discussed at length here.
   # Note: cortex_to_image supports 'nearest' and 'heaviest' methods
   plt.imshow(img[:,100,:], cmap='gray')
   ```
-  ![neuropythy_curv_vol2surf]({{ site.baseurl }}/images/ny_curv_surf2vol.png "Neuropythy Surface-to-Volume Example")
+  ![neuropythy_curv_surf2vol]({{ site.baseurl }}/images/mri-geometry/ny_curv_surf2vol.png "Neuropythy Surface-to-Volume Example")
 
 
 ### <a name="interp-quandaries"></a> Common Quandaries
