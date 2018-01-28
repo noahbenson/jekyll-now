@@ -947,13 +947,14 @@ vice versa; rather FreeSurfer has already found it (when it computed the surface
 place), and one just reads it from a subject's FreeSurfer directory (Caret/Workbench operate in a
 similar way; I am not familiar with AFNI, however). Finding an affine transformation between an
 arbitrary surface and a 3D anatomical volume is something that is certainly *possible*, but I do not
-know of any convenient software for performing this particular computation. Rather, if you want to
-align subject A's cortical surface with subject B's anatomical volume, the best way to do this is to
-find the alignment matrix \\( \mathbf{M}_{A_{v} \rightarrow B_{v}} \\) that aligns subject A's
-\\( \mathbf{M}_{A_{s} \rightarrow B_{v}} \\) *anatomical volume* with subject B's anatomical volume, then,
-combined with matrix \\( \mathbf{M}_{A_s \rightarrow A_v}\\) which aligns subject A's cortical
-surface with their anatomical volume, calculate the desired alignment matrix
-\\(\mathbf{M}_{A_s \rightarrow{} B_v}\\):
+know of any convenient software for performing this particular computation.
+
+Rather, if you want to align subject A's cortical surface with subject B's anatomical volume, the
+best way to do this is to find the alignment matrix \\( \mathbf{M}_{A_{v} \rightarrow B_{v}} \\)
+that aligns subject A's \\( \mathbf{M}_{A_{s} \rightarrow B_{v}} \\) *anatomical volume* with
+subject B's anatomical volume, then, combined with matrix \\( \mathbf{M}_{A_s \rightarrow A_v}\\)
+which aligns subject A's cortical surface with their anatomical volume, calculate the desired
+alignment matrix \\(\mathbf{M}_{A_s \rightarrow{} B_v}\\):
 
 $$ \mathbf{M}_{\mbox{A}_s \rightarrow \mbox{B}_v} = \mathbf{M}_{\mbox{A}_v \rightarrow \mbox{B}_v}
       \cdot \mathbf{M}_{\mbox{A}_s \rightarrow \mbox{A}_v} $$.
