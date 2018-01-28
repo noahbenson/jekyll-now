@@ -45,6 +45,7 @@ title: MRI Data Representation and Geometry
     * [Linear and Heaviest Interpolation](#interp-surf-linear)
     * [Tools and Examples](#interp-surf-tools)
   * [Common Quandaries](#interp-quandaries)
+    * [FreeSurfer's Interpolation Tools](#freesurfer-interp-tools)
     * [Cortices as Sheets](#cortical-sheets)
     * [When to Interpolate?](#when-to-interp)
 
@@ -666,6 +667,12 @@ important of these geometry files are:
   representation registered to the fsaverage_sym left-right symmetric pseudo-hemisphere--this is
   generally only used for comparing left and right hemispheres.
 
+Critically, all of these files for a single subject contain exactly the same set of triangles and
+all of them list their vertices in the same order. This means that each vertex is considered to have
+a position on the white surface, the pial surface, and the various inflated surfaces. Each triangle
+on the white or pial surface can therefore be thought of as a triangular prism that extends from the
+white to the pial surface as well.
+
 The following code snippets demonstrate how to read these files.
 
 * Python (using [nibabel](http://nipy.org/nibabel/))
@@ -1181,7 +1188,9 @@ onto which to interpolate, it is not even clear if the coordinate is even on the
 matter, it is not clear that a coordinate *should have to be* on the surface in order to be
 interpolated. Cortices are sheets, after all, and being between the white and pial surfaces should
 be sufficient to predict a value. For this precise reason, the neuropythy library treats
-interpolation of surfaces into volumes as a job for the `Cortex` object rather than a surface.
+interpolation of surfaces into volumes as a job for the `Cortex` object rather than a surface. This
+topic, which is highly relevant to interpolation of the ribbon from a surface representation, is
+discussed in the section on cortical sheets, [below](#cortical-sheets).
 
 In the case of interpolating from surface to surface, i.e., from one subject to another or to the
 *fsaverage* atlas, interpolation should be done on the inflated spherical surface of the appropriate
@@ -1203,6 +1212,10 @@ as well..
 
 #### <a name="interp-surf-tools"></a> Tools and Examples
 
+* FreeSurfer's `mri_surf2surf` is a good way to perform surface-to-surface interpolation, but it is
+  poorly documented and somewhat complex. The best documentation is probably found via
+  `mri_surf2surf --help`. On the other hand, FreeSurfer's `mri_surf2vol` has fairly spotty results,
+  at least prior to FreeSurfer version 6; see [quandries](#interp-quandaries) below.
 * Python, surface to volume (using [neuropythy](https://github.com/noahbenson/neuropythy))
   ```python
   import neuropythy as ny
@@ -1228,6 +1241,44 @@ as well..
 ### <a name="interp-quandaries"></a> Common Quandaries
 
 <div class="toTop"><p>(<a href="#top">Back to Top</a>)</p></div>
+
+The following are caveats and quandaries that come up in practice when dealing with the kind of data
+and transformations described on this page, particularly interpolation.
+
+#### <a name="freesurfer-interp-tools"></a> FreeSurfer's Interpolation Tools
+
+<div class="toTop"><p>(<a href="#top">Back to Top</a>)</p></div>
+
+FreeSurfer includes a number of useful utilities, most of which are excellent. I have, however,
+noticed issues with the `mri_vol2surf` and `mri_surf2vol` programs on occasion. Specifically, the
+results of these interpolations are frequently quite spotty or inaccurate; sometimes they do not
+appear to fill the ribbon or they assign a value to every vertex on the cortical surface. It is
+possible that newer versions of these programs that I have not used have fixed these issues (note: I
+have not tested FreeSurfer 6 as of writing this post), but I don't currently recommend that people
+use these when there are other options available.
+
+#### <a name="cortical-sheets"></a> Cortices as Sheets
+
+<div class="toTop"><p>(<a href="#top">Back to Top</a>)</p></div>
+
+The pial and white cortical surfaces are clearly surfaces, but the cortex itself is a sheet with
+volume, not a 2D manifold. The voxels of the ribbon, should be between the white and pial surfaces,
+and accordingly, should be assigned values not based on their nearest vertex neighbor but based on
+their position inside of the triangular prism that contains them. Both heaviest and linear
+interpolation methods should, in theory, take into account this geometry when performing
+interpolation.
+
+To my knowledge, the only library or tool that performs interpolation from vertex-to-voxel is the
+neuropythy library. This is done in neuropythy by using a generalization of barycentric coordinates
+to tetrahedrons, which are drawn between the pial and white surfaces. The library even allows you to
+specify different values for the white and pial surfaces, giving different layers of the ribbon to
+assume different values.
+
+#### <a name="when-to-interp"></a> When to Interpolate?
+
+<div class="toTop"><p>(<a href="#top">Back to Top</a>)</p></div>
+
+(In Progress)
 
 ---
 
