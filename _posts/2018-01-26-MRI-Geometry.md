@@ -1203,7 +1203,7 @@ as well..
 
 #### <a name="interp-surf-tools"></a> Tools and Examples
 
-* Python (using [neuropythy](https://github.com/noahbenson/neuropythy))
+* Python, surface to volume (using [neuropythy](https://github.com/noahbenson/neuropythy))
   ```python
   import neuropythy as ny
   
@@ -1214,7 +1214,16 @@ as well..
   plt.imshow(img[:,100,:], cmap='gray')
   ```
   ![neuropythy_curv_surf2vol]({{ site.baseurl }}/images/mri-geometry/ny_curv_surf2vol.png "Neuropythy Surface-to-Volume Example")
-
+* Python, surface to surface (using [neuropythy](https://github.com/noahbenson/neuropythy))
+  ```python
+  import neuropythy as ny
+  
+  sub = ny.freesurfer_subject('wl_subj042')
+  fsa = ny.freesurfer_subject('fsaverage')
+  curv_on_fsa = fsa.lh.interpolate(sub.lh.prop('curvature'), method='linear')
+  # Note: the interpolate function automatically detects when the two subejcts
+  # are registered to each other and uses that registration.
+  ```
 
 ### <a name="interp-quandaries"></a> Common Quandaries
 
