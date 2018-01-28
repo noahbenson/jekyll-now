@@ -950,7 +950,7 @@ arbitrary surface and a 3D anatomical volume is something that is certainly *pos
 know of any convenient software for performing this particular computation.
 
 Rather, if you want to align subject A's cortical surface with subject B's anatomical volume, the
-best way to do this is to find the alignment matrix \\( \mathbf{M}_{Av \rightarrow Bv} \\)
+best way to do this is to find the alignment matrix \\(\mathbf{M}\_{\mbox{A}\_s \rightarrow \mbox{B}\_v}\\)
 that aligns subject A's \\( \mathbf{M}_{A_{s} \rightarrow B_{v}} \\) *anatomical volume* with
 subject B's anatomical volume, then, combined with matrix \\( \mathbf{M}_{A_s \rightarrow A_v}\\)
 which aligns subject A's cortical surface with their anatomical volume, calculate the desired
@@ -1175,7 +1175,17 @@ interpolation, then the result is identical to nearest-neighbor interpolation.
 
 <div class="toTop"><p>(<a href="#top">Back to Top</a>)</p></div>
 
+Interpolating from a surface is quite a bit tricker than interpolating from a volume, both
+conceptually and in terms of the algorithms required. For one, consider that, given a coordinate
+onto which to interpolate, it is not even clear if the coordinate is even on the surface. For that
+matter, it is not clear that a coordinate *should have to be* on the surface in order to be
+interpolated. Cortices are sheets, after all, and being between the white and pial surfaces should
+be sufficient to predict a value. For this precise reason, the neuropythy library treats
+interpolation of surfaces into volumes as a job for the `Cortex` object rather than a surface.
 
+In the case of interpolating from surface to surface, i.e., from one subject to another or to the
+fsaverage, interpolation should be done on the inflated spherical surface of the appropriate
+hemispheres. 
 
 #### <a name="interp-surf-nearest"></a> Nearest-Neighbor Interpolation
 
