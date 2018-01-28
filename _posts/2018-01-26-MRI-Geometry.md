@@ -39,11 +39,14 @@ title: MRI Data Representation and Geometry
     * [Nearest-Neighbor Interpolation](#interp-vol-nearest)
     * [Trilinear Interpolation](#interp-vol-linear)
     * [Heaviest Interpolation](#interp-vol-heaviest)
+    * [Tools and Examples](#interp-vol-tools)
   * [From a Surface](#interp-surf)
     * [Nearest-Neighbor Interpolation](#interp-surf-nearest)
     * [Trilinear Interpolation](#interp-surf-linear)
     * [Heaviest Interpolation](#interp-surf-heaviest)
   * [Common Quandaries](#interp-quandaries)
+    * [Cortices as Sheets](#cortical-sheets)
+    * [When to Interpolate?](#when-to-interp)
 
 ---
 
@@ -1112,29 +1115,56 @@ partial-voluming errors. See [quandaries](#interp-quandaries) below.
 
 Linear interpolation is performed by assuming that there should be a smoothly-varying field between the
 voxel centers of a valume and that the second derivative of that field is 0. Linear interpolation of
-a point within a set of voxels is illustrated by the following diagram.
+a point within a set of voxels is illustrated by the following diagram. Note that in the diagram,
+the dots represent the voxel centers of the 8 voxels nearest the point onto which one is
+interpolating.
 
 ![trilinear_interpolation](https://upload.wikimedia.org/wikipedia/commons/6/62/Trilinear_interpolation_visualisation.svg "Trilinear Interpolation")
 
+In the diagram, the volume of the box is the weight assigned to the value at the voxel center with
+the same color. Notice that each box goes with the voxel-center farthest from it; this, however,
+gives a linear weighting between voxel centers that varies linearly. The weighted sub of values with
+the weights gives the resulting interpolated value.
 
+Note that linear interpolation can use additional weights for each voxel as well, for example if you
+have a measure of the variance explained for a parameter estimation, you might want to use it as an
+additional weight when interpolating.
 
 #### <a name="interp-vol-heaviest"></a> Heaviest-Neighbor Interpolation
 
 <div class="toTop"><p>(<a href="#top">Back to Top</a>)</p></div>
 
+Heaviest-neighbor interpolation is effectively just a weighted version of nearest-neighbor. The
+heaviest-neighbor interpolated value is calculated exactly as a linearly interpolated value except
+that instead of using a weighted sum of the neighboring values, the assigned interpolated value is
+that of the voxel whose *weight* is greatest. If no additional weights are given to a heaviest
+interpolation, then the result is identical to nearest-neighbor interpolation.
+
+#### <a name="interp-vol-tools"></a> Tools and Examples
+
+<div class="toTop"><p>(<a href="#top">Back to Top</a>)</p></div>
 
 
-### <a name="interp-vol2surf"></a> Volume-to-Surface
+
+### <a name="interp-surf"></a> From a Surface...
 
 <div class="toTop"><p>(<a href="#top">Back to Top</a>)</p></div>
 
-### <a name="interp-surf2vol"></a> Surface-to-Volume
+#### <a name="interp-surf-nearest"></a> Nearest-Neighbor Interpolation
 
 <div class="toTop"><p>(<a href="#top">Back to Top</a>)</p></div>
 
-### <a name="interp-surf2surf"></a> Surface-to-Surface
+#### <a name="interp-surf-linear"></a> Linear Interpolation
 
 <div class="toTop"><p>(<a href="#top">Back to Top</a>)</p></div>
+
+#### <a name="interp-surf-heaviest"></a> Heaviest-Neighbor Interpolation
+
+<div class="toTop"><p>(<a href="#top">Back to Top</a>)</p></div>
+
+Heaviest-neighbor interpolation in surfaces is 
+
+
 
 ### <a name="interp-quandaries"></a> Common Quandaries
 
