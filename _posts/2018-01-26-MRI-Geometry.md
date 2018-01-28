@@ -1184,21 +1184,22 @@ be sufficient to predict a value. For this precise reason, the neuropythy librar
 interpolation of surfaces into volumes as a job for the `Cortex` object rather than a surface.
 
 In the case of interpolating from surface to surface, i.e., from one subject to another or to the
-fsaverage, interpolation should be done on the inflated spherical surface of the appropriate
-hemispheres. 
+*fsaverage* atlas, interpolation should be done on the inflated spherical surface of the appropriate
+hemispheres. Using the spherical surfaces actually solves one of the problems mentioned above
+because every vertex on one sphere *must* be inside of a triangle of the other sphere, unless the
+spheres have holes somewhere. The spherical surfaces used in these interpolations should be aligned
+by FreeSurfer before use.
 
-#### <a name="interp-surf-nearest"></a> Nearest-Neighbor Interpolation
+Assuming that one has an aligned pair of spherical surfaces, then the concept of nearest-neighbor
+interpolation between voxels is quite trivial. Linear interpolation within a triangle is also
+similar in concept to the trilinear interpolation used in voxels ([above](#interp-vol-linear)). The
+following diagram shows the triangular equivalent. See also [barycentric
+coordinates](https://en.wikipedia.org/wiki/Barycentric_coordinate_system).
 
-<div class="toTop"><p>(<a href="#top">Back to Top</a>)</p></div>
+![triangle_linear_interp]({{ site.baseurl }}/images/mri-geometry/triangle_linear_interp.png "Triangle Linear Interpolation")
 
-#### <a name="interp-surf-linear"></a> Linear and Heaviest Interpolation
-
-<div class="toTop"><p>(<a href="#top">Back to Top</a>)</p></div>
-
-
-
-Heaviest-neighbor interpolation in surfaces is almost identical to heaviest interpolation in volumes
-and thus won't be discussed at length here.
+Heaviest-neighbor interpolation in surfaces is essentially identical to the method used in volumes
+as well..
 
 #### <a name="interp-surf-tools"></a> Tools and Examples
 
