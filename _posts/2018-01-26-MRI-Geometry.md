@@ -47,7 +47,6 @@ title: MRI Data Representation and Geometry
   * [Common Quandaries](#interp-quandaries)
     * [FreeSurfer's Interpolation Tools](#freesurfer-interp-tools)
     * [Cortices as Sheets](#cortical-sheets)
-    * [When to Interpolate?](#when-to-interp)
 
 ---
 
@@ -1273,12 +1272,6 @@ neuropythy library. This is done in neuropythy by using a generalization of bary
 to tetrahedrons, which are drawn between the pial and white surfaces. The library even allows you to
 specify different values for the white and pial surfaces, giving different layers of the ribbon to
 assume different values.
-
-#### <a name="when-to-interp"></a> When to Interpolate?
-
-<div class="toTop"><p>(<a href="#top">Back to Top</a>)</p></div>
-
-(In Progress)
 
 ---
 
