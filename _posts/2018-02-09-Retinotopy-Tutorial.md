@@ -57,8 +57,8 @@ particular experiment analyzed here, we performed 8 runs of retinotopic mapping,
 lasted 192 TRs (1 second each). We additionally collected 1 T1-weighted image at a resolution of 0.8
 mm\\(^3\\).
 
-This tutorial begins in my `~/Downloads/rscan` directory (using Mac OS 10.13.2) to which I have
-already downloaded all scan files from the [CBI](http://cbi.nyu.edu/)'s Tesla file-server. For
+This tutorial begins in my `~/Downloads/rscan_20180205` directory (using Mac OS 10.13.2) to which I
+have already downloaded all scan files from the [CBI](http://cbi.nyu.edu/)'s Tesla file-server. For
 information on how to do this, wee the [related page on the Winawer-lab
 wiki](https://wikis.nyu.edu/display/winawerlab/Download+MRI+data+from+Tesla). At the start of the
 analyses detailed below, I observed the following directory contents:
