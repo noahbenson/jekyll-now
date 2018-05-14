@@ -61,7 +61,7 @@ all 181 subjects, can be found [here](https://osf.io/bw9ec).**
 The retinotopic atlas is included in the
 [neuropythy](https://github.com/noahbenson/neuropythy) library, which
 is publicly available on github. The raw data files that describe the
-atlas (stored in FreeSurfer's MGH/MGZ format) can be found in the
+atlas (stored in FreeSurfer's "curv" format) can be found in the
 `neuropythy/lib/data/fsaverage/surf` directory. To apply the
 retinotopy atlas to a subject, we suggest one of two methods:
 1. Use the [neuropythy docker](https://hub.docker.com/r/nben/neuropythy);
