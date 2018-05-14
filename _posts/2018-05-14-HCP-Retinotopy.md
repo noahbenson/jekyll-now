@@ -18,12 +18,12 @@ The HCP 7T retinotopy dataset is more fully documented in a paper,
 currently available on bioarxiv:
 
 Benson NC, Jamison KW, Arcaro MJ, Vu AT, Glasser MF, Coalson TS, Van
-Essen DV, Yacoub E, Ugurbil K, Winawer J, Kay K (2018) The HCP 7T
-Retinotopy Dataset. bioRxiv doi:10.1101/308247
+Essen DV, Yacoub E, Ugurbil K, Winawer J, Kay K (**2018**) The HCP 7T
+Retinotopy Dataset. *bioRxiv* doi:10.1101/308247
 
 ## The VSS 2018 Poster
 
-<embed src="{{site.baseurl}}/images/hcp-retinotopy/poster.pdf" type="application/pdf" width="100%" />
+<embed src="{{site.baseurl}}/images/hcp-retinotopy/poster.pdf" type="application/pdf" width="100%" height="400px" />
 
 
 Notes:
