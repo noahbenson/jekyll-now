@@ -12,7 +12,8 @@ title: The Human Connectome Project 7T Retinotopy Database
 This page documents the 2018 VSS Poster on the HCP 7T Retinotopy
 Dataset by Benson, Jamison, Vu, Winawer, and Kay. A PDF of the poster
 can be found below along with details about the broader project and
-links to relevant resources.
+links to relevant resources. Please contact [Noah
+Benson](mailto:nben@nyu.edu) for inquiries.
 
 The HCP 7T retinotopy dataset is more fully documented in a paper,
 currently available on bioarxiv:
@@ -54,10 +55,10 @@ Notes:
 
 ## Resources
 
-The full HCP 7T Retinotopy Dataset, including all pRF solutions for
-all 181 subjects, can be found [here](https://osf.io/bw9ec).
+**The full HCP 7T Retinotopy Dataset, including all pRF solutions for
+all 181 subjects, can be found [here](https://osf.io/bw9ec).**
 
-The retinotopy atlas is included in the
+The retinotopic atlas is included in the
 [neuropythy](https://github.com/noahbenson/neuropythy) library, which
 is publicly available on github. The raw data files that describe the
 atlas (stored in FreeSurfer's MGH/MGZ format) can be found in the
