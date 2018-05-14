@@ -23,7 +23,8 @@ Retinotopy Dataset. bioRxiv doi:10.1101/308247
 
 ## The VSS 2018 Poster
 
-![Poster]({{ site.baseurl }}/images/hcp-retinotopy/poster.pdf "VSS 2018 Poster")
+<embed src="https://sumanbogati.github.io/sample.pdf" type="application/pdf" />
+
 
 Notes:
 * The retinotopic atlas derived from the HCP 7T retinotopy dataset is
