@@ -50,8 +50,9 @@ Notes:
 * The plot of PRF size in terms of eccentricity shows the best-fit
   line for each visual area as well as a shaded region that denotes
   the inner two quartiles of the pRF measurements. Due to the number
-  of measurements included in these fits, the he S.E.M. and 95%
-  confidence intervals are smaller than the thickness of the lines plotted.
+  of measurements included in these fits, the S.E.M. and 95%
+  confidence intervals are smaller than the thickness of the lines
+  plotted.
 
 ## Resources
 
