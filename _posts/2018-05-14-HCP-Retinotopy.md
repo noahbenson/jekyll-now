@@ -24,7 +24,11 @@ Retinotopy Dataset. *bioRxiv* doi:10.1101/308247
 
 ## The VSS 2018 Poster
 
-<embed src="{{site.baseurl}}/images/hcp-retinotopy/poster.pdf" type="application/pdf" width="100%" height="500px" />
+If your browser does not support embedded PDF content, you can
+download the poster
+[here]({{site.baseurl}}/images/hcp-retinotopy/vss2018-poster.pdf).
+
+<embed src="{{site.baseurl}}/images/hcp-retinotopy/vss2018-poster.pdf" type="application/pdf" width="100%" height="500px" />
 
 
 Notes:
