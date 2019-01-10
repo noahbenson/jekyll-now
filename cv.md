@@ -35,6 +35,12 @@ permalink: /cv/
 
 ### Publications
 
+* **Benson NC**, Jamison KW, Arcaro MJ, Vu AT, Glasser MF, Coalson TS, Van Essen DV, Yacoub E,
+  Ugurbil K, Winawer J, Kay K (**2018**) The Human Connectome Project 7 Tesla retinotopy dataset:
+  Description and population receptive field analysis. _J. Vis._ **18**(13):23. DOI:
+  [10.1167/18.13.23](https://doi.org/10.1167/18.13.23)
+* **Benson NC**, Winawer J (**2018**) Bayesian analysis of retinotopic maps. _eLife_ 7:e40224. DOI:
+  [10.7554/eLife.40224](https://doi.org/10.7554/eLife.40224)
 * Zhou JW, **Benson NC**, Kay KN, Winawer J (**2017**) Compressive Temporal Summation in Human Visual
   Cortex. _J. Neurosci._ **In Press**
 * Aguirre GK, Datta R, **Benson NC**, Prasad S, Jacobson SG, _et al._ (**2016**) Patterns of
@@ -81,6 +87,12 @@ permalink: /cv/
 
 ### Conference Abstracts
                 
+* **Benson NC**, Jamison KW, Arcaro MJ, Vu AT, Glasser MF, Coalson TS, Van Essen DV, Yacoub E,
+  Ugurbil K, Winawer J, Kay K (**2018**) The HCP 7T Retinotopy Dataset. _Society for Neuroscience_
+  (Talk)
+* **Benson NC**, Jamison KW, Vu AT, Winawer J, Kay KN (**2018**) The HCP 7T Retinotopy Dataset: A
+  new resource for investigating the organization of human visual cortex. _J. Vis._ **8**(10):215.
+  DOI:[10.1167/18.10.215](https://doi.org/10.1167/18.10.215) (Poster)
 * **Benson NC**, Broderick WF, M&uuml;ller H, Winawer J (**2017**) From Retina to Extra-striate
   cortex: Forward Models of Visual Input; Toward a Standard Cortical Observer. _Optical Society of
   America, Fall Vision Meeting_ (Invited Talk)
