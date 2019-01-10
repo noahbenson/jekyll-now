@@ -54,8 +54,8 @@ permalink: /cv/
   spontaneous neural activity within the visual cortex of the sighted and
   blind. _Front. Hum. Neurosci._
   **9**:25-25. DOI:[10.3389/fnhum.2015.00025](https://doi.org/10.3389/fnhum.2015.00025)
-* Benson NC, Manning JR, Brainard DH (**2014**) Unsupervised learning of cone spectral classes from
-  natural images. _PLOS Comput. Biol._
+* **Benson NC**, Manning JR, Brainard DH (**2014**) Unsupervised learning of cone spectral classes 
+  from natural images. _PLOS Comput. Biol._
   **10**(6):e1003652. DOI:[10.1371/journal.pcbi.1003652](https://doi.org/10.1371/journal.pcbi.1003652)
 * **Benson NC**, Butt OB, Brainard DH, Aguirre GK (**2014**). Correction of distortion in flattened
   representations of the cortical surface allows prediction of V1-V3 functional organization from
