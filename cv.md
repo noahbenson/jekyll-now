@@ -6,14 +6,14 @@ permalink: /cv/
 
 ### Education
 
-* Post-doctoral Fellowships, [Winawer Lab](https://wp.nyu.edu/winawerlab/), 2014-2016;
-  [Brainard Lab](https://color.psych.upenn.edu/), 2010-2014;
-  [Aguirre Lab](https://cfn.upenn.edu/aguirre/wiki/), 2010-2014;
+* Post-doctoral Fellowships:
+  * [Lab of Prof. Jonathan Winawer](https://wp.nyu.edu/winawerlab/), New York University, 2014-2016
+  * [Lab of Prof. David H. Brainard](https://color.psych.upenn.edu/), University of Pennsylvania, 2010-2014
+  * [Lab of Prof. Geoffrey K. Aguirre](https://cfn.upenn.edu/aguirre/wiki/), University of Pennsylvania, 2010-2014
 * Ph. D., University of Washington, 2005-2010  
   School of Medicine, Division of Biomedical and Health Informatics
 * B. S., Purdue University, 2001-2005  
   Major Concentrations: Mathematics, Computer Science, Biology (triple-major)  
-  Coursework Foci: discrete math, statistics, algorithms, theory of computation, biochemistry
             
 ### Honors and Grants 
 
@@ -86,7 +86,18 @@ permalink: /cv/
   spread in the lymphatic system of the head and neck. _AMIA Annu. Symp. Proc._ :31-5
 
 ### Conference Abstracts
-                
+
+* **Benson NC**, Yoon J, Forenzo D, Engel SA, Winawer J, Kay KN (**2019**) Surface area and cortical
+  magnification of V1, V2, and V3 in a large sample of human observers. _Vision Sciences Society_
+  (Poster)
+* Yoon J, **Benson NC**, Forenzo D, Engel SA, Winawer J, Kay KN (**2019**) Heritability of V1/V2/V3
+  surface area in the 7t HCP Retinotopy Dataset. _Vision Sciences Society_ (Poster)
+* Burchell A, **Benson NC**, Zhou J, Winawer JA, Pelli DG (**2019**) Using fMRI to link crowding to
+  hV4. _Vision Sciences Society_ (Talk)
+* Kupers ER, **Benson NC**, Winawer J (**2019**) A model-based approach to link MEG responses to
+  neuronal synchrony in visual cortex. _Vision Sciences Society_ (Talk)
+* Yucel EI, **Benson NC**, Tong Y, Frederick B, Fine I, Rokem A (**2019**) The alignment of systemic
+  low frequency oscillations with V1 retinotopic organization. _Vision Sciences Society_ (Poster)
 * **Benson NC**, Jamison KW, Arcaro MJ, Vu AT, Glasser MF, Coalson TS, Van Essen DV, Yacoub E,
   Ugurbil K, Winawer J, Kay K (**2018**) The HCP 7T Retinotopy Dataset. _Society for Neuroscience_
   (Talk)
