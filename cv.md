@@ -42,7 +42,8 @@ permalink: /cv/
 * **Benson NC**, Winawer J (**2018**) Bayesian analysis of retinotopic maps. _eLife_ 7:e40224. DOI:
   [10.7554/eLife.40224](https://doi.org/10.7554/eLife.40224)
 * Zhou JW, **Benson NC**, Kay KN, Winawer J (**2017**) Compressive Temporal Summation in Human Visual
-  Cortex. _J. Neurosci._ **In Press**
+  Cortex. _J. Neurosci._ **38**(3):671-709. DOI:
+  [10.1523/JNEUROSCI.1724-17.2017](https://doi.org/10.1523/JNEUROSCI.1724-17.2017)
 * Aguirre GK, Datta R, **Benson NC**, Prasad S, Jacobson SG, _et al._ (**2016**) Patterns of
   Individual Variation in Visual Pathway Structure and Function in the Sighted and Blind. PLOS ONE
   **11**(11):e0164677. DOI:[10.1371/journal.pone.0164677](https://doi.org/10.1371/journal.pone.0164677)
