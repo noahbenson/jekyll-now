@@ -35,6 +35,8 @@ permalink: /cv/
 
 ### Publications
 
+* Zhou J, **Benson NC**, Kay K, Winawer J (**2019**) Predicting neuronal dynamics with a delayed gain
+  control model. _PLOS Comput. Biol._ **In Review**.
 * **Benson NC**, Jamison KW, Arcaro MJ, Vu AT, Glasser MF, Coalson TS, Van Essen DV, Yacoub E,
   Ugurbil K, Winawer J, Kay K (**2018**) The Human Connectome Project 7 Tesla retinotopy dataset:
   Description and population receptive field analysis. _J. Vis._ **18**(13):23. DOI:
@@ -76,10 +78,10 @@ permalink: /cv/
   high-throughput analysis of atomistic protein simulations. _J. Bioinformatics Comput. Biol._
   **0**(2):1250008-24 
 * van der Kamp MW, Schaeffer RD, Jonsson AL, Scouras AD, Simms A, Toofanny RD, **Benson NC**,
- Anderson PC, Merkley ED, Rysavy S, Bromley D, Beck DAC, Daggett V (**2010**) Dynameomics: a
- comprehensive database of protein dynamics. _Structure_ **18**:423-435 
- **Benson NC**, Daggett V (**2009**) Dynameomics: large-scale assessment of native protein
- flexibility. _Protein Sci._ **17**(12):2038-50 
+  Anderson PC, Merkley ED, Rysavy S, Bromley D, Beck DAC, Daggett V (**2010**) Dynameomics: a
+  comprehensive database of protein dynamics. _Structure_ **18**:423-435 
+* **Benson NC**, Daggett V (**2009**) Dynameomics: large-scale assessment of native protein
+  flexibility. _Protein Sci._ **17**(12):2038-50 
 * Simms AM, Toofanny RD, Kehl C, **Benson NC**, Daggett V (**2008**) Dynameomics data warehouse:
   Design of a computational lab workflow and scientific data repository. _Protein
   Eng. Des. Sel._ **21**(6):369-77
