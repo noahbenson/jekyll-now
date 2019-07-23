@@ -9,19 +9,20 @@ title: The Human Connectome Project 7T Retinotopy Database
 
 ## Introduction
 
-This page documents the 2018 VSS Poster and SfN Presentation on the HCP 7T
-Retinotopy Dataset by Benson, Jamison, Vu, Arcaro, *et al*. A PDF of the poster
-can be found below along with details about the broader project and links to
-relevant resources. Please contact [Noah Benson](mailto:nben@nyu.edu) for
-inquiries.
+This page serves as a supplement to the 2018 VSS Poster and SfN Presentation on
+the HCP 7T Retinotopy Dataset by Benson, Jamison, Vu, Arcaro, *et al*. A PDF of
+the poster can be found below along with details about the broader project and
+links to relevant resources. Please contact [Noah Benson](mailto:nben@nyu.edu)
+for inquiries.
 
 The HCP 7T retinotopy dataset is more fully documented in a
-[paper](https://doi.org/10.1101/308247), currently available on bioarxiv and in
-press at the Journal of Vision:
+[paper in the Journal of Vision](https://dx.doi.org/10.1167%2F18.13.23):
 
 Benson NC, Jamison KW, Arcaro MJ, Vu AT, Glasser MF, Coalson TS, Van Essen DV,
-Yacoub E, Ugurbil K, Winawer J, Kay K (**2018**) The HCP 7T Retinotopy
-Dataset. *bioRxiv* doi:10.1101/308247
+Yacoub E, Ugurbil K, Winawer J, Kay K (**2018**) The Human Connectome Project 7
+Tesla retinotopy dataset: Description and population receptive field
+analysis. *J. Vis.* **18**(13):23.
+DOI:[10.1167/18.13.23](https://dx.doi.org/10.1167%2F18.13.23)
 
 
 ## Resources
@@ -60,7 +61,8 @@ information, see [this page]()):
    if you have [Docker](https://docker.com) installed, you can simply
    run the following command:
    ```bash
-   > docker run -it --rm -v <path to your freesurfer subjects directory>:/subjects nben/neuropythy atlas --verbose <subject ID>
+   > docker run -it --rm -v "$SUBJECTS_DIR:/freesurfer_subjects" \
+            nben/neuropythy atlas --verbose <subject ID>
    ```
    Note that you can pass the flag `--help` in place of the `--verbose <subject ID>`
    to see further options.
@@ -70,13 +72,16 @@ information, see [this page]()):
    ```bash
    > python -m neuropythy atlas --verbose <subject ID>
    ```
-   Note that in this case, you will need to have your `SUBJECTS_DIR`
-   environment variable set to your FreeSurfer subjects directory, or you
-   must provide a full path instead of a subject ID..
+
+Note that in both cases, you will need to have your `SUBJECTS_DIR` environment
+variable set to your FreeSurfer subjects directory; in the latter case you can
+alternately provide an absolute or relative path the the subject's directory in
+places of the subject ID.
 
 See also [this page]({{site.baseurl}}/Retinotopy-Tutorial/)
 for further details about retinotopic atlases and retinotopy in
-general.
+general as well as [this page]({{site.baseurl}}}/HCP-and-Neuropythy) for more
+information on interacting with the HCP data using the neuropythy.
 
 
 ## The VSS 2018 Poster
