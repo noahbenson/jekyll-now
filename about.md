@@ -17,10 +17,12 @@ Vitae]({{site.baseurl}}/cv/).
 
 ### Previous Affiliations
 
-* **2014-2020** [New York University](https://nyu.edu) &#124; [Psychology](https://as.nyu.edu/psychology.html)  
-  Prof. [Jonathan Winawer](https://wp.nyu.edu/winawerlab/) &#124; Research Scientist
-* **2010-2014** [University of Pennsylvania](https://upenn.edu/) &#124; [Psychology](https://psych.upenn.edu/) and [Neurology](https://www.med.upenn.edu/neurology/)  
-  Profs. [David Brainard](https://color.psych.upenn.edu/) and [Geoff Aguirre](http://www.gkaguirre.com/) &#124; Post-doctoral Associate
+* **2014-2020**  
+  Prof. [Jonathan Winawer](https://wp.nyu.edu/winawerlab/) &nbsp;**&#124;**&nbsp; Research Scientist
+  [New York University](https://nyu.edu) &nbsp;**&#124;**&nbsp; [Psychology](https://as.nyu.edu/psychology.html)  
+* **2010-2014**  
+  Profs. [David Brainard](https://color.psych.upenn.edu/) and [Geoff Aguirre](http://www.gkaguirre.com/) &nbsp;**&#124;**&nbsp; Post-doctoral Associate
+  [University of Pennsylvania](https://upenn.edu/) &nbsp;**&#124;**&nbsp; [Psychology](https://psych.upenn.edu/) and [Neurology](https://www.med.upenn.edu/neurology/)  
 
 ### Contact me
 
