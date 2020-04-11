@@ -17,7 +17,7 @@ Vitae]({{site.baseurl}}/cv/).
 
 Previous affiliations:
 
-<font size="9">
+<font size="1">
 
 | Year | University | Unit | P.I.| Title |
 |------|-----------|-------------|-------------|-------------|
