@@ -23,7 +23,7 @@ body {
   background: $white;
   font: 18px/1.4 $helveticaNeue;
   color: $darkGray;
-  font-weight: 100;
+  font-weight: 200;
 }
 
 .container {
@@ -48,25 +48,25 @@ h1, h2, h3, h4, h5, h6 {
 
 h1 {
   font-size: 30px;
-  font-weight: $font-medium;
+  font-weight: 450;
   a {
     color: inherit;
   }
 }
 
 h2 {
-  font-weight: $font-medium;
+  font-weight: 450;
   font-size: 24px;
 }
 
 h3 {
   font-size: 20px;
-  font-weight: $font-normal;
+  font-weight: 300;
 }
 
 h4 {
   font-size: 18px;
-  font-weight: $font-normal;
+  font-weight: 300;
   color: $gray;
 }
 
