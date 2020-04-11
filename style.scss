@@ -20,9 +20,10 @@ html {
 }
 
 body {
-	background: $white;
-  font: 18px/1.4 $helvetica;
+  background: $white;
+  font: 18px/1.4 $helveticaNeue;
   color: $darkGray;
+  font-weight: $font-thin
 }
 
 .container {
@@ -35,7 +36,6 @@ body {
 h1, h2, h3, h4, h5, h6 {
   font-family: $helveticaNeue;
   color: $darkerGray;
-  font-weight: bold;
 
   line-height: 1.7;
   margin: 1em 0 15px;
@@ -48,21 +48,25 @@ h1, h2, h3, h4, h5, h6 {
 
 h1 {
   font-size: 30px;
+  font-weight: $font-medium;
   a {
     color: inherit;
   }
 }
 
 h2 {
+  font-weight: $font-medium;
   font-size: 24px;
 }
 
 h3 {
   font-size: 20px;
+  font-weight: $font-normal;
 }
 
 h4 {
   font-size: 18px;
+  font-weight: $font-normal;
   color: $gray;
 }
 
@@ -77,6 +81,7 @@ a {
   &:hover, &:active {
     color: $blue;
   }
+  font: $helveticaNeue;
 }
 
 ul, ol {
@@ -105,7 +110,7 @@ em, i {
 }
 
 strong, b {
-  font-weight: bold;
+  font-weight: $font-medium;
 }
 
 img {
