@@ -25,7 +25,8 @@ permalink: /cv/
 
 ### Experience 
 
-* **2016-Present**  Research Scientist with with Dr. Jonathan Winawer, Dept. of Psychology, New York University
+* **2020-Present** Senior Data Scientist and Data Science Fellow, eScience Institute, University of Washington, 
+* **2016-2020**  Research Scientist with with Dr. Jonathan Winawer, Dept. of Psychology, New York University
 * **2014-2016**  Post-doctoral Fellowship with Dr. Jonathan Winawer, Dept. of Psychology, New York University
 * **2010-2014**  Post-doctoral Fellowship with Drs. David Brainard and Geoff Aguirre, Depts. of Psychology and Neurology, University of Pennsylvania
 * **2006-2010**  Graduate Student under Dr. Valerie Daggett, Protein Simulation Analysis and Data Mining, Division of Biomedical and Health Informatics, University of Washington
