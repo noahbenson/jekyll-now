@@ -213,7 +213,7 @@ below) and thus needn't containsubject data initially.
 
 In order to access data from an HCP subjet you must have that data on local storage. Although
 Neuropythy will automate the download of this data (see below) and can even put this data in a 
-temporary directory, storing the HCP data permanently will drastically increase the runtime of any
+temporary directory, storing the HCP data permanently will drastically decrease the runtime of any
 script or function that uses the HCP data. One way to download an HCP subject's data is to tell
 Neuropythy explicitly to download all the data that it knows about for the subject. This can be done
 using the `neuropythy.hcp.download` function:
