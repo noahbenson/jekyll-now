@@ -18,21 +18,29 @@ permalink: /cv/
 ### Honors and Grants 
 
 * **2013**       Trainee Abstract Travel Award Winner, [OHBM](https://www.humanbrainmapping.org/)
-* **2006**       Student Paper Competition Finalist, American Medical Informatics Association Conference
+* **2006**       Student Paper Competition Finalist, American Medical Informatics Association
 * **2005-2008**  National Library of Medicine Research Training Grant
 * **2005-2008**  ARCS Foundation Top Future Scientist Fellowship, [www.arcsfoundation.org](https://cfn.upenn.edu/aguirre/wiki/)
 * **2004**       Hughes Bioinformatics Undergraduate Research Fellowship
 
 ### Experience 
 
-* **2020-Present** Senior Data Scientist and Data Science Fellow, eScience Institute, University of Washington, 
-* **2016-2020**  Research Scientist with with Dr. Jonathan Winawer, Dept. of Psychology, New York University
-* **2014-2016**  Post-doctoral Fellowship with Dr. Jonathan Winawer, Dept. of Psychology, New York University
-* **2010-2014**  Post-doctoral Fellowship with Drs. David Brainard and Geoff Aguirre, Depts. of Psychology and Neurology, University of Pennsylvania
-* **2006-2010**  Graduate Student under Dr. Valerie Daggett, Protein Simulation Analysis and Data Mining, Division of Biomedical and Health Informatics, University of Washington
-* **2006**       Graduate Rotation with Dr. Ira Kalet, Markov Models as a Method of Predicting Tumor Spread
-* **2005**       Graduate Rotation with Dr. Valerie Daggett, Clustering of Protein Transition States
-* **2003-2005**  Undergraduate Research Assistant under Dr. Chris Bailey-Kellogg, Graph Theory and NMR
+* **2020-Present** Senior Data Scientist and Data Science Fellow,  
+  eScience Institute, University of Washington
+* **2016-2020**  Research Scientist with with Dr. Jonathan Winawer,  
+  Dept. of Psychology, New York University
+* **2014-2016**  Post-doctoral Fellowship with Dr. Jonathan Winawer,  
+  Dept. of Psychology, New York University
+* **2010-2014**  Post-doctoral Fellowship with Drs. David Brainard and Geoff Aguirre,  
+  Depts. of Psychology and Neurology, University of Pennsylvania
+* **2006-2010**  Graduate Student under Dr. Valerie Daggett,  
+  Protein Simulation Analysis and Data Mining, Division of Biomedical and Health Informatics, University of Washington
+* **2006**       Graduate Rotation with Dr. Ira Kalet,  
+  Markov Models as a Method of Predicting Tumor Spread
+* **2005**       Graduate Rotation with Dr. Valerie Daggett,  
+  Clustering of Protein Transition States
+* **2003-2005**  Undergraduate Research Assistant under Dr. Chris Bailey-Kellogg,  
+  Graph Theory and NMR
 
 ### Publications
 
