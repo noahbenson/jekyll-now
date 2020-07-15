@@ -36,8 +36,15 @@ permalink: /cv/
 
 ### Publications
 
+* Gaglianese A, Branco MP, Groen I, **Benson NC**, Vansteensel MJ, Murray MM, Petridou N, Ramsey NF. (**2020**)
+  Electrocorticography Evidence of Tactile Responses in Visual Cortices. Brain Topogr.
+  DOI: [10.1007/s10548-020-00783-4](https://doi.org/10.1007/s10548-020-00783-4)
+* Lerma-Usabiaga G, **Benson NC**, Winawer J, Wandell BA (**2020**) A validation framework for
+  neuroimaging software: The case of population receptive fields. *PLOS Comput. Biol.* **16**(6):e1007924.
+  DOI: [10.1371/journal.pcbi.1007924](https://doi.org/10.1371/journal.pcbi.1007924)
 * Zhou J, **Benson NC**, Kay K, Winawer J (**2019**) Predicting neuronal dynamics with a delayed gain
-  control model. _PLOS Comput. Biol._ **In Review**.
+  control model. _PLOS Comput. Biol._ **15**(11): e1007484.
+  DOI: [10.1371/journal.pcbi.1007484](https://doi.org/10.1371/journal.pcbi.1007484)
 * **Benson NC**, Jamison KW, Arcaro MJ, Vu AT, Glasser MF, Coalson TS, Van Essen DV, Yacoub E,
   Ugurbil K, Winawer J, Kay K (**2018**) The Human Connectome Project 7 Tesla retinotopy dataset:
   Description and population receptive field analysis. _J. Vis._ **18**(13):23. DOI:
@@ -108,6 +115,8 @@ permalink: /cv/
 * **Benson NC**, Jamison KW, Vu AT, Winawer J, Kay KN (**2018**) The HCP 7T Retinotopy Dataset: A
   new resource for investigating the organization of human visual cortex. _J. Vis._ **8**(10):215.
   DOI:[10.1167/18.10.215](https://doi.org/10.1167/18.10.215) (Poster)
+* Broderick W, **Benson C**, Simoncelli E, Winawer J. (**2018)** Mapping Spatial Frequency
+  Preferences in the Human Visual Cortex. *J. Vis.* **18**(10):253-253.
 * **Benson NC**, Broderick WF, M&uuml;ller H, Winawer J (**2017**) From Retina to Extra-striate
   cortex: Forward Models of Visual Input; Toward a Standard Cortical Observer. _Optical Society of
   America, Fall Vision Meeting_ (Invited Talk)
