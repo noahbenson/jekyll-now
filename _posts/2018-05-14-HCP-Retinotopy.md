@@ -12,7 +12,7 @@ title: The Human Connectome Project 7T Retinotopy Database
 This page serves as a supplement to the 2018 VSS Poster and SfN Presentation on
 the HCP 7T Retinotopy Dataset by Benson, Jamison, Vu, Arcaro, *et al*. A PDF of
 the poster can be found below along with details about the broader project and
-links to relevant resources. Please contact [Noah Benson](mailto:nben@nyu.edu)
+links to relevant resources. Please contact [Noah Benson](mailto:nben@uw.edu)
 for inquiries.
 
 The HCP 7T retinotopy dataset is more fully documented in a

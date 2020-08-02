@@ -10,7 +10,7 @@ title: Asymmetries around the Visual Field in Human Visual Cortex
 This page serves as a supplement to the 2020 VSS Talk Asymmetries
 around the Visual Field in Human Visual Cortex by Noah C. Benson,
 Eline R. Kupers, Antoine Barbot, Marisa Carrasco, and Jonathan
-Winawer. Please contact [Noah Benson](mailto:nben@nyu.edu) for
+Winawer. Please contact [Noah Benson](mailto:nben@uw.edu) for
 inquiries.
 
 A video of this talk may be watched on [YouTube](https://www.youtube.com/watch?v=YuisKtLshs0).
